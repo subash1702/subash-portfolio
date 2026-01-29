@@ -1,109 +1,310 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Subash Chakravarthy — Data Engineering Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subash Chakravarthy — Data Engineering Portfolio</title>
+  <meta name="description" content="Data Engineer / Analytics Engineer — building reliable data systems, pipelines, and analytics-ready datasets." />
 
-<script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind via CDN (fast ship). If you later want, we can switch to a local build. -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
-.role-rotate::after {
-  content: "";
-  animation: roles 8s infinite;
-}
+  <style>
+    /* Small handcrafted touches so it doesn’t feel like a template */
+    :root {
+      --ink: #0b1220;
+      --muted: #5b6472;
+      --paper: #ffffff;
+      --line: rgba(15, 23, 42, 0.10);
+      --shadow: 0 14px 40px rgba(2, 6, 23, 0.08);
+      --shadow-soft: 0 10px 22px rgba(2, 6, 23, 0.06);
+      --radius: 18px;
+    }
 
-@keyframes roles {
-  0% { content: "Data Engineer"; }
-  25% { content: "Analytics Engineer"; }
-  50% { content: "Data Systems Builder"; }
-  75% { content: "Pipeline & Platform Focused"; }
-  100% { content: "Data Engineer"; }
-}
-</style>
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); }
 
-</head> 
+    /* Subtle “coded” underline marker */
+    .marker {
+      background: linear-gradient(transparent 60%, rgba(59, 130, 246, 0.18) 60%);
+      border-radius: 6px;
+      padding: 0 0.15em;
+    }
 
-<body class="bg-black text-white font-sans">
+    /* Soft focus ring (consistent) */
+    .focus-ring:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.20);
+      border-color: rgba(59, 130, 246, 0.45);
+    }
 
-<div class="max-w-5xl mx-auto px-6 py-20">
+    /* Cards feel “floating” but restrained */
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      background: #fff;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
 
-<!-- HERO -->
+    /* A tiny animated caret for the role line */
+    .caret {
+      display: inline-block;
+      width: 10px;
+      height: 1.1em;
+      margin-left: 6px;
+      background: rgba(15, 23, 42, 0.35);
+      transform: translateY(2px);
+      animation: blink 1.05s steps(2, jump-none) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
 
-<h1 class="text-5xl font-bold mb-4">
-Subash Chakravarthy
-</h1>
+    /* Hide animations for folks who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .card, .caret { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
 
-<h2 class="text-2xl text-gray-300 mb-6">
-<span class="role-rotate"></span>
-</h2>
+<body class="antialiased">
+  <!-- Top Nav (simple + human) -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/75 border-b" style="border-color: var(--line);">
+    <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="#top" class="font-semibold tracking-tight hover:opacity-80">Subash</a>
+      <nav class="flex gap-4 text-sm" style="color: var(--muted);">
+        <a class="hover:text-slate-900 focus-ring rounded-md px-2 py-1" href="#projects">Projects</a>
+        <a class="hover:text-slate-900 focus-ring rounded-md px-2 py-1" href="#skills">Skills</a>
+        <a class="hover:text-slate-900 focus-ring rounded-md px-2 py-1" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<p class="text-xl text-gray-400 max-w-2xl mb-12">
-I build reliable data systems and analytics-ready pipelines that turn messy raw data into trusted, decision-ready datasets.
-</p>
+  <main id="top" class="max-w-5xl mx-auto px-6 py-16">
+    <!-- HERO -->
+    <section class="pb-10">
+      <p class="text-sm tracking-wide uppercase" style="color: var(--muted);">
+        Master’s in Analytics • Systems-first mindset
+      </p>
 
-<!-- HOW I THINK -->
+      <h1 class="text-5xl md:text-6xl font-bold tracking-tight mt-3">
+        Subash Chakravarthy
+      </h1>
 
-<div class="bg-zinc-900 p-8 rounded-2xl shadow-lg mb-12">
-<h3 class="text-2xl font-semibold mb-4">How I Think</h3>
+      <!-- Rotating roles (handwritten JS, not CSS content tricks) -->
+      <div class="mt-4 flex items-center flex-wrap gap-3">
+        <div class="inline-flex items-center rounded-full border px-4 py-2 text-sm"
+             style="border-color: var(--line); color: var(--muted);">
+          <span class="font-medium text-slate-900">Role:</span>
+          <span class="ml-2 marker" id="roleText">Data Engineer</span>
+          <span class="caret" aria-hidden="true"></span>
+        </div>
 
-<ul class="space-y-3 text-gray-300">
-<li>• Start with who uses the data and what decision it supports</li>
-<li>• Build repeatable systems, not one-off scripts</li>
-<li>• Prioritize data quality before downstream modeling</li>
-<li>• Design flows: ingest → transform → serve</li>
-<li>• Make outputs people can trust without second-guessing</li>
-</ul>
-</div>
+        <div class="inline-flex items-center rounded-full border px-4 py-2 text-sm"
+             style="border-color: var(--line); color: var(--muted);">
+          <span class="font-medium text-slate-900">Status:</span>
+          <span class="ml-2">Open to full-time roles</span>
+        </div>
 
-<!-- SKILLS -->
+        <div class="inline-flex items-center rounded-full border px-4 py-2 text-sm"
+             style="border-color: var(--line); color: var(--muted);">
+          <span class="font-medium text-slate-900">Work Auth:</span>
+          <span class="ml-2">F-1 OPT (STEM eligible)</span>
+        </div>
+      </div>
 
-<div class="bg-zinc-900 p-8 rounded-2xl shadow-lg mb-12">
-<h3 class="text-2xl font-semibold mb-4">Skills</h3>
+      <p class="mt-6 text-lg md:text-xl leading-relaxed max-w-3xl" style="color: var(--muted);">
+        I build <span class="marker">reliable data systems</span> and analytics-ready pipelines that turn messy raw data into
+        trusted, decision-ready datasets. I care about data quality, repeatability, and making metrics
+        consistent across teams.
+      </p>
 
-<p class="text-gray-300">
-Python • SQL • Data Pipelines • Transformations • Data Modeling • Analytics Engineering
-</p>
-</div>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#projects"
+           class="focus-ring inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800">
+          View projects
+        </a>
+        <a href="#contact"
+           class="focus-ring inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold border hover:bg-slate-50"
+           style="border-color: var(--line);">
+          Contact
+        </a>
+      </div>
+    </section>
 
-<!-- PROJECTS -->
+    <!-- HOW I THINK -->
+    <section class="card p-8 md:p-10 mb-10">
+      <h2 class="text-2xl font-semibold tracking-tight">How I think</h2>
+      <p class="mt-2 text-sm" style="color: var(--muted);">
+        I try to design systems that are trustworthy, explainable, and easy to operate.
+      </p>
 
-<h3 class="text-3xl font-semibold mb-6">Projects</h3>
+      <ul class="mt-6 space-y-3">
+        <li class="flex gap-3">
+          <span class="mt-1 text-slate-900">•</span>
+          <span>Start with <span class="marker">who uses the data</span> and what decision it supports</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-slate-900">•</span>
+          <span>Build repeatable systems, not one-off scripts</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-slate-900">•</span>
+          <span>Prioritize data quality before downstream modeling or reporting</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-slate-900">•</span>
+          <span>Design flows: ingest → transform → serve (and document assumptions)</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 text-slate-900">•</span>
+          <span>Make outputs people can trust without second-guessing</span>
+        </li>
+      </ul>
+    </section>
 
-<div class="grid md:grid-cols-2 gap-8 mb-16">
+    <!-- PROJECTS -->
+    <section id="projects" class="mb-12">
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <h2 class="text-3xl font-semibold tracking-tight">Projects</h2>
+          <p class="mt-2 text-sm max-w-2xl" style="color: var(--muted);">
+            Built to demonstrate end-to-end thinking: data reliability, modeling decisions, and operational readiness.
+          </p>
+        </div>
+      </div>
 
-<div class="bg-zinc-900 p-6 rounded-xl shadow hover:scale-105 transition">
-<h4 class="font-semibold text-xl mb-2">
-Reliable Batch Data Pipeline
-</h4>
-<p class="text-gray-400">
-Designing repeatable ingestion and transformation pipelines for analytics-ready data.
-</p>
-</div>
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <article class="card p-7">
+          <h3 class="text-xl font-semibold tracking-tight">Reliable Batch Data Pipeline for Decision-Making</h3>
+          <p class="mt-2 text-sm" style="color: var(--muted);">
+            Standardized ingestion + transformations to produce analytics-ready tables with consistent metric logic.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs" style="color: var(--muted);">
+            <span class="border rounded-full px-3 py-1" style="border-color: var(--line);">Python</span>
+            <span class="border rounded-full px-3 py-1" style="border-color: var(--line);">SQL</span>
+            <span class="border rounded-full px-3 py-1" style="border-color: var(--line);">Data modeling</span>
+          </div>
+          <p class="mt-4 text-sm">
+            <span class="font-semibold">Status:</span> In progress — turning this into a full write-up with diagram + queries.
+          </p>
+        </article>
 
-<div class="bg-zinc-900 p-6 rounded-xl shadow hover:scale-105 transition">
-<h4 class="font-semibold text-xl mb-2">
-Time-Window Event Processing
-</h4>
-<p class="text-gray-400">
-Processing time-based event data for operational insights.
-</p>
-</div>
+        <article class="card p-7">
+          <h3 class="text-xl font-semibold tracking-tight">Time-Windowed Event Processing for Operational Insights</h3>
+          <p class="mt-2 text-sm" style="color: var(--muted);">
+            Windowed aggregations (hourly/daily) and clean outputs to support monitoring and time-sensitive decisions.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 text-xs" style="color: var(--muted);">
+            <span class="border rounded-full px-3 py-1" style="border-color: var(--line);">Python</span>
+            <span class="border rounded-full px-3 py-1" style="border-color: var(--line);">SQL</span>
+            <span class="border rounded-full px-3 py-1" style="border-color: var(--line);">Time series logic</span>
+          </div>
+          <p class="mt-4 text-sm">
+            <span class="font-semibold">Status:</span> Planned — implementing incremental updates + quality checks.
+          </p>
+        </article>
+      </div>
+    </section>
 
-</div>
+    <!-- SKILLS -->
+    <section id="skills" class="card p-8 md:p-10 mb-12">
+      <h2 class="text-2xl font-semibold tracking-tight">Skills</h2>
 
-<!-- CONTACT -->
+      <div class="mt-6 grid md:grid-cols-2 gap-6 text-sm">
+        <div class="border rounded-2xl p-5" style="border-color: var(--line);">
+          <h3 class="font-semibold">Core</h3>
+          <p class="mt-2" style="color: var(--muted);">Python, SQL, data transformations, data modeling, analytics-ready schemas</p>
+        </div>
 
-<div class="border-t border-zinc-800 pt-10">
-<p class="text-gray-400">
-LinkedIn — https://www.linkedin.com/in/subash-chakravarthy-4944a0212/  
-GitHub — https://github.com/subash1702  
-Email — subash170202@gmail.com
-</p>
-</div>
+        <div class="border rounded-2xl p-5" style="border-color: var(--line);">
+          <h3 class="font-semibold">Tools I’ve used</h3>
+          <p class="mt-2" style="color: var(--muted);">
+            Snowflake, PySpark, Tableau, Power BI, AWS (as applicable)
+          </p>
+          <p class="mt-2 text-xs" style="color: var(--muted);">
+            (Only list what you can confidently explain in person.)
+          </p>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <!-- CONTACT -->
+    <section id="contact" class="pb-10">
+      <div class="card p-8 md:p-10">
+        <h2 class="text-2xl font-semibold tracking-tight">Contact</h2>
+        <p class="mt-2 text-sm" style="color: var(--muted);">
+          Best way to reach me is email. Happy to share code, diagrams, or walk through design decisions.
+        </p>
 
+        <div class="mt-6 grid sm:grid-cols-3 gap-4 text-sm">
+          <a class="focus-ring border rounded-xl p-4 hover:bg-slate-50"
+             style="border-color: var(--line);" href="https://www.linkedin.com/in/YOUR-LINK" target="_blank" rel="noreferrer">
+            <div class="font-semibold">LinkedIn</div>
+            <div style="color: var(--muted);">/in/your-link</div>
+          </a>
+
+          <a class="focus-ring border rounded-xl p-4 hover:bg-slate-50"
+             style="border-color: var(--line);" href="https://github.com/subash1702" target="_blank" rel="noreferrer">
+            <div class="font-semibold">GitHub</div>
+            <div style="color: var(--muted);">@subash1702</div>
+          </a>
+
+          <a class="focus-ring border rounded-xl p-4 hover:bg-slate-50"
+             style="border-color: var(--line);" href="mailto:YOUR_EMAIL@example.com">
+            <div class="font-semibold">Email</div>
+            <div style="color: var(--muted);">YOUR_EMAIL@example.com</div>
+          </a>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-center" style="color: var(--muted);">
+        Built from scratch by Subash • Hosted on GitHub Pages
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // Handcrafted role rotator: feels more “coded” than CSS content tricks.
+    // Also respects reduced motion preferences.
+    (function () {
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const el = document.getElementById("roleText");
+      if (!el) return;
+
+      const roles = [
+        "Data Engineer",
+        "Analytics Engineer",
+        "Data Platform & Pipelines",
+        "Data Quality & Modeling"
+      ];
+
+      let i = 0;
+
+      function setRole(text) {
+        // tiny “human” touch: fade between roles instead of snapping
+        el.style.opacity = "0";
+        setTimeout(() => {
+          el.textContent = text;
+          el.style.opacity = "1";
+        }, 180);
+      }
+
+      if (prefersReducedMotion) {
+        el.textContent = roles[0];
+        return;
+      }
+
+      setRole(roles[0]);
+      setInterval(() => {
+        i = (i + 1) % roles.length;
+        setRole(roles[i]);
+      }, 2000);
+    })();
+  </script>
 </body>
 </html>
-
-
