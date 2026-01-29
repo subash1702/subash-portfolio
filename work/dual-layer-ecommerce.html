@@ -26,7 +26,13 @@
     .h1{font-size:40px; line-height:1.1; font-weight:700; letter-spacing:-.02em; margin:0;}
     .kicker{color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase;}
 
-    /* Devansh-like header cluster */
+    header{padding:26px 0;}
+    .top{display:flex; align-items:center; justify-content:space-between;}
+    .nav{display:flex; gap:18px; color:var(--muted); font-size:14px;}
+    .nav a:hover{color:var(--ink)}
+    .brand{font-weight:700;}
+
+    /* Cluster */
     .cluster{
       height: 320px;
       display:flex;
@@ -34,25 +40,26 @@
       justify-content:center;
       position:relative;
       overflow:hidden;
+      user-select:none;
     }
     .cluster a{
       position:absolute;
       font-weight:700;
       letter-spacing:-.01em;
       white-space:nowrap;
-      transition: opacity .15s ease, transform .15s ease, color .15s ease;
       color: var(--ghost);
       font-size: 26px;
+      transition: opacity .15s ease, color .15s ease;
+      will-change: transform;
     }
-    .cluster a:hover{ color: rgba(11,18,32,.42); transform: translateY(-1px); }
-
+    .cluster a:hover{ color: rgba(11,18,32,.42); }
     .cluster a.current{
       color: var(--ink);
       font-size: 28px;
       letter-spacing:-.02em;
     }
 
-    /* positions (tuned to resemble screenshot) */
+    /* positions tuned like the screenshot */
     .p1{top:92px; left:72px;}
     .p2{top:70px; left:210px;}
     .p3{top:70px; right:140px;}
@@ -60,7 +67,7 @@
     .p5{top:150px; left:250px;}
     .p6{top:180px; left:420px;}
 
-    /* content */
+    /* Content */
     .content{max-width:780px; margin:0 auto; padding:0 24px 80px;}
     .section{padding:26px 0;}
     .section h2{margin:0; font-size:18px; font-weight:700;}
@@ -71,29 +78,52 @@
       background:#fff;
     }
     .mini{color:var(--muted); font-size:14px; line-height:1.7;}
-    .back{display:inline-block; margin-top:18px; color:var(--ink); text-decoration:underline; text-decoration-color:rgba(79,70,229,.35); text-underline-offset:4px;}
+    .back{
+      display:inline-block;
+      margin-top:18px;
+      color:var(--ink);
+      text-decoration:underline;
+      text-decoration-color:rgba(79,70,229,.35);
+      text-underline-offset:4px;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .cluster a{transition:none;}
+    }
   </style>
 </head>
 
 <body>
-  <header class="wrap" style="padding:26px 0; display:flex; align-items:center; justify-content:space-between;">
-    <a href="../index.html" style="font-weight:700;">Subash</a>
-    <nav style="display:flex; gap:18px; color:var(--muted); font-size:14px;">
-      <a href="../index.html#projects">Work</a>
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#contact">Contact</a>
-    </nav>
+  <header class="wrap">
+    <div class="top">
+      <a class="brand" href="../index.html">Subash</a>
+      <nav class="nav">
+        <a href="../index.html#projects">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <!-- Devansh-style cluster -->
-  <section class="cluster">
-    <a class="p1" href="../index.html#projects">All</a>
-    <a class="p2 current" href="./dual-layer-ecommerce.html">Dual Layer E-Commerce Data Platform</a>
-    <a class="p3" href="./contract-driven-spark.html">Contract Driven Data Platform with Spark</a>
-    <a class="p4" href="./nyc-traffic.html">NYC Traffic Volume Analytics Pipeline</a>
-    <!-- extra faint “future” links (optional, feels like Devansh) -->
-    <a class="p5" href="../index.html#projects">New project in progress</a>
-    <a class="p6" href="../index.html#contact">Let’s talk</a>
+  <section class="cluster" id="cluster">
+    <a class="p1" href="../index.html#projects" data-depth="0.9">All</a>
+
+    <a class="p2 current" href="./dual-layer-ecommerce.html" data-depth="1.2">
+      Dual Layer E-Commerce Data Platform
+    </a>
+
+    <a class="p3" href="./contract-driven-spark.html" data-depth="1.0">
+      Contract Driven Data Platform with Spark
+    </a>
+
+    <a class="p4" href="./nyc-traffic.html" data-depth="1.05">
+      NYC Traffic Volume Analytics Pipeline
+    </a>
+
+    <!-- optional ghost links (make it feel designed) -->
+    <a class="p5" href="../index.html#projects" data-depth="0.85">New project in progress</a>
+    <a class="p6" href="../index.html#contact" data-depth="0.8">Let’s talk</a>
   </section>
 
   <div class="wrap"><div class="divider"></div></div>
@@ -103,8 +133,8 @@
       <div class="kicker">Project</div>
       <h1 class="h1" style="margin-top:10px;">Dual Layer E-Commerce Data Platform</h1>
       <p class="sub" style="margin-top:14px;">
-        I built this because teams usually need two things at once: fast operational signals and stable, auditable reporting.
-        This project is my way of showing how I design for both without cutting corners on correctness.
+        I built this because most teams need two kinds of truth at the same time: fast operational signals and stable,
+        auditable reporting. This project shows how I design for both without sacrificing correctness.
       </p>
     </div>
 
@@ -112,27 +142,66 @@
       <div style="font-weight:700;">Architecture in one paragraph</div>
       <p class="mini" style="margin-top:8px;">
         Events stream through Kafka. A Python processor computes windowed metrics and stays correct when events arrive late.
-        Daily logs land in PostgreSQL, and dbt transformations build reporting tables that remain consistent across retries.
-        Data quality checks validate schema and business rules before anything hits BI.
+        In parallel, daily logs land in PostgreSQL and dbt builds reporting tables that remain consistent across retries.
+        Quality checks validate schema and business rules before anything reaches BI.
       </p>
     </div>
 
     <div class="section">
       <h2>What I cared about</h2>
       <p class="sub" style="margin-top:10px;">
-        Not just “making it work”—making it safe to operate. Late events, duplicates, and retries are normal in real systems,
-        so I designed with those realities in mind from day one.
+        Late events, duplicates, and retries aren’t rare edge cases—they’re normal. I designed the pipeline to handle them cleanly so
+        the outputs stay trustworthy, not just “working.”
       </p>
     </div>
 
     <div class="section">
       <h2>Tech</h2>
-      <p class="sub" style="margin-top:10px;">
-        Python, SQL, Kafka, PostgreSQL, dbt, Docker
-      </p>
+      <p class="sub" style="margin-top:10px;">Python, SQL, Kafka, PostgreSQL, dbt, Docker</p>
     </div>
 
     <a class="back" href="../index.html#projects">← Back to projects</a>
   </main>
+
+  <!-- FLOAT / Parallax (subtle, premium) -->
+  <script>
+    (function(){
+      const cluster = document.getElementById('cluster');
+      if (!cluster) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      const items = Array.from(cluster.querySelectorAll('a'));
+      let targetX = 0, targetY = 0;
+      let currentX = 0, currentY = 0;
+
+      function onMove(e){
+        const r = cluster.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;   // 0..1
+        const y = (e.clientY - r.top) / r.height;   // 0..1
+        targetX = (x - 0.5) * 18;                   // strength
+        targetY = (y - 0.5) * 14;
+      }
+
+      function tick(){
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+
+        for (const el of items){
+          const depth = parseFloat(el.dataset.depth || '1');
+          const dx = currentX * depth;
+          const dy = currentY * depth;
+          el.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
+        }
+        requestAnimationFrame(tick);
+      }
+
+      cluster.addEventListener('mousemove', onMove);
+      cluster.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
+
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>
