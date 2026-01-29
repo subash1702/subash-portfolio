@@ -1,1 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NYC Traffic Analytics Pipeline — Subash</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--bg:#fbfbfd;--ink:#0b1220;--muted:rgba(11,18,32,.68);--line:rgba(11,18,32,.12);--accent:#4f46e5;}
+    body{background:var(--bg); color:var(--ink);}
+    .wrap{max-width:780px; margin:0 auto;}
+    .kicker{color:var(--muted); font-size:14px; letter-spacing:.08em; text-transform:uppercase;}
+    .h1{font-size:clamp(36px,4vw,52px); line-height:1.05; font-weight:650; letter-spacing:-.02em;}
+    .sub{color:var(--muted); font-size:18px; line-height:1.75;}
+    .divider{height:1px; background:var(--line); width:100%;}
+    .callout{border:1px solid var(--line); border-radius:18px; padding:16px; background: rgba(255,255,255,.75);}
+    .mini{color:var(--muted); font-size:14px; line-height:1.75;}
+    .nav a{color:var(--muted);}
+    .nav a:hover{color:var(--ink);}
+    .link{color:var(--ink); text-decoration: underline; text-decoration-color: rgba(79,70,229,.35); text-underline-offset: 4px;}
+    .link:hover{text-decoration-color: rgba(79,70,229,.75);}
+  </style>
+</head>
+
+<body class="antialiased">
+  <header class="py-10">
+    <div class="wrap px-6 flex items-center justify-between">
+      <a href="../index.html" class="font-semibold">Subash</a>
+      <nav class="nav flex gap-6 text-sm">
+        <a href="index.html">Work</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap px-6 pb-20">
+    <div class="kicker">Project</div>
+    <h1 class="h1 mt-3">NYC Traffic Volume Analytics Pipeline</h1>
+    <p class="sub mt-5">
+      A pipeline that turns noisy, inconsistent public traffic data into clean analytical tables and reusable features for modeling.
+    </p>
+
+    <div class="divider my-10"></div>
+
+    <section class="space-y-9">
+      <div>
+        <h2 class="text-xl font-semibold">The problem</h2>
+        <p class="sub mt-3">
+          Public datasets are useful, but they’re rarely “analysis ready.” Formats differ, timestamps don’t align, and missing values
+          create false patterns. The goal here was to build a clean foundation so analysis and modeling don’t become a constant cleanup exercise.
+        </p>
+      </div>
+
+      <div class="callout">
+        <div class="font-semibold">What I did</div>
+        <p class="mini mt-2">
+          I cleaned and standardized traffic and event datasets, aligned them on time and location, and produced consistent tables for reporting
+          and feature sets for predictive models. The output is designed to be reused without redoing the messy prep work.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold">How I made it reliable</h2>
+        <div class="mt-3 space-y-4">
+          <p class="sub"><span class="font-semibold" style="color:var(--ink)">Standardized keys and timestamps:</span>
+            so joins behave predictably and time-based aggregations are correct.</p>
+          <p class="sub"><span class="font-semibold" style="color:var(--ink)">Clear transformations:</span>
+            the pipeline is readable and debuggable instead of being a one-off notebook.</p>
+          <p class="sub"><span class="font-semibold" style="color:var(--ink)">Reusable outputs:</span>
+            clean analytical tables and features that can power dashboards and models.</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold">Next improvements</h2>
+        <p class="sub mt-3">
+          Add automated validation for new incoming files and publish a small data dictionary so the tables are self-explanatory.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider my-12"></div>
+    <a class="link text-sm" href="index.html">← Back to Work</a>
+  </main>
+</body>
+</html>
 
