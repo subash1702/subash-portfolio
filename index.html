@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Subash Chakravarthy — Portfolio</title>
 
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
@@ -15,12 +14,11 @@
       --bg:#ffffff;
       --ink:#0b1220;
       --muted:rgba(11,18,32,.62);
-      --hair:rgba(11,18,32,.10);
+      --hair:rgba(11,18,32,.12);
       --soft:rgba(11,18,32,.06);
-      --radius:18px;
-      --max: 1040px;
+      --max: 1080px;
+      --r: 18px;
     }
-
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
@@ -32,15 +30,12 @@
       text-rendering:optimizeLegibility;
     }
     a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:0 22px; }
 
-    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 22px; }
-
-    /* Top bar */
+    /* Top nav */
     .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background: rgba(255,255,255,.80);
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,.86);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--soft);
     }
@@ -51,23 +46,23 @@
       justify-content:space-between;
       gap:16px;
     }
-    .brand{
-      font-weight:700;
-      letter-spacing:-.02em;
-    }
+    .brand{ font-weight:750; letter-spacing:-.02em; }
     .nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      font-size:14px;
-      color: var(--muted);
+      display:flex; align-items:center; gap:10px;
+      font-size:14px; color:var(--muted);
     }
-    .nav a{ padding: 8px 10px; border-radius: 999px; }
-    .nav a:hover{ color: var(--ink); background: rgba(11,18,32,.04); }
+    .nav a{
+      padding: 8px 10px;
+      border-radius:999px;
+    }
+    .nav a:hover{
+      background: rgba(11,18,32,.04);
+      color: var(--ink);
+    }
 
-    /* Hero (centered) */
+    /* Hero */
     .hero{
-      padding: 72px 0 26px;
+      padding: 78px 0 18px;
       text-align:center;
       display:flex;
       flex-direction:column;
@@ -77,65 +72,67 @@
       font-size:13px;
       letter-spacing:.14em;
       text-transform:uppercase;
-      color: var(--muted);
+      color:var(--muted);
     }
     h1{
       margin: 14px 0 10px;
-      font-size: clamp(42px, 6vw, 64px);
+      font-size: clamp(42px, 6vw, 68px);
       line-height: 1.02;
-      letter-spacing: -.04em;
+      letter-spacing: -.045em;
     }
 
-    /* Roles ticker (left -> right loop) */
+    /* Roles ticker (left -> right) */
     .ticker{
-      width: min(860px, 100%);
-      margin: 14px auto 16px;
+      width:min(860px, 100%);
+      margin: 16px auto 14px;
       overflow:hidden;
       border: 1px solid var(--hair);
-      border-radius: 999px;
+      border-radius:999px;
       background: rgba(11,18,32,.02);
     }
-    .ticker-track{
+    .track{
       display:flex;
       gap:12px;
+      align-items:center;
       padding: 10px 14px;
       width:max-content;
-      animation: marquee 18s linear infinite;
+      white-space:nowrap;
+      animation: moveLR 14s linear infinite;
+    }
+    .ticker:hover .track{ animation-play-state: paused; }
+    @keyframes moveLR{
+      0% { transform: translateX(-26%); }
+      100% { transform: translateX(0%); }
     }
     .pill{
       display:inline-flex;
       align-items:center;
-      border:1px solid rgba(11,18,32,.12);
+      border: 1px solid rgba(11,18,32,.12);
+      background: rgba(255,255,255,.7);
       padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.65);
+      border-radius:999px;
       font-size:14px;
-      font-weight:650;
+      font-weight:700;
       letter-spacing:-.01em;
-      white-space:nowrap;
     }
-    @keyframes marquee{
-      0%{ transform: translateX(-18%); }
-      100%{ transform: translateX(0%); }
+    .pill.soft{
+      font-weight:650;
+      color: rgba(11,18,32,.75);
+      background: rgba(255,255,255,.55);
     }
-    /* Pause ticker on hover */
-    .ticker:hover .ticker-track{ animation-play-state: paused; }
 
     .about{
-      max-width: 72ch;
+      max-width: 74ch;
       font-size:18px;
-      line-height:1.65;
+      line-height:1.7;
       color: rgba(11,18,32,.78);
-      letter-spacing:-.01em;
       margin: 0 auto;
     }
-
-    .hero-actions{
+    .actions{
       margin-top: 22px;
       display:flex;
-      align-items:center;
       justify-content:center;
-      gap:14px;
+      gap: 12px;
       flex-wrap:wrap;
     }
     .btn{
@@ -143,94 +140,86 @@
       align-items:center;
       gap:10px;
       padding: 12px 16px;
-      border-radius: 999px;
+      border-radius:999px;
       border: 1px solid var(--hair);
-      background: #fff;
-      font-weight:650;
+      background:#fff;
+      font-weight:750;
       letter-spacing:-.01em;
       transition: transform .15s ease, box-shadow .15s ease;
     }
+    .btn:hover{ transform: translateY(-1px); }
     .btn.primary{
       background: var(--ink);
-      color: #fff;
-      border-color: rgba(0,0,0,0);
+      color:#fff;
+      border-color: transparent;
     }
-    .btn:hover{ transform: translateY(-1px); }
-    .btn.primary:hover{ box-shadow: 0 10px 28px rgba(11,18,32,.18); }
+    .btn.primary:hover{ box-shadow: 0 12px 30px rgba(11,18,32,.18); }
 
-    /* Gallery */
-    .gallery{
+    /* Work blocks */
+    .section{
       padding: 26px 0 44px;
     }
-    .section-title{
-      margin: 30px 0 14px;
-      font-size: 14px;
+    .label{
+      margin: 26px 0 14px;
+      font-size: 13px;
       color: var(--muted);
-      letter-spacing: .12em;
+      letter-spacing: .14em;
       text-transform: uppercase;
+      text-align:left;
     }
     .grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px;
     }
+
     .tile{
       position:relative;
-      border-radius: var(--radius);
+      border-radius: var(--r);
       overflow:hidden;
       min-height: 360px;
       display:flex;
       align-items:center;
       justify-content:center;
-      transform: translateZ(0);
-      outline: 1px solid rgba(0,0,0,.05);
+      outline: 1px solid rgba(0,0,0,.06);
       transition: transform .18s ease;
+      cursor:pointer;
     }
     .tile:hover{ transform: translateY(-2px); }
-    .tile.full{
-      grid-column: 1 / -1;
-      min-height: 420px;
-    }
 
-    .bg-purple{ background: #3b2a52; }
-    .bg-red{ background: #e10600; }
-    .bg-blue{ background: #0b7cff; }
-    .bg-green{ background: #1f8a2b; }
+    .tile.full{ grid-column: 1 / -1; min-height: 420px; }
+
+    .bg-purple{ background:#3b2a52; }
+    .bg-red{ background:#e10600; }
     .bg-darkimg{
       background:
         linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
-        radial-gradient(1200px 420px at 20% 20%, rgba(255,255,255,.18), transparent 60%),
         url("https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=60");
       background-size: cover;
       background-position: center;
     }
-    .bg-light{ background: #f3f4f6; }
 
-    .tile-title{
+    .title{
       color:#fff;
-      font-weight:750;
-      letter-spacing:-.03em;
-      font-size: clamp(22px, 3.1vw, 40px);
+      font-weight:800;
+      letter-spacing:-.035em;
+      font-size: clamp(22px, 3.2vw, 42px);
       text-align:center;
       padding: 0 22px;
+      line-height:1.15;
       text-shadow: 0 10px 26px rgba(0,0,0,.22);
     }
-    .tile-sub{
+    .tile-bottom{
       position:absolute;
       left:18px; right:18px; bottom:16px;
       display:flex;
-      align-items:flex-end;
       justify-content:space-between;
+      align-items:flex-end;
       gap:12px;
-      color: rgba(255,255,255,.85);
+      color: rgba(255,255,255,.88);
       font-size: 13px;
-      letter-spacing: -.01em;
     }
-    .tile-sub .tags{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
+    .tags{ display:flex; gap:8px; flex-wrap:wrap; }
     .tag{
       border: 1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.10);
@@ -243,27 +232,13 @@
       width:40px; height:40px;
       border-radius:999px;
       background: rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.18);
       display:flex;
       align-items:center;
       justify-content:center;
       flex:0 0 auto;
     }
     .arrow svg{ width:18px; height:18px; opacity:.9; }
-
-    .tile.light .tile-title{
-      color: rgba(11,18,32,.92);
-      text-shadow:none;
-    }
-    .tile.light .tile-sub{ color: rgba(11,18,32,.62); }
-    .tile.light .tag{
-      border-color: rgba(11,18,32,.14);
-      background: rgba(11,18,32,.06);
-    }
-    .tile.light .arrow{
-      background: rgba(11,18,32,.06);
-      border-color: rgba(11,18,32,.12);
-    }
 
     /* Footer contact */
     footer{
@@ -274,8 +249,8 @@
     }
     .footer-inner{
       display:flex;
-      align-items:flex-start;
       justify-content:space-between;
+      align-items:flex-start;
       gap:18px;
       flex-wrap:wrap;
     }
@@ -302,8 +277,7 @@
       .grid{ grid-template-columns: 1fr; }
       .tile{ min-height: 320px; }
       .tile.full{ min-height: 340px; }
-      .hero{ padding-top: 56px; }
-      .ticker-track{ animation-duration: 22s; }
+      .hero{ padding-top: 58px; }
     }
   </style>
 </head>
@@ -325,46 +299,37 @@
       <div class="kicker">Master’s in Analytics • Northeastern University</div>
       <h1>Subash Chakravarthy</h1>
 
-      <div class="ticker" aria-label="Roles">
-        <div class="ticker-track">
-          <!-- repeat these pills twice for a smoother loop -->
-          <span class="pill">Data Engineer</span>
-          <span class="pill">Analytics Engineer</span>
-          <span class="pill">Streaming + Batch</span>
-          <span class="pill">Kafka • Spark • dbt</span>
-          <span class="pill">Data Modeling</span>
-          <span class="pill">Quality + Observability</span>
-          <span class="pill">Warehouse-ready datasets</span>
+      <div class="ticker" aria-label="Target roles">
+        <div class="track">
+          <span class="pill" id="roleA">I am a Data Engineer</span>
+          <span class="pill soft">I build streaming + batch pipelines</span>
+          <span class="pill soft">I care about correctness and trust</span>
 
-          <span class="pill">Data Engineer</span>
-          <span class="pill">Analytics Engineer</span>
-          <span class="pill">Streaming + Batch</span>
-          <span class="pill">Kafka • Spark • dbt</span>
-          <span class="pill">Data Modeling</span>
-          <span class="pill">Quality + Observability</span>
-          <span class="pill">Warehouse-ready datasets</span>
+          <span class="pill" id="roleB">I am a Data Engineer</span>
+          <span class="pill soft">I build streaming + batch pipelines</span>
+          <span class="pill soft">I care about correctness and trust</span>
         </div>
       </div>
 
       <p class="about">
-        I like building systems that don’t break when the real world shows up.
-        Give me messy events, late data, inconsistent sources, and a team that needs answers they can trust —
-        I turn that into a pipeline, a clean model, and datasets people feel confident using.
+        I like building systems that hold up in real conditions.
+        Messy events, late data, inconsistent sources, shifting requirements — that’s the fun part.
+        I turn that chaos into pipelines and datasets people can actually trust.
       </p>
 
-      <div class="hero-actions">
+      <div class="actions">
         <a class="btn primary" href="#work">View selected work</a>
         <a class="btn" href="About.html">About + Resume</a>
       </div>
     </section>
 
-    <section class="gallery" id="work">
-      <div class="section-title">Selected work</div>
+    <section class="section" id="work">
+      <div class="label">Selected work</div>
 
       <div class="grid">
-        <a class="tile bg-purple" href="work/dual-layer-ecommerce.html" aria-label="Dual Layer E-Commerce Data Platform">
-          <div class="tile-title">Dual Layer E-Commerce Data Platform</div>
-          <div class="tile-sub">
+        <a class="tile bg-purple" href="work/dual-layer-ecommerce/" aria-label="Dual Layer E-Commerce Data Platform">
+          <div class="title">Dual Layer E-Commerce Data Platform</div>
+          <div class="tile-bottom">
             <div class="tags">
               <span class="tag">Kafka</span><span class="tag">dbt</span><span class="tag">Postgres</span><span class="tag">Docker</span>
             </div>
@@ -374,9 +339,9 @@
           </div>
         </a>
 
-        <a class="tile bg-red" href="work/contract-driven-spark.html" aria-label="Contract Driven Data Platform with Spark">
-          <div class="tile-title">Contract Driven Platform with Spark</div>
-          <div class="tile-sub">
+        <a class="tile bg-red" href="work/contract-driven-spark/" aria-label="Contract Driven Platform with Spark">
+          <div class="title">Contract Driven Platform with Spark</div>
+          <div class="tile-bottom">
             <div class="tags">
               <span class="tag">Spark</span><span class="tag">Contracts</span><span class="tag">Validation</span><span class="tag">Incremental</span>
             </div>
@@ -386,35 +351,11 @@
           </div>
         </a>
 
-        <a class="tile full bg-darkimg" href="work/nyc-traffic.html" aria-label="NYC Traffic Volume Analytics Pipeline">
-          <div class="tile-title">NYC Traffic Volume Analytics Pipeline</div>
-          <div class="tile-sub">
+        <a class="tile full bg-darkimg" href="work/nyc-traffic/" aria-label="NYC Traffic Volume Analytics Pipeline">
+          <div class="title">NYC Traffic Volume Analytics Pipeline</div>
+          <div class="tile-bottom">
             <div class="tags">
-              <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Features</span><span class="tag">Analytics tables</span>
-            </div>
-            <div class="arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </a>
-
-        <a class="tile bg-blue" href="work/new-project.html" aria-label="New project in progress">
-          <div class="tile-title">New project in progress</div>
-          <div class="tile-sub">
-            <div class="tags">
-              <span class="tag">coming soon</span><span class="tag">data platform</span>
-            </div>
-            <div class="arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </a>
-
-        <a class="tile light bg-light" href="#contact" aria-label="Connect">
-          <div class="tile-title">Let’s talk</div>
-          <div class="tile-sub">
-            <div class="tags">
-              <span class="tag">career fair</span><span class="tag">data engineering</span>
+              <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Analytics tables</span>
             </div>
             <div class="arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -427,26 +368,27 @@
     <footer id="contact">
       <div class="wrap footer-inner">
         <div>
-          <div style="font-weight:700; color: rgba(11,18,32,.84);">Contact</div>
-          <div style="margin-top:6px;">Open to Data Engineering / Analytics Engineering roles.</div>
+          <div style="font-weight:750; color: rgba(11,18,32,.84);">Contact</div>
+          <div style="margin-top:6px;">Open to Data Engineering / Analytics / AI roles.</div>
         </div>
 
         <div class="contact-row">
-          <!-- Replace links -->
           <a class="icon" href="https://github.com/subash1702" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2c5.5 0 10 4.6 10 10.2 0 4.5-2.9 8.3-6.9 9.7-.5.1-.7-.2-.7-.5v-1.8c0-.6-.2-1.1-.5-1.4 2.3-.3 4.7-1.2 4.7-5.3 0-1.2-.4-2.1-1-2.9.1-.3.4-1.3-.1-2.7 0 0-.8-.3-2.8 1.1a9.4 9.4 0 0 0-5.1 0C9.6 6.1 8.8 6.4 8.8 6.4c-.5 1.4-.2 2.4-.1 2.7-.6.8-1 1.7-1 2.9 0 4.1 2.4 5 4.7 5.3-.2.2-.4.5-.5.9-.4.2-1.5.6-2.2-.7 0 0-.4-.8-1.3-.9 0 0-.8 0-.1.5 0 0 .6.3 1 .1.0.0.7 1.3 2.6 1.1v1.7c0 .3-.2.6-.7.5C4.9 20.5 2 16.7 2 12.2 2 6.6 6.5 2 12 2Z" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2c5.5 0 10 4.6 10 10.2 0 4.5-2.9 8.3-6.9 9.7-.5.1-.7-.2-.7-.5v-1.8c0-.6-.2-1.1-.5-1.4 2.3-.3 4.7-1.2 4.7-5.3 0-1.2-.4-2.1-1-2.9.1-.3.4-1.3-.1-2.7 0 0-.8-.3-2.8 1.1a9.4 9.4 0 0 0-5.1 0C9.6 6.1 8.8 6.4 8.8 6.4c-.5 1.4-.2 2.4-.1 2.7-.6.8-1 1.7-1 2.9 0 4.1 2.4 5 4.7 5.3-.2.2-.4.5-.5.9-.4.2-1.5.6-2.2-.7 0 0-.4-.8-1.3-.9 0 0-.8 0-.1.5 0 0 .6.3 1 .1 0 0 .7 1.3 2.6 1.1v1.7c0 .3-.2.6-.7.5C4.9 20.5 2 16.7 2 12.2 2 6.6 6.5 2 12 2Z" fill="currentColor"/></svg>
           </a>
 
+          <!-- Replace with YOUR LinkedIn -->
           <a class="icon" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" fill="none"><path d="M6.6 6.6a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM3 21V9h3.2v12H3Zm5.5 0V9h3v1.6h.1c.4-.8 1.5-1.8 3.2-1.8 3.4 0 4 2 4 5V21h-3.2v-5.2c0-1.3 0-2.9-1.9-2.9s-2.2 1.3-2.2 2.8V21H8.5Z" fill="currentColor"/></svg>
           </a>
 
+          <!-- Replace with YOUR email -->
           <a class="icon" href="mailto:your.email@domain.com" aria-label="Email">
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 3.2 8 5 8-5V8.3l-8 5-8-5V9.2Z" fill="currentColor"/></svg>
           </a>
         </div>
 
-        <div style="width:100%; margin-top: 10px; color: var(--muted);">
+        <div style="width:100%; margin-top: 10px;">
           © <span id="y"></span> Subash Chakravarthy
         </div>
       </div>
@@ -455,7 +397,26 @@
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    const roles = ["Data Engineer","AI Engineer","Data Analyst","AI Analyst","Business Analyst"];
+
+    function articleFor(role){
+      // “AI …” => spoken “A-I” => vowel sound => “an”
+      if (role.trim().toLowerCase().startsWith("ai ")) return "an";
+      return "a";
+    }
+
+    let i = 0;
+    const roleA = document.getElementById("roleA");
+    const roleB = document.getElementById("roleB");
+
+    setInterval(() => {
+      i = (i + 1) % roles.length;
+      const role = roles[i];
+      const text = `I am ${articleFor(role)} ${role}`;
+      roleA.textContent = text;
+      roleB.textContent = text;
+    }, 2200);
   </script>
 </body>
 </html>
-
