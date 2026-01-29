@@ -2,120 +2,142 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NYC Traffic Volume Analytics Pipeline — Subash</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
 
   <style>
-    :root{ --bg:#fff; --ink:#0b1220; --muted:rgba(11,18,32,.66); --hair:rgba(11,18,32,.12); --soft:rgba(11,18,32,.06); --max:980px; --r:18px; }
+    :root{
+      --bg:#0b0c10; --fg:#f5f7fb;
+      --muted: rgba(245,247,251,.72);
+      --line: rgba(255,255,255,.12);
+      --shadow: 0 30px 80px rgba(0,0,0,.55);
+      --radius: 26px;
+    }
     *{ box-sizing:border-box; }
-    body{ margin:0; font-family:"Instrument Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased; }
-    a{ color:inherit; text-decoration:none; }
-    .top{ position:sticky; top:0; z-index:50; background: rgba(255,255,255,.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--soft); }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:0 22px; }
-    .bar{ height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
-    .brand{ font-weight:750; letter-spacing:-.02em; }
-    .nav{ display:flex; gap:10px; font-size:14px; color:var(--muted); }
-    .nav a{ padding:8px 10px; border-radius:999px; }
-    .nav a:hover{ background: rgba(11,18,32,.04); color:var(--ink); }
-
-    .page{ padding: 56px 0 52px; }
-    h1{ margin:0 0 10px; font-size: clamp(34px, 4.8vw, 56px); line-height:1.08; letter-spacing:-.04em; }
-    .sub{ max-width:72ch; color: rgba(11,18,32,.74); font-size:18px; line-height:1.7; }
-
-    .hero-img{
-      margin-top: 22px;
-      border-radius: var(--r);
-      overflow:hidden;
-      outline: 1px solid rgba(0,0,0,.06);
+    body{
+      margin:0;
+      font-family: Manrope, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
-        url("https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=1600&q=60");
-      background-size: cover;
-      background-position: center;
-      height: 380px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color: rgba(255,255,255,.95);
-      font-weight:850;
-      letter-spacing:-.03em;
-      font-size: 28px;
-      text-align:center;
-      padding: 0 18px;
+        radial-gradient(1000px 700px at 20% 0%, rgba(14,165,233,.18), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(16,185,129,.14), transparent 60%),
+        var(--bg);
+      color: var(--fg);
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: 980px; margin: 0 auto; padding: 28px 22px 70px; }
+
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(11,12,16,.72), rgba(11,12,16,.35));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding: 14px 22px; margin: 0 -22px 22px;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight: 800; }
+    .dot{ width:10px; height:10px; border-radius:99px; background:#fff; box-shadow: 0 0 0 6px rgba(255,255,255,.09); }
+    .nav{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .nav a{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: rgba(255,255,255,.86);
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .nav a:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.20); }
+
+    h1{
+      font-family: Fraunces, serif;
+      font-size: clamp(38px, 5vw, 56px);
+      margin: 10px 0 10px;
+      line-height: 1.05;
+    }
+    .lede{ color: var(--muted); line-height:1.7; font-size: 16.8px; margin: 0 0 18px; }
+
+    .metaRow{ display:flex; gap:10px; flex-wrap:wrap; margin: 16px 0 18px; }
+    .tag{
+      font-size: 12px; font-weight: 800;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.16);
+      color: rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
     }
 
-    .grid{ margin-top: 22px; display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
-    .box{ border: 1px solid var(--soft); border-radius: var(--r); padding: 18px; background: rgba(11,18,32,.02); }
-    .box h2{ margin:0 0 10px; font-size: 13px; letter-spacing:.14em; text-transform: uppercase; color: var(--muted); }
-    .box p{ margin:0; color: rgba(11,18,32,.78); line-height:1.75; font-size:16px; }
-    ul{ margin:10px 0 0; padding-left: 18px; color: rgba(11,18,32,.78); line-height:1.7; }
-
-    .links{ margin-top: 18px; display:flex; gap:10px; flex-wrap:wrap; }
-    .btn{ border: 1px solid var(--hair); border-radius: 999px; padding: 10px 14px; font-weight:750; background:#fff; }
-    .btn:hover{ background: rgba(11,18,32,.04); }
-
-    footer{ border-top:1px solid var(--soft); padding: 24px 0 56px; color: var(--muted); font-size:14px; margin-top: 28px; }
-
-    @media (max-width: 900px){
-      .grid{ grid-template-columns:1fr; }
-      .hero-img{ height: 300px; }
+    .panel{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      margin-top: 16px;
     }
+    .panel h2{ margin:0 0 10px; font-size: 18px; letter-spacing:.2px; }
+    .panel p{ margin:0; color: rgba(255,255,255,.75); line-height:1.7; font-size: 15.5px; }
+    .panel ul{ margin: 10px 0 0 18px; color: rgba(255,255,255,.75); line-height:1.7; }
   </style>
 </head>
 
 <body>
-  <header class="top">
-    <div class="wrap bar">
-      <div class="brand"><a href="../../index.html">Subash</a></div>
-      <nav class="nav">
-        <a href="../../index.html#work">Work</a>
-        <a href="../../About.html">About</a>
-        <a href="../../index.html#contact">Connect</a>
-      </nav>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <a href="../index.html">Subash</a>
+      </div>
+      <div class="nav">
+        <a href="../index.html#work">Work</a>
+        <a href="../About.html">About</a>
+        <a href="../index.html#contact">Connect</a>
+      </div>
     </div>
-  </header>
 
-  <main class="wrap page">
     <h1>NYC Traffic Volume Analytics Pipeline</h1>
-    <div class="sub">
-      This project was about taking noisy city-scale data and turning it into tables that are actually usable.
-      I focused on cleaning, aligning sources, and building analytical outputs that make trends obvious instead of confusing.
+    <p class="lede">
+      A pipeline focused on turning messy urban traffic and event data into clean, consistent analytical tables.
+      The main work was cleaning, aligning, and structuring data so analysis and modeling stop fighting the dataset.
+    </p>
+
+    <div class="metaRow">
+      <span class="tag">Python</span>
+      <span class="tag">SQL</span>
+      <span class="tag">EDA</span>
+      <span class="tag">Geospatial</span>
+      <span class="tag">Model ready tables</span>
     </div>
 
-    <div class="hero-img">City-scale data, turned into clean analytical tables</div>
-
-    <div class="grid">
-      <section class="box">
-        <h2>What I did</h2>
-        <ul>
-          <li>Cleaned inconsistent raw datasets and aligned keys across sources</li>
-          <li>Built structured tables for analysis (not just one-off notebooks)</li>
-          <li>Designed outputs to support repeatable questions and comparisons</li>
-        </ul>
-      </section>
-
-      <section class="box">
-        <h2>What I’d do next</h2>
-        <p>
-          If this went into production, I’d add scheduled loads, data tests, and a simple monitoring view:
-          row counts, null checks, freshness, and a “did the distribution change?” signal.
-        </p>
-        <div class="links">
-          <a class="btn" href="https://github.com/subash1702" target="_blank" rel="noopener">Repo</a>
-          <a class="btn" href="../../index.html#work">Back to work</a>
-        </div>
-      </section>
+    <div class="panel">
+      <h2>Problem</h2>
+      <p>
+        Traffic data looks simple until you use it: missing sensors, inconsistent timestamps, and event signals that don’t line up
+        cleanly with volume changes. The goal was to build a workflow that makes the data usable and explainable.
+      </p>
     </div>
 
-    <footer>© <span id="y"></span> Subash Chakravarthy</footer>
-  </main>
+    <div class="panel">
+      <h2>What I did</h2>
+      <ul>
+        <li>Cleaned and standardized timestamps and location identifiers</li>
+        <li>Created consistent aggregated tables for daily and hourly analysis</li>
+        <li>Aligned event signals with traffic volume trends for modeling and interpretation</li>
+        <li>Designed outputs so you can reuse them for dashboards or ML without re cleaning every time</li>
+      </ul>
+    </div>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+    <div class="panel">
+      <h2>Why it matters</h2>
+      <p>
+        This is the difference between “a dataset you explored once” and “a dataset a team can use every week”.
+        I care a lot about that difference.
+      </p>
+    </div>
+  </div>
 </body>
 </html>
