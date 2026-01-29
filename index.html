@@ -1,302 +1,434 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Subash Chakravarthy</title>
-  <meta name="description" content="Data Engineer / Analytics Engineer. Selected work and systems thinking." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Subash Chakravarthy — Portfolio</title>
 
-  <!-- Font -->
+  <!-- Clean, modern font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#fbfbfd;
+      --bg:#ffffff;
       --ink:#0b1220;
-      --muted:rgba(11,18,32,.68);
-      --line:rgba(11,18,32,.12);
-      --accent:#4f46e5;
+      --muted:rgba(11,18,32,.62);
+      --hair:rgba(11,18,32,.10);
+      --soft:rgba(11,18,32,.06);
+      --radius:18px;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
+      font-family:"Instrument Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:var(--bg);
       color:var(--ink);
-      font-family:"Manrope", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility;
     }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:980px; margin:0 auto; padding:0 24px;}
-    .divider{height:1px; background:var(--line); width:100%;}
-    .kicker{color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase;}
-    .h1{font-size:clamp(44px,4.5vw,66px); line-height:1.02; font-weight:700; letter-spacing:-.02em; margin:12px 0 0;}
-    .sub{color:var(--muted); font-size:18px; line-height:1.75; margin:0;}
 
-    /* Top nav */
-    header{padding:26px 0;}
-    .topbar{display:flex; align-items:center; justify-content:space-between;}
-    .brand{font-weight:700;}
-    .nav{display:flex; gap:22px; font-size:14px; color:var(--muted);}
-    .nav a:hover{color:var(--ink)}
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: 1040px; margin: 0 auto; padding: 0 22px; }
+
+    /* Top bar (minimal) */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background: rgba(255,255,255,.80);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--soft);
+    }
+    .topbar-inner{
+      height:64px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-size:14px;
+      color: var(--muted);
+    }
+    .nav a:hover{ color: var(--ink); }
 
     /* Hero */
-    .hero{padding:46px 0 28px; text-align:center;}
-    .roleline{
-      margin-top:14px;
-      display:inline-flex;
-      align-items:baseline;
-      gap:10px;
-      font-size:20px;
-      font-weight:700;
+    .hero{
+      padding: 72px 0 28px;
     }
-    .role-dynamic{
-      color:var(--accent);
-      position:relative;
-      white-space:nowrap;
-      display:inline-block;
-      padding:2px 0;
+    .kicker{
+      font-size:13px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color: var(--muted);
     }
-    .role-dynamic::after{
-      content:"Data Engineer";
-      display:inline-block;
-      animation: roleText 12s infinite steps(1,end), roleSlide 12s infinite;
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(42px, 6vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -.04em;
     }
-    @keyframes roleText{
-      0%{content:"Data Engineer";}
-      25%{content:"Analytics Engineer";}
-      50%{content:"Data Platform Builder";}
-      75%{content:"Pipeline Engineer";}
-      100%{content:"Data Engineer";}
-    }
-    /* left -> right movement */
-    @keyframes roleSlide{
-      0%{transform:translateX(-10px); opacity:0;}
-      8%{transform:translateX(0); opacity:1;}
-      20%{transform:translateX(10px); opacity:1;}
-      28%{transform:translateX(18px); opacity:0;}
-
-      30%{transform:translateX(-10px); opacity:0;}
-      38%{transform:translateX(0); opacity:1;}
-      45%{transform:translateX(10px); opacity:1;}
-      53%{transform:translateX(18px); opacity:0;}
-
-      55%{transform:translateX(-10px); opacity:0;}
-      63%{transform:translateX(0); opacity:1;}
-      70%{transform:translateX(10px); opacity:1;}
-      78%{transform:translateX(18px); opacity:0;}
-
-      80%{transform:translateX(-10px); opacity:0;}
-      88%{transform:translateX(0); opacity:1;}
-      95%{transform:translateX(10px); opacity:1;}
-      100%{transform:translateX(18px); opacity:0;}
-    }
-
-    .actions{
-      margin-top:26px;
+    .roles{
       display:flex;
-      justify-content:center;
+      gap:10px;
       align-items:center;
-      gap:16px;
+      flex-wrap:wrap;
+      margin: 10px 0 18px;
+      color: rgba(11,18,32,.84);
+      font-weight:650;
+      letter-spacing:-.02em;
+    }
+    .roles .pill{
+      display:inline-flex;
+      align-items:center;
+      border:1px solid var(--hair);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(11,18,32,.02);
+      font-size:14px;
+    }
+
+    .about{
+      max-width: 74ch;
+      font-size:18px;
+      line-height:1.6;
+      color: rgba(11,18,32,.78);
+      letter-spacing:-.01em;
+    }
+
+    .hero-actions{
+      margin-top: 22px;
+      display:flex;
+      align-items:center;
+      gap:14px;
       flex-wrap:wrap;
     }
     .btn{
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      padding:16px 24px;              /* bigger button */
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--accent);
-      font-weight:700;
-      transition:transform .15s ease, background .15s ease;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+      background: #fff;
+      font-weight:650;
+      letter-spacing:-.01em;
     }
-    .btn:hover{transform:translateY(-1px)}
-    .link{
-      color:var(--ink);
-      text-decoration:underline;
-      text-decoration-color:rgba(79,70,229,.35);
-      text-underline-offset:4px;
+    .btn.primary{
+      background: var(--ink);
+      color: #fff;
+      border-color: rgba(0,0,0,0);
     }
-    .link:hover{text-decoration-color:rgba(79,70,229,.75);}
+    .btn:hover{ transform: translateY(-1px); }
+    .btn{ transition: transform .15s ease, box-shadow .15s ease; }
+    .btn.primary:hover{ box-shadow: 0 10px 28px rgba(11,18,32,.18); }
 
-    @media (prefers-reduced-motion: reduce){
-      .role-dynamic::after{animation:none;}
-      .btn{transition:none;}
-      .btn:hover{transform:none;}
-    }
-
-    /* Sections */
-    .section{padding:44px 0;}
-    .section h2{margin:0; font-size:18px; font-weight:700; letter-spacing:-.01em;}
-
-    /* Projects (no cards, clean list) */
-    .projects{margin-top:18px; display:flex; flex-direction:column; gap:14px;}
-    .proj{
+    .iconlinks{
       display:flex;
-      justify-content:space-between;
-      gap:18px;
-      padding:14px 0;
-      border-bottom:1px solid var(--line);
+      gap:12px;
+      align-items:center;
     }
-    .proj-title{font-size:18px; font-weight:650; letter-spacing:-.01em;}
-    .proj-desc{margin-top:6px; color:var(--muted); font-size:14px; line-height:1.6; max-width:64ch;}
-    .proj-meta{color:var(--muted); font-size:13px; white-space:nowrap;}
-    .proj:hover .proj-title{
-      text-decoration:underline;
-      text-decoration-color:rgba(79,70,229,.35);
-      text-underline-offset:4px;
-    }
-
-    /* About tint (subtle color change like you asked) */
-    .about-wrap{
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(79,70,229,.06), rgba(251,251,253,0));
-      padding:52px 0;
-    }
-    .about-inner{max-width:760px; margin:0 auto; padding:0 24px;}
-    .about-text{color:var(--muted); font-size:18px; line-height:1.75; margin:14px 0 0;}
-
-    /* Contact icons */
-    .icons{margin-top:18px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
-    .icon-btn{
-      width:46px; height:46px;
-      display:inline-flex; align-items:center; justify-content:center;
-      border:1px solid var(--line);
-      border-radius:14px;
+    .icon{
+      width:42px; height:42px;
+      border-radius:999px;
+      border:1px solid var(--hair);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       background:#fff;
-      transition:transform .15s ease;
+      transition: transform .15s ease;
     }
-    .icon-btn:hover{transform:translateY(-1px)}
-    .icon{width:20px; height:20px; color:rgba(11,18,32,.78);}
-    .sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+    .icon:hover{ transform: translateY(-1px); }
+    .icon svg{ width:18px; height:18px; opacity:.86; }
+
+    /* Gallery blocks */
+    .gallery{
+      padding: 24px 0 88px;
+    }
+
+    .section-title{
+      margin: 32px 0 14px;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .tile{
+      position:relative;
+      border-radius: var(--radius);
+      overflow:hidden;
+      min-height: 360px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transform: translateZ(0);
+      outline: 1px solid rgba(0,0,0,.05);
+      transition: transform .18s ease;
+    }
+    .tile:hover{ transform: translateY(-2px); }
+
+    .tile.full{
+      grid-column: 1 / -1;
+      min-height: 420px;
+    }
+
+    /* Backgrounds (clean + bold). Swap these later with real images. */
+    .bg-purple{ background: #3b2a52; }
+    .bg-red{ background: #e10600; }
+    .bg-green{ background: #1f8a2b; }
+    .bg-blue{ background: #0b7cff; }
+    .bg-darkimg{
+      background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        radial-gradient(1200px 420px at 20% 20%, rgba(255,255,255,.18), transparent 60%),
+        url("https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=60");
+      background-size: cover;
+      background-position: center;
+    }
+    .bg-light{
+      background: #f3f4f6;
+    }
+
+    /* Title overlay */
+    .tile-title{
+      color:#fff;
+      font-weight:750;
+      letter-spacing:-.03em;
+      font-size: clamp(22px, 3.1vw, 40px);
+      text-align:center;
+      padding: 0 22px;
+      text-shadow: 0 10px 26px rgba(0,0,0,.22);
+    }
+    .tile-sub{
+      position:absolute;
+      left:18px; right:18px; bottom:16px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      color: rgba(255,255,255,.85);
+      font-size: 13px;
+      letter-spacing: -.01em;
+    }
+    .tile-sub .tags{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .tag{
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      padding: 7px 10px;
+      border-radius:999px;
+      backdrop-filter: blur(8px);
+      white-space:nowrap;
+    }
+    .arrow{
+      width:40px; height:40px;
+      border-radius:999px;
+      background: rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+    }
+    .arrow svg{ width:18px; height:18px; opacity:.9; }
+
+    /* Light tile text */
+    .tile.light .tile-title{
+      color: rgba(11,18,32,.92);
+      text-shadow:none;
+    }
+    .tile.light .tile-sub{ color: rgba(11,18,32,.62); }
+    .tile.light .tag{
+      border-color: rgba(11,18,32,.14);
+      background: rgba(11,18,32,.06);
+    }
+    .tile.light .arrow{
+      background: rgba(11,18,32,.06);
+      border-color: rgba(11,18,32,.12);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .tile{ min-height: 320px; }
+      .tile.full{ min-height: 340px; }
+      .hero{ padding-top: 56px; }
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="wrap topbar">
-      <a class="brand" href="index.html">Subash</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">Subash</div>
       <nav class="nav">
-        <a href="#projects">Work</a>
-        <a href="#about">About</a>
+        <a href="#work">Work</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <!-- HERO (centered) -->
-    <section class="wrap hero">
+  <main class="wrap">
+    <section class="hero">
       <div class="kicker">Master’s in Analytics • Northeastern University</div>
-      <h1 class="h1">Subash Chakravarthy</h1>
+      <h1>Subash Chakravarthy</h1>
 
-      <div class="roleline">
-        <span>I’m a</span>
-        <span class="role-dynamic"></span>
+      <div class="roles">
+        <span class="pill">Data Engineer</span>
+        <span class="pill">Analytics Engineer</span>
+        <span class="pill">Streaming + Batch</span>
+        <span class="pill">dbt + Kafka + Spark</span>
       </div>
 
-      <p class="sub" style="margin-top:22px; max-width:74ch; margin-left:auto; margin-right:auto;">
-        I build data systems that feel calm even when the data isn’t. I like the messy middle—turning raw events and inconsistent sources
-        into clean, well-defined datasets that stay correct when volume grows and edge cases show up.
+      <p class="about">
+        I like building systems that don’t break when the real world shows up. Give me messy events, late data,
+        inconsistent sources, and a team that needs answers they can trust — I turn that into a pipeline,
+        a clean model, and a dataset people are confident using.
       </p>
 
-      <div class="actions">
-        <a class="btn" href="#projects">View projects</a>
-        <!-- ONLY LinkedIn here (as requested) -->
-        <a class="link" href="YOUR_LINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
+      <div class="hero-actions">
+        <a class="btn primary" href="#work">View selected work</a>
+
+        <div class="iconlinks" id="contact">
+          <a class="icon" href="https://github.com/subash1702" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2c5.5 0 10 4.6 10 10.2 0 4.5-2.9 8.3-6.9 9.7-.5.1-.7-.2-.7-.5v-1.8c0-.6-.2-1.1-.5-1.4 2.3-.3 4.7-1.2 4.7-5.3 0-1.2-.4-2.1-1-2.9.1-.3.4-1.3-.1-2.7 0 0-.8-.3-2.8 1.1a9.4 9.4 0 0 0-5.1 0C9.6 6.1 8.8 6.4 8.8 6.4c-.5 1.4-.2 2.4-.1 2.7-.6.8-1 1.7-1 2.9 0 4.1 2.4 5 4.7 5.3-.2.2-.4.5-.5.9-.4.2-1.5.6-2.2-.7 0 0-.4-.8-1.3-.9 0 0-.8 0-.1.5 0 0 .6.3 1 .1.0.0.7 1.3 2.6 1.1v1.7c0 .3-.2.6-.7.5C4.9 20.5 2 16.7 2 12.2 2 6.6 6.5 2 12 2Z" fill="currentColor"/></svg>
+          </a>
+
+          <a class="icon" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6.6 6.6a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM3 21V9h3.2v12H3Zm5.5 0V9h3v1.6h.1c.4-.8 1.5-1.8 3.2-1.8 3.4 0 4 2 4 5V21h-3.2v-5.2c0-1.3 0-2.9-1.9-2.9s-2.2 1.3-2.2 2.8V21H8.5Z" fill="currentColor"/></svg>
+          </a>
+
+          <a class="icon" href="mailto:your.email@domain.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 3.2 8 5 8-5V8.3l-8 5-8-5V9.2Z" fill="currentColor"/></svg>
+          </a>
+        </div>
       </div>
     </section>
 
-    <div class="wrap"><div class="divider"></div></div>
+    <section class="gallery" id="work">
+      <div class="section-title">Selected work</div>
 
-    <!-- PROJECTS on first page -->
-    <section id="projects" class="wrap section">
-      <h2>Selected work</h2>
-
-      <div class="projects">
-        <a class="proj" href="work/dual-layer-ecommerce.html">
-          <div>
-            <div class="proj-title">Dual Layer E-Commerce Data Platform</div>
-            <div class="proj-desc">
-              Streaming for operational signals + batch modeling for trustworthy reporting. Built to handle late events, retries, and quality checks.
+      <div class="grid">
+        <!-- 1 -->
+        <a class="tile bg-purple" href="work/dual-layer-ecommerce.html" aria-label="Dual Layer E-Commerce Data Platform">
+          <div class="tile-title">Dual Layer E-Commerce Data Platform</div>
+          <div class="tile-sub">
+            <div class="tags">
+              <span class="tag">Kafka</span>
+              <span class="tag">dbt</span>
+              <span class="tag">Postgres</span>
+              <span class="tag">Docker</span>
+            </div>
+            <div class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </div>
-          <div class="proj-meta">Kafka • dbt • Postgres</div>
         </a>
 
-        <a class="proj" href="work/contract-driven-spark.html">
-          <div>
-            <div class="proj-title">Contract Driven Data Platform with Spark</div>
-            <div class="proj-desc">
-              Schema-first ingestion and layered modeling so multi-source data stays safe, predictable, and easier to maintain.
+        <!-- 2 -->
+        <a class="tile bg-red" href="work/contract-driven-spark.html" aria-label="Contract Driven Data Platform with Spark">
+          <div class="tile-title">Contract Driven Platform with Spark</div>
+          <div class="tile-sub">
+            <div class="tags">
+              <span class="tag">Spark</span>
+              <span class="tag">Contracts</span>
+              <span class="tag">Validation</span>
+              <span class="tag">Incremental</span>
+            </div>
+            <div class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </div>
-          <div class="proj-meta">Spark • SQL</div>
         </a>
 
-        <a class="proj" href="work/nyc-traffic.html">
-          <div>
-            <div class="proj-title">NYC Traffic Volume Analytics Pipeline</div>
-            <div class="proj-desc">
-              Cleaned and aligned noisy public traffic + event data into reusable analytical tables and feature sets.
+        <!-- 3 -->
+        <a class="tile full bg-darkimg" href="work/nyc-traffic.html" aria-label="NYC Traffic Volume Analytics Pipeline">
+          <div class="tile-title">NYC Traffic Volume Analytics Pipeline</div>
+          <div class="tile-sub">
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Feature engineering</span>
+              <span class="tag">Analytics tables</span>
+            </div>
+            <div class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </div>
-          <div class="proj-meta">Python • SQL</div>
+        </a>
+
+        <!-- 4 (add more projects like this) -->
+        <a class="tile bg-blue" href="work/new-project.html" aria-label="New project in progress">
+          <div class="tile-title">New project in progress</div>
+          <div class="tile-sub">
+            <div class="tags">
+              <span class="tag">coming soon</span>
+              <span class="tag">data platform</span>
+            </div>
+            <div class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 5 -->
+        <a class="tile light bg-light" href="#contact" aria-label="Let's talk">
+          <div class="tile-title">Let’s talk</div>
+          <div class="tile-sub">
+            <div class="tags">
+              <span class="tag">career fair</span>
+              <span class="tag">data engineering</span>
+            </div>
+            <div class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- 6 -->
+        <a class="tile bg-green" href="work/about.html" aria-label="About and resume">
+          <div class="tile-title">About + Resume</div>
+          <div class="tile-sub">
+            <div class="tags">
+              <span class="tag">background</span>
+              <span class="tag">what I build</span>
+            </div>
+            <div class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
         </a>
       </div>
     </section>
 
-    <!-- ABOUT (more personal + tinted) -->
-    <section id="about" class="about-wrap">
-      <div class="about-inner">
-        <div style="font-size:18px; font-weight:700;">About</div>
-
-        <p class="about-text">
-          I’m the person who notices when two dashboards disagree and can’t relax until I know why. I care about definitions,
-          data contracts, and pipelines that are safe to rerun without silently changing the outcome.
-        </p>
-
-        <p class="about-text">
-          My recent work is centered around building systems that balance speed and reliability—real-time signals for operations,
-          and batch layers that stay stable enough for reporting and decision-making. If you click into a project, you’ll see how
-          I explain choices and tradeoffs the way I’d explain them in person.
-        </p>
-      </div>
-    </section>
-
-    <!-- CONTACT (clickable icons) -->
-    <section id="contact" class="wrap section" style="text-align:center;">
-      <h2>Contact</h2>
-      <p class="sub" style="margin-top:14px; max-width:68ch; margin-left:auto; margin-right:auto;">
-        If you want to talk through architecture decisions, reliability, or data quality strategy, email is the fastest way to reach me.
-      </p>
-
-      <div class="icons">
-        <a class="icon-btn" href="mailto:YOUR_EMAIL@example.com" aria-label="Email">
-          <span class="sr">Email</span>
-          <svg class="icon" viewBox="0 0 24 24" fill="none">
-            <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" />
-            <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" />
-          </svg>
-        </a>
-
-        <a class="icon-btn" href="YOUR_LINKEDIN" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-          <span class="sr">LinkedIn</span>
-          <svg class="icon" viewBox="0 0 24 24" fill="none">
-            <path d="M6.5 9.5V18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M6.5 6.8h0" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
-            <path d="M10.5 18v-4.8c0-1.9 1.2-3.2 3-3.2s3 1.2 3 3.2V18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M10.5 10.2V18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </a>
-      </div>
-    </section>
+    <footer style="padding:42px 0 80px; color: var(--muted); font-size:14px;">
+      <div>© <span id="y"></span> Subash Chakravarthy</div>
+    </footer>
   </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
