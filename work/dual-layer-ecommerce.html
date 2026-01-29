@@ -3,93 +3,136 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dual Layer E-Commerce Platform — Subash</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Dual Layer E-Commerce Data Platform — Subash</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{--bg:#fbfbfd;--ink:#0b1220;--muted:rgba(11,18,32,.68);--line:rgba(11,18,32,.12);--accent:#4f46e5;}
-    body{background:var(--bg); color:var(--ink);}
-    .wrap{max-width:780px; margin:0 auto;}
-    .kicker{color:var(--muted); font-size:14px; letter-spacing:.08em; text-transform:uppercase;}
-    .h1{font-size:clamp(36px,4vw,52px); line-height:1.05; font-weight:650; letter-spacing:-.02em;}
-    .sub{color:var(--muted); font-size:18px; line-height:1.75;}
+    :root{
+      --bg:#fbfbfd;
+      --ink:#0b1220;
+      --muted:rgba(11,18,32,.62);
+      --line:rgba(11,18,32,.12);
+      --ghost:rgba(11,18,32,.18);
+      --accent:#4f46e5;
+    }
+    body{margin:0; background:var(--bg); color:var(--ink); font-family:"Manrope", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;}
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:980px; margin:0 auto; padding:0 24px;}
     .divider{height:1px; background:var(--line); width:100%;}
-    .callout{border:1px solid var(--line); border-radius:18px; padding:16px; background: rgba(255,255,255,.75);}
-    .mini{color:var(--muted); font-size:14px; line-height:1.75;}
-    .nav a{color:var(--muted);}
-    .nav a:hover{color:var(--ink);}
-    .link{color:var(--ink); text-decoration: underline; text-decoration-color: rgba(79,70,229,.35); text-underline-offset: 4px;}
-    .link:hover{text-decoration-color: rgba(79,70,229,.75);}
+    .sub{color:var(--muted); font-size:18px; line-height:1.75;}
+    .h1{font-size:40px; line-height:1.1; font-weight:700; letter-spacing:-.02em; margin:0;}
+    .kicker{color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase;}
+
+    /* Devansh-like header cluster */
+    .cluster{
+      height: 320px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .cluster a{
+      position:absolute;
+      font-weight:700;
+      letter-spacing:-.01em;
+      white-space:nowrap;
+      transition: opacity .15s ease, transform .15s ease, color .15s ease;
+      color: var(--ghost);
+      font-size: 26px;
+    }
+    .cluster a:hover{ color: rgba(11,18,32,.42); transform: translateY(-1px); }
+
+    .cluster a.current{
+      color: var(--ink);
+      font-size: 28px;
+      letter-spacing:-.02em;
+    }
+
+    /* positions (tuned to resemble screenshot) */
+    .p1{top:92px; left:72px;}
+    .p2{top:70px; left:210px;}
+    .p3{top:70px; right:140px;}
+    .p4{top:120px; right:110px;}
+    .p5{top:150px; left:250px;}
+    .p6{top:180px; left:420px;}
+
+    /* content */
+    .content{max-width:780px; margin:0 auto; padding:0 24px 80px;}
+    .section{padding:26px 0;}
+    .section h2{margin:0; font-size:18px; font-weight:700;}
+    .callout{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      background:#fff;
+    }
+    .mini{color:var(--muted); font-size:14px; line-height:1.7;}
+    .back{display:inline-block; margin-top:18px; color:var(--ink); text-decoration:underline; text-decoration-color:rgba(79,70,229,.35); text-underline-offset:4px;}
   </style>
 </head>
 
-<body class="antialiased">
-  <header class="py-10">
-    <div class="wrap px-6 flex items-center justify-between">
-      <a href="../index.html" class="font-semibold">Subash</a>
-      <nav class="nav flex gap-6 text-sm">
-        <a href="index.html">Work</a>
-        <a href="../index.html#contact">Contact</a>
-      </nav>
-    </div>
+<body>
+  <header class="wrap" style="padding:26px 0; display:flex; align-items:center; justify-content:space-between;">
+    <a href="../index.html" style="font-weight:700;">Subash</a>
+    <nav style="display:flex; gap:18px; color:var(--muted); font-size:14px;">
+      <a href="../index.html#projects">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
   </header>
 
-  <main class="wrap px-6 pb-20">
-    <div class="kicker">Project</div>
-    <h1 class="h1 mt-3">Dual Layer E-Commerce Data Platform</h1>
-    <p class="sub mt-5">
-      A two-layer system that supports real-time operational visibility and stable batch reporting, without data drift or duplication.
-    </p>
+  <!-- Devansh-style cluster -->
+  <section class="cluster">
+    <a class="p1" href="../index.html#projects">All</a>
+    <a class="p2 current" href="./dual-layer-ecommerce.html">Dual Layer E-Commerce Data Platform</a>
+    <a class="p3" href="./contract-driven-spark.html">Contract Driven Data Platform with Spark</a>
+    <a class="p4" href="./nyc-traffic.html">NYC Traffic Volume Analytics Pipeline</a>
+    <!-- extra faint “future” links (optional, feels like Devansh) -->
+    <a class="p5" href="../index.html#projects">New project in progress</a>
+    <a class="p6" href="../index.html#contact">Let’s talk</a>
+  </section>
 
-    <div class="divider my-10"></div>
+  <div class="wrap"><div class="divider"></div></div>
 
-    <section class="space-y-9">
-      <div>
-        <h2 class="text-xl font-semibold">Why I built it</h2>
-        <p class="sub mt-3">
-          In e-commerce, the questions come in two speeds. Operations needs fast answers right now
-          (sales velocity, inventory triggers). Finance and reporting need answers that are consistent and auditable.
-          I built this platform so both can exist in the same system without one breaking the other.
-        </p>
-      </div>
+  <main class="content">
+    <div class="section">
+      <div class="kicker">Project</div>
+      <h1 class="h1" style="margin-top:10px;">Dual Layer E-Commerce Data Platform</h1>
+      <p class="sub" style="margin-top:14px;">
+        I built this because teams usually need two things at once: fast operational signals and stable, auditable reporting.
+        This project is my way of showing how I design for both without cutting corners on correctness.
+      </p>
+    </div>
 
-      <div class="callout">
-        <div class="font-semibold">Architecture in one paragraph</div>
-        <p class="mini mt-2">
-          Transaction events stream through Kafka. A Python processor computes windowed metrics and handles late events so aggregates stay correct.
-          In parallel, daily logs load into PostgreSQL and dbt models transform them into clean reporting tables. Quality checks validate schema and business rules
-          so bad data is caught before it reaches dashboards.
-        </p>
-      </div>
+    <div class="section callout">
+      <div style="font-weight:700;">Architecture in one paragraph</div>
+      <p class="mini" style="margin-top:8px;">
+        Events stream through Kafka. A Python processor computes windowed metrics and stays correct when events arrive late.
+        Daily logs land in PostgreSQL, and dbt transformations build reporting tables that remain consistent across retries.
+        Data quality checks validate schema and business rules before anything hits BI.
+      </p>
+    </div>
 
-      <div>
-        <h2 class="text-xl font-semibold">Key decisions</h2>
-        <div class="mt-3 space-y-4">
-          <p class="sub"><span class="font-semibold" style="color:var(--ink)">Late and out-of-order events:</span>
-            I treated event time as the source of truth and designed window logic to update correctly when delayed events arrive.</p>
-          <p class="sub"><span class="font-semibold" style="color:var(--ink)">Idempotent batch loads:</span>
-            retries are normal in production, so the batch layer is safe to rerun without duplicating results.</p>
-          <p class="sub"><span class="font-semibold" style="color:var(--ink)">Quality checks as a first-class feature:</span>
-            schema and business rule validation prevents “silent wrong” reporting.</p>
-        </div>
-      </div>
+    <div class="section">
+      <h2>What I cared about</h2>
+      <p class="sub" style="margin-top:10px;">
+        Not just “making it work”—making it safe to operate. Late events, duplicates, and retries are normal in real systems,
+        so I designed with those realities in mind from day one.
+      </p>
+    </div>
 
-      <div>
-        <h2 class="text-xl font-semibold">Tech stack</h2>
-        <p class="sub mt-3">Python, SQL, PostgreSQL, Kafka, dbt, Docker</p>
-      </div>
+    <div class="section">
+      <h2>Tech</h2>
+      <p class="sub" style="margin-top:10px;">
+        Python, SQL, Kafka, PostgreSQL, dbt, Docker
+      </p>
+    </div>
 
-      <div>
-        <h2 class="text-xl font-semibold">What I’d improve next</h2>
-        <p class="sub mt-3">
-          Add stronger observability (latency and quality dashboards), a schema registry, and automated backfills for late partitions.
-        </p>
-      </div>
-    </section>
-
-    <div class="divider my-12"></div>
-    <a class="link text-sm" href="index.html">← Back to Work</a>
+    <a class="back" href="../index.html#projects">← Back to projects</a>
   </main>
 </body>
 </html>
-
