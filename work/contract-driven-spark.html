@@ -3,90 +3,143 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contract Driven Data Platform — Subash</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Contract Driven Data Platform with Spark — Subash</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root{--bg:#fbfbfd;--ink:#0b1220;--muted:rgba(11,18,32,.68);--line:rgba(11,18,32,.12);--accent:#4f46e5;}
-    body{background:var(--bg); color:var(--ink);}
-    .wrap{max-width:780px; margin:0 auto;}
-    .kicker{color:var(--muted); font-size:14px; letter-spacing:.08em; text-transform:uppercase;}
-    .h1{font-size:clamp(36px,4vw,52px); line-height:1.05; font-weight:650; letter-spacing:-.02em;}
-    .sub{color:var(--muted); font-size:18px; line-height:1.75;}
+    :root{--bg:#fbfbfd;--ink:#0b1220;--muted:rgba(11,18,32,.62);--line:rgba(11,18,32,.12);--ghost:rgba(11,18,32,.18);--accent:#4f46e5;}
+    body{margin:0; background:var(--bg); color:var(--ink); font-family:"Manrope", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;}
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:980px; margin:0 auto; padding:0 24px;}
     .divider{height:1px; background:var(--line); width:100%;}
-    .callout{border:1px solid var(--line); border-radius:18px; padding:16px; background: rgba(255,255,255,.75);}
-    .mini{color:var(--muted); font-size:14px; line-height:1.75;}
-    .nav a{color:var(--muted);}
-    .nav a:hover{color:var(--ink);}
-    .link{color:var(--ink); text-decoration: underline; text-decoration-color: rgba(79,70,229,.35); text-underline-offset: 4px;}
-    .link:hover{text-decoration-color: rgba(79,70,229,.75);}
+    .sub{color:var(--muted); font-size:18px; line-height:1.75;}
+    .h1{font-size:40px; line-height:1.1; font-weight:700; letter-spacing:-.02em; margin:0;}
+    .kicker{color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase;}
+    header{padding:26px 0;}
+    .top{display:flex; align-items:center; justify-content:space-between;}
+    .nav{display:flex; gap:18px; color:var(--muted); font-size:14px;}
+    .nav a:hover{color:var(--ink)}
+    .brand{font-weight:700;}
+
+    .cluster{height:320px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; user-select:none;}
+    .cluster a{position:absolute; font-weight:700; letter-spacing:-.01em; white-space:nowrap; color:var(--ghost); font-size:26px; transition:opacity .15s ease, color .15s ease; will-change:transform;}
+    .cluster a:hover{color:rgba(11,18,32,.42);}
+    .cluster a.current{color:var(--ink); font-size:28px; letter-spacing:-.02em;}
+    .p1{top:92px; left:72px;}
+    .p2{top:70px; left:210px;}
+    .p3{top:70px; right:140px;}
+    .p4{top:120px; right:110px;}
+    .p5{top:150px; left:250px;}
+    .p6{top:180px; left:420px;}
+
+    .content{max-width:780px; margin:0 auto; padding:0 24px 80px;}
+    .section{padding:26px 0;}
+    .section h2{margin:0; font-size:18px; font-weight:700;}
+    .callout{border:1px solid var(--line); border-radius:16px; padding:16px; background:#fff;}
+    .mini{color:var(--muted); font-size:14px; line-height:1.7;}
+    .back{display:inline-block; margin-top:18px; color:var(--ink); text-decoration:underline; text-decoration-color:rgba(79,70,229,.35); text-underline-offset:4px;}
+    @media (prefers-reduced-motion: reduce){ .cluster a{transition:none;} }
   </style>
 </head>
 
-<body class="antialiased">
-  <header class="py-10">
-    <div class="wrap px-6 flex items-center justify-between">
-      <a href="../index.html" class="font-semibold">Subash</a>
-      <nav class="nav flex gap-6 text-sm">
-        <a href="index.html">Work</a>
+<body>
+  <header class="wrap">
+    <div class="top">
+      <a class="brand" href="../index.html">Subash</a>
+      <nav class="nav">
+        <a href="../index.html#projects">Work</a>
+        <a href="../index.html#about">About</a>
         <a href="../index.html#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main class="wrap px-6 pb-20">
-    <div class="kicker">Project</div>
-    <h1 class="h1 mt-3">Contract Driven Data Platform with Spark</h1>
-    <p class="sub mt-5">
-      A schema-first batch platform where data contracts and staged layers make multi-source ingestion safer and easier to maintain.
-    </p>
+  <section class="cluster" id="cluster">
+    <a class="p1" href="../index.html#projects" data-depth="0.9">All</a>
+    <a class="p2" href="./dual-layer-ecommerce.html" data-depth="1.0">Dual Layer E-Commerce Data Platform</a>
 
-    <div class="divider my-10"></div>
+    <a class="p3 current" href="./contract-driven-spark.html" data-depth="1.2">
+      Contract Driven Data Platform with Spark
+    </a>
 
-    <section class="space-y-9">
-      <div>
-        <h2 class="text-xl font-semibold">The problem</h2>
-        <p class="sub mt-3">
-          When multiple sources feed the same analytics tables, failures often show up late: a column changes shape, a field goes missing,
-          and downstream dashboards quietly break. I wanted a system that catches issues at the boundary, not at the end.
-        </p>
-      </div>
+    <a class="p4" href="./nyc-traffic.html" data-depth="1.05">NYC Traffic Volume Analytics Pipeline</a>
+    <a class="p5" href="../index.html#projects" data-depth="0.85">New project in progress</a>
+    <a class="p6" href="../index.html#contact" data-depth="0.8">Let’s talk</a>
+  </section>
 
-      <div class="callout">
-        <div class="font-semibold">What I built</div>
-        <p class="mini mt-2">
-          A staged pipeline with explicit contracts. Data lands in a raw zone, gets validated against schema rules, then moves into curated layers.
-          Transformations are predictable, and quality checks are part of the pipeline, not an afterthought.
-        </p>
-      </div>
+  <div class="wrap"><div class="divider"></div></div>
 
-      <div>
-        <h2 class="text-xl font-semibold">Why the approach matters</h2>
-        <div class="mt-3 space-y-4">
-          <p class="sub"><span class="font-semibold" style="color:var(--ink)">Contracts reduce surprises:</span>
-            the pipeline knows what “valid” looks like and fails early when it doesn’t match.</p>
-          <p class="sub"><span class="font-semibold" style="color:var(--ink)">Layering keeps things maintainable:</span>
-            raw, cleaned, and modeled layers make debugging and reuse much easier.</p>
-          <p class="sub"><span class="font-semibold" style="color:var(--ink)">Incremental processing:</span>
-            avoids full reloads and scales better as data grows.</p>
-        </div>
-      </div>
+  <main class="content">
+    <div class="section">
+      <div class="kicker">Project</div>
+      <h1 class="h1" style="margin-top:10px;">Contract Driven Data Platform with Spark</h1>
+      <p class="sub" style="margin-top:14px;">
+        I built this to solve a common problem: when upstream schemas drift, dashboards don’t always fail loudly—they fail quietly.
+        This platform pushes validation to the edges so issues show up early and fixes are obvious.
+      </p>
+    </div>
 
-      <div>
-        <h2 class="text-xl font-semibold">Tech stack</h2>
-        <p class="sub mt-3">Spark, Python, SQL (plus validation checks and staged modeling)</p>
-      </div>
+    <div class="section callout">
+      <div style="font-weight:700;">Approach in one paragraph</div>
+      <p class="mini" style="margin-top:8px;">
+        Data lands in a raw layer, gets validated against contracts, then moves into cleaned and modeled layers.
+        Spark handles the heavy processing and incremental logic, while schema and rule checks prevent “silent wrong” tables
+        from reaching downstream users.
+      </p>
+    </div>
 
-      <div>
-        <h2 class="text-xl font-semibold">Next improvements</h2>
-        <p class="sub mt-3">
-          Add automated contract versioning and richer observability so schema drift is visible before it becomes a production incident.
-        </p>
-      </div>
-    </section>
+    <div class="section">
+      <h2>Why it matters</h2>
+      <p class="sub" style="margin-top:10px;">
+        Contract-first thinking makes pipelines easier to maintain and easier for teams to trust. It also forces clarity:
+        what’s required, what’s optional, and what “valid” actually means.
+      </p>
+    </div>
 
-    <div class="divider my-12"></div>
-    <a class="link text-sm" href="index.html">← Back to Work</a>
+    <div class="section">
+      <h2>Tech</h2>
+      <p class="sub" style="margin-top:10px;">Spark, SQL, Python (with staged modeling + validation)</p>
+    </div>
+
+    <a class="back" href="../index.html#projects">← Back to projects</a>
   </main>
+
+  <script>
+    (function(){
+      const cluster = document.getElementById('cluster');
+      if (!cluster) return;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      const items = Array.from(cluster.querySelectorAll('a'));
+      let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+
+      function onMove(e){
+        const r = cluster.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        targetX = (x - 0.5) * 18;
+        targetY = (y - 0.5) * 14;
+      }
+
+      function tick(){
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+
+        for (const el of items){
+          const depth = parseFloat(el.dataset.depth || '1');
+          el.style.transform = `translate3d(${currentX*depth}px, ${currentY*depth}px, 0)`;
+        }
+        requestAnimationFrame(tick);
+      }
+
+      cluster.addEventListener('mousemove', onMove);
+      cluster.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>
-
