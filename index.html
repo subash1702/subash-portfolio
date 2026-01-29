@@ -6,6 +6,7 @@
   <title>Subash Chakravarthy</title>
   <meta name="description" content="Data Engineer / Analytics Engineer. Selected work and systems thinking." />
 
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,23 +20,46 @@
       --accent:#4f46e5;
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       background:var(--bg);
       color:var(--ink);
       font-family:"Manrope", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
     a{color:inherit; text-decoration:none}
     .wrap{max-width:980px; margin:0 auto; padding:0 24px;}
-    .nav{display:flex; gap:22px; font-size:14px; color:var(--muted);}
-    .nav a:hover{color:var(--ink)}
+    .divider{height:1px; background:var(--line); width:100%;}
     .kicker{color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase;}
     .h1{font-size:clamp(44px,4.5vw,66px); line-height:1.02; font-weight:700; letter-spacing:-.02em; margin:12px 0 0;}
     .sub{color:var(--muted); font-size:18px; line-height:1.75; margin:0;}
-    .divider{height:1px; background:var(--line); width:100%;}
-    .hero{padding:46px 0 24px; text-align:center;}
-    .roleline{margin-top:14px; display:inline-flex; align-items:baseline; gap:10px; font-size:20px; font-weight:700;}
-    .role-dynamic{color:var(--accent); position:relative; white-space:nowrap;}
+
+    /* Top nav */
+    header{padding:26px 0;}
+    .topbar{display:flex; align-items:center; justify-content:space-between;}
+    .brand{font-weight:700;}
+    .nav{display:flex; gap:22px; font-size:14px; color:var(--muted);}
+    .nav a:hover{color:var(--ink)}
+
+    /* Hero */
+    .hero{padding:46px 0 28px; text-align:center;}
+    .roleline{
+      margin-top:14px;
+      display:inline-flex;
+      align-items:baseline;
+      gap:10px;
+      font-size:20px;
+      font-weight:700;
+    }
+    .role-dynamic{
+      color:var(--accent);
+      position:relative;
+      white-space:nowrap;
+      display:inline-block;
+      padding:2px 0;
+    }
     .role-dynamic::after{
       content:"Data Engineer";
       display:inline-block;
@@ -48,53 +72,87 @@
       75%{content:"Pipeline Engineer";}
       100%{content:"Data Engineer";}
     }
+    /* left -> right movement */
     @keyframes roleSlide{
       0%{transform:translateX(-10px); opacity:0;}
       8%{transform:translateX(0); opacity:1;}
       20%{transform:translateX(10px); opacity:1;}
       28%{transform:translateX(18px); opacity:0;}
+
       30%{transform:translateX(-10px); opacity:0;}
       38%{transform:translateX(0); opacity:1;}
       45%{transform:translateX(10px); opacity:1;}
       53%{transform:translateX(18px); opacity:0;}
+
       55%{transform:translateX(-10px); opacity:0;}
       63%{transform:translateX(0); opacity:1;}
       70%{transform:translateX(10px); opacity:1;}
       78%{transform:translateX(18px); opacity:0;}
+
       80%{transform:translateX(-10px); opacity:0;}
       88%{transform:translateX(0); opacity:1;}
       95%{transform:translateX(10px); opacity:1;}
       100%{transform:translateX(18px); opacity:0;}
     }
 
-    .actions{margin-top:26px; display:flex; justify-content:center; align-items:center; gap:16px; flex-wrap:wrap;}
+    .actions{
+      margin-top:26px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:14px 20px; border-radius:16px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px 24px;              /* bigger button */
+      border-radius:16px;
       border:1px solid var(--line);
-      background:#fff; color:var(--accent);
+      background:#fff;
+      color:var(--accent);
       font-weight:700;
-      transition: transform .15s ease, background .15s ease;
+      transition:transform .15s ease, background .15s ease;
     }
     .btn:hover{transform:translateY(-1px)}
-    .link{color:var(--ink); text-decoration:underline; text-decoration-color:rgba(79,70,229,.35); text-underline-offset:4px;}
+    .link{
+      color:var(--ink);
+      text-decoration:underline;
+      text-decoration-color:rgba(79,70,229,.35);
+      text-underline-offset:4px;
+    }
     .link:hover{text-decoration-color:rgba(79,70,229,.75);}
 
-    /* Projects on first page — minimal, no cards */
+    @media (prefers-reduced-motion: reduce){
+      .role-dynamic::after{animation:none;}
+      .btn{transition:none;}
+      .btn:hover{transform:none;}
+    }
+
+    /* Sections */
     .section{padding:44px 0;}
     .section h2{margin:0; font-size:18px; font-weight:700; letter-spacing:-.01em;}
+
+    /* Projects (no cards, clean list) */
     .projects{margin-top:18px; display:flex; flex-direction:column; gap:14px;}
     .proj{
-      display:flex; justify-content:space-between; gap:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
       padding:14px 0;
       border-bottom:1px solid var(--line);
     }
     .proj-title{font-size:18px; font-weight:650; letter-spacing:-.01em;}
-    .proj-desc{margin-top:6px; color:var(--muted); font-size:14px; line-height:1.6; max-width:62ch;}
+    .proj-desc{margin-top:6px; color:var(--muted); font-size:14px; line-height:1.6; max-width:64ch;}
     .proj-meta{color:var(--muted); font-size:13px; white-space:nowrap;}
-    .proj:hover .proj-title{ text-decoration:underline; text-decoration-color:rgba(79,70,229,.35); text-underline-offset:4px; }
+    .proj:hover .proj-title{
+      text-decoration:underline;
+      text-decoration-color:rgba(79,70,229,.35);
+      text-underline-offset:4px;
+    }
 
-    /* About tint */
+    /* About tint (subtle color change like you asked) */
     .about-wrap{
       border-top:1px solid var(--line);
       border-bottom:1px solid var(--line);
@@ -103,13 +161,27 @@
     }
     .about-inner{max-width:760px; margin:0 auto; padding:0 24px;}
     .about-text{color:var(--muted); font-size:18px; line-height:1.75; margin:14px 0 0;}
+
+    /* Contact icons */
+    .icons{margin-top:18px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
+    .icon-btn{
+      width:46px; height:46px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
+      transition:transform .15s ease;
+    }
+    .icon-btn:hover{transform:translateY(-1px)}
+    .icon{width:20px; height:20px; color:rgba(11,18,32,.78);}
+    .sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
   </style>
 </head>
 
 <body>
-  <header style="padding:28px 0;">
-    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between;">
-      <a href="index.html" style="font-weight:700;">Subash</a>
+  <header>
+    <div class="wrap topbar">
+      <a class="brand" href="index.html">Subash</a>
       <nav class="nav">
         <a href="#projects">Work</a>
         <a href="#about">About</a>
@@ -119,28 +191,31 @@
   </header>
 
   <main>
+    <!-- HERO (centered) -->
     <section class="wrap hero">
       <div class="kicker">Master’s in Analytics • Northeastern University</div>
       <h1 class="h1">Subash Chakravarthy</h1>
+
       <div class="roleline">
         <span>I’m a</span>
         <span class="role-dynamic"></span>
       </div>
 
-      <p class="sub" style="margin-top:22px; max-width:72ch; margin-left:auto; margin-right:auto;">
+      <p class="sub" style="margin-top:22px; max-width:74ch; margin-left:auto; margin-right:auto;">
         I build data systems that feel calm even when the data isn’t. I like the messy middle—turning raw events and inconsistent sources
         into clean, well-defined datasets that stay correct when volume grows and edge cases show up.
       </p>
 
       <div class="actions">
         <a class="btn" href="#projects">View projects</a>
+        <!-- ONLY LinkedIn here (as requested) -->
         <a class="link" href="YOUR_LINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
     </section>
 
     <div class="wrap"><div class="divider"></div></div>
 
-    <!-- Projects on the first page -->
+    <!-- PROJECTS on first page -->
     <section id="projects" class="wrap section">
       <h2>Selected work</h2>
 
@@ -177,34 +252,49 @@
       </div>
     </section>
 
-    <!-- About -->
+    <!-- ABOUT (more personal + tinted) -->
     <section id="about" class="about-wrap">
       <div class="about-inner">
         <div style="font-size:18px; font-weight:700;">About</div>
 
         <p class="about-text">
-          I’m the kind of person who notices when two dashboards disagree and can’t ignore it until I know why.
-          I care about contracts, definitions, and pipelines that behave the same way tomorrow as they do today.
+          I’m the person who notices when two dashboards disagree and can’t relax until I know why. I care about definitions,
+          data contracts, and pipelines that are safe to rerun without silently changing the outcome.
         </p>
 
         <p class="about-text">
-          Lately I’ve been building systems that balance speed and reliability—real-time signals for operations,
-          and batch layers that are stable enough for reporting and finance. If you click into a project,
-          you’ll see how I explain decisions and tradeoffs.
+          My recent work is centered around building systems that balance speed and reliability—real-time signals for operations,
+          and batch layers that stay stable enough for reporting and decision-making. If you click into a project, you’ll see how
+          I explain choices and tradeoffs the way I’d explain them in person.
         </p>
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- CONTACT (clickable icons) -->
     <section id="contact" class="wrap section" style="text-align:center;">
       <h2>Contact</h2>
       <p class="sub" style="margin-top:14px; max-width:68ch; margin-left:auto; margin-right:auto;">
-        If you want to talk through architecture choices or how I think about data quality and reliability, email is best.
+        If you want to talk through architecture decisions, reliability, or data quality strategy, email is the fastest way to reach me.
       </p>
 
-      <div class="actions" style="margin-top:18px;">
-        <a class="btn" href="mailto:YOUR_EMAIL@example.com">Email me</a>
-        <a class="btn" href="YOUR_LINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
+      <div class="icons">
+        <a class="icon-btn" href="mailto:YOUR_EMAIL@example.com" aria-label="Email">
+          <span class="sr">Email</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" />
+            <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+        </a>
+
+        <a class="icon-btn" href="YOUR_LINKEDIN" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <span class="sr">LinkedIn</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M6.5 9.5V18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M6.5 6.8h0" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M10.5 18v-4.8c0-1.9 1.2-3.2 3-3.2s3 1.2 3 3.2V18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M10.5 10.2V18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </a>
       </div>
     </section>
   </main>
