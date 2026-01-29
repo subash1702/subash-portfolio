@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Subash Chakravarthy — Data Engineering</title>
-  <meta name="description" content="Data Engineer / Analytics Engineer. Building reliable data systems, pipelines, and analytics-ready datasets."/>
+  <meta name="description" content="Data Engineer and Analytics Engineer. Building reliable data pipelines and analytics systems." />
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -14,309 +14,332 @@
       --muted:#5b6472;
       --paper:#ffffff;
       --line:rgba(15, 23, 42, 0.10);
-      --accent: #2563eb; /* blue */
-      --shadow: 0 18px 55px rgba(2, 6, 23, 0.10);
+      --accent:#2563eb;
+      --radius:18px;
       --shadow-soft: 0 10px 22px rgba(2, 6, 23, 0.06);
-      --radius: 18px;
     }
+
     html{scroll-behavior:smooth}
     body{background:var(--paper); color:var(--ink)}
-    .card{
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-      background:#fff;
-    }
-    .card:hover{
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-      border-color: rgba(37, 99, 235, 0.22);
-    }
-    .pill{
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: var(--muted);
-      background: #fff;
-    }
+
     .focus-ring:focus-visible{
       outline:none;
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
-      border-color: rgba(37, 99, 235, 0.45);
       border-radius: 12px;
     }
-    .underline-accent{
-      background: linear-gradient(transparent 68%, rgba(37,99,235,0.18) 68%);
-      border-radius: 6px;
-      padding: 0 0.10em;
-    }
-    .caret{
-      display:inline-block; width:10px; height:1.1em; margin-left:6px;
-      background: rgba(15, 23, 42, 0.35);
-      transform: translateY(2px);
-      animation: blink 1.05s steps(2, jump-none) infinite;
-    }
-    @keyframes blink { 50% { opacity: 0; } }
 
-    /* Gentle scroll reveal */
-    .reveal{opacity:0; transform: translateY(14px); transition: opacity 520ms ease, transform 520ms ease;}
-    .reveal.show{opacity:1; transform: translateY(0);}
+    .pill{
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:10px 14px;
+      font-size:13px;
+      color:var(--muted);
+      background:#fff;
+    }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:#fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(14px);
+      transition:opacity .52s ease, transform .52s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    details summary{
+      cursor:pointer;
+      list-style:none;
+    }
+    details summary::-webkit-details-marker{display:none;}
+    details[open] .chev{transform:rotate(90deg);}
+    .chev{display:inline-block; transition:transform .2s ease;}
+
+    .icon-btn{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px 14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:#fff;
+      transition: background .15s ease, transform .15s ease;
+    }
+    .icon-btn:hover{
+      background:#f8fafc;
+      transform: translateY(-1px);
+    }
+
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
-      .card,.reveal,.caret{transition:none !important; animation:none !important}
+      .reveal,.chev,.icon-btn{transition:none}
+      .icon-btn:hover{transform:none}
     }
   </style>
 </head>
 
 <body class="antialiased">
-  <!-- NAV -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-white/75 border-b" style="border-color:var(--line)">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-      <a href="#top" class="font-semibold tracking-tight hover:opacity-80">Subash</a>
-      <nav class="flex items-center gap-2 text-sm" style="color:var(--muted)">
-        <a class="focus-ring px-3 py-2 hover:text-slate-900" href="#work">Work</a>
-        <a class="focus-ring px-3 py-2 hover:text-slate-900" href="#skills">Skills</a>
-        <a class="focus-ring px-3 py-2 hover:text-slate-900" href="#contact">Contact</a>
-      </nav>
+
+<header class="sticky top-0 z-50 bg-white/85 backdrop-blur border-b" style="border-color:var(--line)">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+    <a href="#top" class="font-semibold tracking-tight hover:opacity-80">Subash</a>
+    <nav class="flex items-center gap-2 text-sm" style="color:var(--muted)">
+      <a class="focus-ring px-3 py-2 hover:text-slate-900" href="#about">About</a>
+      <a class="focus-ring px-3 py-2 hover:text-slate-900" href="#work">Work</a>
+      <a class="focus-ring px-3 py-2 hover:text-slate-900" href="#skills">Skills</a>
+      <a class="focus-ring px-3 py-2 hover:text-slate-900" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="max-w-6xl mx-auto px-6">
+
+  <!-- HERO -->
+  <section class="pt-16 pb-10">
+    <p class="text-sm uppercase tracking-wide" style="color:var(--muted)">
+      Master’s in Analytics at Northeastern University
+    </p>
+
+    <h1 class="text-5xl md:text-6xl font-semibold tracking-tight mt-3">
+      Subash Chakravarthy
+    </h1>
+
+    <p class="mt-3 text-lg font-medium">
+      Data Engineer and Analytics Engineer
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <div class="pill">Focused on data platforms and pipeline design</div>
+      <div class="pill">F-1 OPT STEM eligible</div>
+      <div class="pill">Open to full time roles</div>
     </div>
-  </header>
 
-  <main id="top" class="max-w-6xl mx-auto px-6">
-    <!-- HERO -->
-    <section class="pt-16 pb-10">
-      <div class="grid lg:grid-cols-12 gap-10 items-start">
-        <div class="lg:col-span-7">
-          <p class="text-sm uppercase tracking-wide" style="color:var(--muted)">
-            Master’s in Analytics · Systems-first · Boston, MA
-          </p>
+    <p class="mt-8 text-lg md:text-xl leading-relaxed max-w-3xl" style="color:var(--muted)">
+      I build reliable data pipelines and analytics systems that turn raw data into clean, decision ready datasets that teams can trust and use with confidence.
+    </p>
 
-          <h1 class="text-5xl md:text-6xl font-semibold tracking-tight mt-3">
-            Subash Chakravarthy
-          </h1>
+    <div class="mt-9 flex flex-wrap gap-3">
+      <a href="#work"
+         class="focus-ring inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800">
+        View work
+      </a>
+      <a href="#contact"
+         class="focus-ring inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold border hover:bg-slate-50"
+         style="border-color:var(--line)">
+        Contact
+      </a>
+    </div>
+  </section>
 
-          <div class="mt-5 flex flex-wrap gap-3 items-center">
-            <div class="pill">
-              <span class="font-medium text-slate-900">Role:</span>
-              <span class="ml-2 underline-accent" id="roleText">Data Engineer</span>
-              <span class="caret" aria-hidden="true"></span>
-            </div>
-            <div class="pill">
-              <span class="font-medium text-slate-900">Focus:</span>
-              <span class="ml-2">Reliable pipelines & trusted metrics</span>
-            </div>
-            <div class="pill">
-              <span class="font-medium text-slate-900">Work auth:</span>
-              <span class="ml-2">F-1 OPT (STEM eligible)</span>
-            </div>
-          </div>
-
-          <p class="mt-7 text-lg md:text-xl leading-relaxed max-w-2xl" style="color:var(--muted)">
-            I build <span class="underline-accent">reliable data systems</span> that turn messy raw data into
-            decision-ready datasets. I care about quality checks, repeatable transformations,
-            and schemas that make metrics consistent across teams.
-          </p>
-
-          <div class="mt-9 flex flex-wrap gap-3">
-            <a href="#work"
-               class="focus-ring inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800">
-              View work
-            </a>
-            <a href="#contact"
-               class="focus-ring inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold border hover:bg-slate-50"
-               style="border-color:var(--line)">
-              Contact
-            </a>
-          </div>
-        </div>
-
-        <!-- Right column: Signature “human” block (not generic) -->
-        <div class="lg:col-span-5 reveal card p-7">
-          <h2 class="text-lg font-semibold tracking-tight">How I approach problems</h2>
-          <p class="mt-2 text-sm" style="color:var(--muted)">
-            I design pipelines like products: clear inputs, predictable outputs, and sensible failure modes.
-          </p>
-          <ul class="mt-5 space-y-3 text-sm">
-            <li>• Start with the decision + consumer of the data</li>
-            <li>• Make quality visible (checks + assumptions)</li>
-            <li>• Model outputs for reuse (facts/dims, not ad-hoc)</li>
-            <li>• Optimize for reliability before scale</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURED -->
-    <section class="reveal card p-8 md:p-10 mb-10">
-      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-        <div class="max-w-2xl">
-          <p class="text-xs uppercase tracking-wide" style="color:var(--muted)">Featured</p>
-          <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mt-2">
-            Reliable Batch Data Pipeline for Decision-Making
-          </h2>
-          <p class="mt-3 text-sm md:text-base" style="color:var(--muted)">
-            A production-minded pipeline that standardizes ingestion + transformations, applies data quality checks,
-            and serves analytics-ready tables with consistent metric logic.
-          </p>
-
-          <div class="mt-5 flex flex-wrap gap-2 text-xs" style="color:var(--muted)">
-            <span class="border rounded-full px-3 py-1" style="border-color:var(--line)">Python</span>
-            <span class="border rounded-full px-3 py-1" style="border-color:var(--line)">SQL</span>
-            <span class="border rounded-full px-3 py-1" style="border-color:var(--line)">Data Modeling</span>
-            <span class="border rounded-full px-3 py-1" style="border-color:var(--line)">Quality Checks</span>
-          </div>
-
-          <div class="mt-6 flex gap-3">
-            <a class="focus-ring inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold bg-white border hover:bg-slate-50"
-               style="border-color:var(--line)" href="./projects/reliable-batch-pipeline.html">
-              Read case study
-            </a>
-            <a class="focus-ring inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold text-white"
-               style="background:var(--accent)" href="#contact">
-              Ask me about it
-            </a>
-          </div>
-        </div>
-
-        <!-- Signature visual (simple, engineered) -->
-        <div class="min-w-[260px] md:min-w-[320px] border rounded-2xl p-5"
-             style="border-color:var(--line); background: linear-gradient(180deg, rgba(37,99,235,0.06), rgba(2,6,23,0.00));">
-          <div class="text-xs font-semibold uppercase tracking-wide" style="color:var(--muted)">Pipeline</div>
-          <div class="mt-4 grid gap-3 text-sm">
-            <div class="flex items-center justify-between">
-              <span class="font-medium">Ingest</span><span style="color:var(--muted)">raw → staged</span>
-            </div>
-            <div class="h-px" style="background:var(--line)"></div>
-            <div class="flex items-center justify-between">
-              <span class="font-medium">Validate</span><span style="color:var(--muted)">checks + rules</span>
-            </div>
-            <div class="h-px" style="background:var(--line)"></div>
-            <div class="flex items-center justify-between">
-              <span class="font-medium">Transform</span><span style="color:var(--muted)">clean → model</span>
-            </div>
-            <div class="h-px" style="background:var(--line)"></div>
-            <div class="flex items-center justify-between">
-              <span class="font-medium">Serve</span><span style="color:var(--muted)">facts/dims</span>
-            </div>
-          </div>
-          <p class="mt-4 text-xs" style="color:var(--muted)">
-            Simple on purpose — I’ll show the full diagram + tradeoffs in the case study.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- WORK -->
-    <section id="work" class="py-4">
-      <div class="reveal">
-        <h2 class="text-3xl font-semibold tracking-tight">Work</h2>
-        <p class="mt-2 text-sm max-w-2xl" style="color:var(--muted)">
-          A few projects that show end-to-end thinking: data reliability, modeling decisions, and usability.
+  <!-- SIMPLE VISUAL FLOW -->
+  <section class="reveal card p-7 md:p-8 mb-12"
+           style="background: linear-gradient(180deg, rgba(37,99,235,0.06), rgba(2,6,23,0.00));">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <h2 class="text-lg font-semibold tracking-tight">How I think about data systems</h2>
+        <p class="mt-2 text-sm" style="color:var(--muted)">
+          I prefer designs that are easy to validate, easy to reason about, and safe to reuse.
         </p>
       </div>
 
-      <div class="mt-8 grid md:grid-cols-2 gap-6">
-        <a class="reveal card p-7 block focus-ring" href="./projects/reliable-batch-pipeline.html">
-          <div class="flex items-start justify-between gap-4">
-            <h3 class="text-xl font-semibold tracking-tight">Reliable Batch Data Pipeline</h3>
-            <span class="text-xs px-3 py-1 rounded-full border" style="border-color:var(--line); color:var(--muted)">Case study</span>
-          </div>
-          <p class="mt-2 text-sm" style="color:var(--muted)">
-            Standardized ingestion + transformations, with quality checks and analytics-ready outputs.
-          </p>
-        </a>
-
-        <a class="reveal card p-7 block focus-ring" href="./projects/time-window-events.html">
-          <div class="flex items-start justify-between gap-4">
-            <h3 class="text-xl font-semibold tracking-tight">Time-Window Event Processing</h3>
-            <span class="text-xs px-3 py-1 rounded-full border" style="border-color:var(--line); color:var(--muted)">Case study</span>
-          </div>
-          <p class="mt-2 text-sm" style="color:var(--muted)">
-            Windowed aggregations and clean outputs for monitoring and time-sensitive decisions.
-          </p>
-        </a>
+      <div class="flex flex-wrap gap-2 text-sm">
+        <span class="pill">Ingest</span>
+        <span class="pill">Validate</span>
+        <span class="pill">Transform</span>
+        <span class="pill">Model</span>
+        <span class="pill">Serve</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="reveal card p-8 md:p-10 my-12">
-      <h2 class="text-2xl font-semibold tracking-tight">Skills</h2>
-      <div class="mt-6 grid md:grid-cols-2 gap-6 text-sm">
-        <div class="border rounded-2xl p-5" style="border-color:var(--line)">
-          <h3 class="font-semibold">Core</h3>
-          <p class="mt-2" style="color:var(--muted)">Python, SQL, data transformations, data modeling, analytics-ready schemas</p>
-        </div>
-        <div class="border rounded-2xl p-5" style="border-color:var(--line)">
-          <h3 class="font-semibold">Tools I’ve used</h3>
-          <p class="mt-2" style="color:var(--muted)">Snowflake, PySpark, Tableau, Power BI, AWS</p>
-          <p class="mt-2 text-xs" style="color:var(--muted)">(Only list what you can explain calmly in person.)</p>
-        </div>
-      </div>
-    </section>
+  <!-- ABOUT -->
+  <section id="about" class="reveal mb-12">
+    <h2 class="text-3xl font-semibold tracking-tight">About</h2>
 
-    <!-- CONTACT -->
-    <section id="contact" class="reveal card p-8 md:p-10 mb-16">
-      <h2 class="text-2xl font-semibold tracking-tight">Contact</h2>
-      <p class="mt-2 text-sm" style="color:var(--muted)">
-        Best way to reach me is email. Happy to walk through design decisions or share code.
+    <div class="mt-6 max-w-4xl space-y-4 leading-relaxed" style="color:var(--muted)">
+      <p>
+        I am a graduate student in Analytics with a strong interest in data engineering and analytics systems. I enjoy working on problems where data needs to be dependable, well structured, and genuinely useful for decision making. Most of my recent work has focused on building pipelines and analytical layers that turn raw inputs into clean and consistent datasets.
       </p>
 
-      <div class="mt-6 grid sm:grid-cols-3 gap-4 text-sm">
-        <a class="focus-ring border rounded-xl p-4 hover:bg-slate-50" style="border-color:var(--line)"
-           href="https://www.linkedin.com/in/YOUR-LINK" target="_blank" rel="noreferrer">
-          <div class="font-semibold">LinkedIn</div>
-          <div style="color:var(--muted)">/in/your-link</div>
-        </a>
+      <p>
+        I usually approach projects by thinking about how data flows through a system from ingestion to transformation to reporting. I pay attention to validation, repeatability, and clarity in how metrics are defined. That systems perspective has shaped the kinds of projects I build and the roles I am preparing for.
+      </p>
 
-        <a class="focus-ring border rounded-xl p-4 hover:bg-slate-50" style="border-color:var(--line)"
-           href="https://github.com/subash1702" target="_blank" rel="noreferrer">
-          <div class="font-semibold">GitHub</div>
-          <div style="color:var(--muted)">@subash1702</div>
-        </a>
+      <p>
+        I am currently looking for full time opportunities where I can contribute to data platforms and analytics infrastructure while continuing to grow as an engineer.
+      </p>
+    </div>
+  </section>
 
-        <a class="focus-ring border rounded-xl p-4 hover:bg-slate-50" style="border-color:var(--line)"
-           href="mailto:YOUR_EMAIL@example.com">
-          <div class="font-semibold">Email</div>
-          <div style="color:var(--muted)">YOUR_EMAIL@example.com</div>
-        </a>
+  <!-- WHAT I BUILD -->
+  <section class="reveal card p-7 md:p-8 mb-12">
+    <h2 class="text-2xl font-semibold tracking-tight">What I build</h2>
+    <p class="mt-4 leading-relaxed" style="color:var(--muted)">
+      I build data pipelines and analytical workflows that are designed to be reliable and repeatable. My focus is on cleaning messy inputs, structuring transformations clearly, and producing datasets that analysts and reporting tools can use without confusion. I also spend time designing validation checks and schema logic so that metrics remain consistent across different reports and use cases.
+    </p>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="reveal mb-12">
+    <h2 class="text-3xl font-semibold tracking-tight">Work</h2>
+    <p class="mt-3 max-w-4xl" style="color:var(--muted)">
+      A small set of projects that reflect how I think about building data systems. The featured project goes deeper because it is closest to the kind of work I want to do full time.
+    </p>
+
+    <!-- FEATURED -->
+    <div class="mt-8 card p-7 md:p-8">
+      <p class="text-xs uppercase tracking-wide" style="color:var(--muted)">Featured project</p>
+      <h3 class="text-2xl font-semibold tracking-tight mt-2">Dual Layer E Commerce Data Platform</h3>
+
+      <div class="mt-4 max-w-4xl leading-relaxed" style="color:var(--muted)">
+        <p>
+          This project started from a practical analytics problem. E commerce teams often need two things at the same time: real time visibility into activity and dependable historical data for reporting and finance. Many systems handle one well but not the other. I designed this platform to support both without sacrificing data quality.
+        </p>
       </div>
 
-      <p class="mt-8 text-xs" style="color:var(--muted)">
-        Built by Subash · Hosted on GitHub Pages
-      </p>
-    </section>
-  </main>
+      <details class="mt-6 border-t pt-5" style="border-color:var(--line)">
+        <summary class="flex items-center justify-between gap-4">
+          <span class="font-medium">Read the full breakdown</span>
+          <span class="chev" aria-hidden="true">›</span>
+        </summary>
 
-  <script>
-    // Role rotator (human-coded, calm timing)
-    (function () {
-      const el = document.getElementById("roleText");
-      if (!el) return;
+        <div class="mt-5 space-y-4 leading-relaxed" style="color:var(--muted)">
+          <p>
+            The platform has two coordinated layers. The first layer processes high frequency transaction events in near real time. I built a time window based processing flow that computes live business metrics such as sales velocity and inventory movement. Special care was taken to handle late arriving and out of order events so the metrics remain accurate instead of drifting over time. The system also triggers automated alerts when inventory thresholds are crossed so teams can respond quickly.
+          </p>
 
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const roles = ["Data Engineer", "Analytics Engineer", "Data Platform & Pipelines", "Data Quality & Modeling"];
-      let i = 0;
+          <p>
+            The second layer focuses on reliability and reporting. I built a batch ingestion and transformation workflow that aggregates daily transaction data into a structured warehouse model. Transformations are defined through versioned SQL models, and the pipeline is designed to be idempotent so retries do not create duplication. I added schema and business rule checks so invalid records are caught early instead of silently passing through.
+          </p>
 
-      function setRole(text){
-        el.style.opacity = "0";
-        setTimeout(()=>{ el.textContent = text; el.style.opacity="1"; }, 180);
-      }
+          <p>
+            The result is a system that supports both fast operational signals and stable analytical reporting. Dashboards update quickly, and downstream reports remain consistent and auditable.
+          </p>
 
-      if (prefersReducedMotion) { el.textContent = roles[0]; return; }
+          <p class="text-sm">
+            <span class="font-semibold">Technologies used:</span>
+            Python, SQL, PostgreSQL, Kafka, dbt, Docker
+          </p>
+        </div>
+      </details>
+    </div>
 
-      setRole(roles[0]);
-      setInterval(()=>{ i=(i+1)%roles.length; setRole(roles[i]); }, 2000);
-    })();
+    <!-- SUPPORTING PROJECTS -->
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
 
-    // Gentle reveal on scroll
-    (function(){
-      const els = document.querySelectorAll(".reveal");
-      const obs = new IntersectionObserver((entries)=>{
-        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("show"); });
-      }, { threshold: 0.12 });
-      els.forEach(el => obs.observe(el));
-    })();
-  </script>
+      <div class="card p-7 md:p-8">
+        <h3 class="text-xl font-semibold tracking-tight">Contract Driven Data Platform with Spark</h3>
+        <p class="mt-3 leading-relaxed" style="color:var(--muted)">
+          In this project I worked on a structured batch data platform built around contract driven schemas and layered data modeling. The goal was to make multi source data easier to validate and safer to use for analytics.
+        </p>
+
+        <details class="mt-4 border-t pt-4" style="border-color:var(--line)">
+          <summary class="flex items-center justify-between gap-4 text-sm font-medium">
+            <span>More details</span>
+            <span class="chev" aria-hidden="true">›</span>
+          </summary>
+          <div class="mt-4 leading-relaxed text-sm" style="color:var(--muted)">
+            <p>
+              I implemented staged data layers and schema validation rules so incoming data could be checked before it moved into analytical tables. Incremental processing logic was added to avoid unnecessary full reloads and to keep processing efficient as data volumes grow. The overall design focused on making transformations predictable and easier to maintain over time.
+            </p>
+          </div>
+        </details>
+      </div>
+
+      <div class="card p-7 md:p-8">
+        <h3 class="text-xl font-semibold tracking-tight">NYC Traffic Volume Analytics Pipeline</h3>
+        <p class="mt-3 leading-relaxed" style="color:var(--muted)">
+          This project focused on processing and analyzing large scale urban traffic and event data. The raw datasets were noisy and inconsistent, so the main work involved cleaning, aligning, and structuring the data into usable analytical tables.
+        </p>
+
+        <details class="mt-4 border-t pt-4" style="border-color:var(--line)">
+          <summary class="flex items-center justify-between gap-4 text-sm font-medium">
+            <span>More details</span>
+            <span class="chev" aria-hidden="true">›</span>
+          </summary>
+          <div class="mt-4 leading-relaxed text-sm" style="color:var(--muted)">
+            <p>
+              I built transformation workflows that produced time based aggregations and reusable feature tables for analysis and modeling. Query performance improved after restructuring joins and aggregations, which made exploratory and predictive analysis more efficient.
+            </p>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal card p-7 md:p-8 mb-12">
+    <h2 class="text-2xl font-semibold tracking-tight">Skills</h2>
+    <p class="mt-4 leading-relaxed" style="color:var(--muted)">
+      I work primarily with Python and SQL for data pipelines, transformations, and analytical modeling. My recent projects include both batch and streaming workflows, schema based modeling, and data quality validation. I have used tools and platforms such as PostgreSQL, Kafka, dbt, Spark, and containerized environments in pipeline projects. I am comfortable working with BI and analytics tools that sit on top of well structured data models.
+    </p>
+  </section>
+
+  <!-- CONTACT (CLICKABLE ICONS) -->
+  <section id="contact" class="reveal card p-7 md:p-8 mb-16">
+    <h2 class="text-2xl font-semibold tracking-tight">Contact</h2>
+
+    <p class="mt-3 leading-relaxed" style="color:var(--muted)">
+      I am always happy to discuss my projects and walk through design decisions or tradeoffs. The best way to reach me is through email or LinkedIn.
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-4">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/YOUR-LINK"
+         target="_blank"
+         rel="noreferrer"
+         class="icon-btn focus-ring">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 10-4 0v7h-4v-7a6 6 0 016-6z" stroke="currentColor" stroke-width="1.6"/>
+          <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        <span class="text-sm font-medium">LinkedIn</span>
+      </a>
+
+      <!-- GitHub -->
+      <a href="https://github.com/subash1702"
+         target="_blank"
+         rel="noreferrer"
+         class="icon-btn focus-ring">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2a10 10 0 00-3 19.5c.5.1.7-.2.7-.5v-2c-3 .7-3.6-1.4-3.6-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.7-1.3-2.4-.3-5-1.2-5-5.4 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-3 0 0 .9-.3 3 .1a10.5 10.5 0 015.5 0c2.1-.4 3-.1 3-.1.6 1.6.2 2.7.1 3 .7.8 1.1 1.8 1.1 3 0 4.2-2.6 5.1-5 5.4.4.3.8 1 .8 2v3c0 .3.2.6.7.5A10 10 0 0012 2z"
+                stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+        <span class="text-sm font-medium">GitHub</span>
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:YOUR_EMAIL@example.com"
+         class="icon-btn focus-ring">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        <span class="text-sm font-medium">Email</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  (function(){
+    const els = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("show"); });
+    }, { threshold: 0.12 });
+    els.forEach(el => obs.observe(el));
+  })();
+</script>
+
 </body>
 </html>
