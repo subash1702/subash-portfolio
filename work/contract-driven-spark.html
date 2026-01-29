@@ -1,145 +1,118 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contract Driven Data Platform with Spark — Subash</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contract Driven Platform with Spark — Subash</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
   <style>
-    :root{--bg:#fbfbfd;--ink:#0b1220;--muted:rgba(11,18,32,.62);--line:rgba(11,18,32,.12);--ghost:rgba(11,18,32,.18);--accent:#4f46e5;}
-    body{margin:0; background:var(--bg); color:var(--ink); font-family:"Manrope", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;}
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:980px; margin:0 auto; padding:0 24px;}
-    .divider{height:1px; background:var(--line); width:100%;}
-    .sub{color:var(--muted); font-size:18px; line-height:1.75;}
-    .h1{font-size:40px; line-height:1.1; font-weight:700; letter-spacing:-.02em; margin:0;}
-    .kicker{color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase;}
-    header{padding:26px 0;}
-    .top{display:flex; align-items:center; justify-content:space-between;}
-    .nav{display:flex; gap:18px; color:var(--muted); font-size:14px;}
-    .nav a:hover{color:var(--ink)}
-    .brand{font-weight:700;}
+    :root{ --bg:#fff; --ink:#0b1220; --muted:rgba(11,18,32,.66); --hair:rgba(11,18,32,.12); --soft:rgba(11,18,32,.06); --max:980px; --r:18px; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family:"Instrument Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased; }
+    a{ color:inherit; text-decoration:none; }
+    .top{ position:sticky; top:0; z-index:50; background: rgba(255,255,255,.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--soft); }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:0 22px; }
+    .bar{ height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand{ font-weight:750; letter-spacing:-.02em; }
+    .nav{ display:flex; gap:10px; font-size:14px; color:var(--muted); }
+    .nav a{ padding:8px 10px; border-radius:999px; }
+    .nav a:hover{ background: rgba(11,18,32,.04); color:var(--ink); }
 
-    .cluster{height:320px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; user-select:none;}
-    .cluster a{position:absolute; font-weight:700; letter-spacing:-.01em; white-space:nowrap; color:var(--ghost); font-size:26px; transition:opacity .15s ease, color .15s ease; will-change:transform;}
-    .cluster a:hover{color:rgba(11,18,32,.42);}
-    .cluster a.current{color:var(--ink); font-size:28px; letter-spacing:-.02em;}
-    .p1{top:92px; left:72px;}
-    .p2{top:70px; left:210px;}
-    .p3{top:70px; right:140px;}
-    .p4{top:120px; right:110px;}
-    .p5{top:150px; left:250px;}
-    .p6{top:180px; left:420px;}
+    .page{ padding: 56px 0 52px; }
+    h1{ margin:0 0 10px; font-size: clamp(34px, 4.8vw, 56px); line-height:1.08; letter-spacing:-.04em; }
+    .sub{ max-width:72ch; color: rgba(11,18,32,.74); font-size:18px; line-height:1.7; }
 
-    .content{max-width:780px; margin:0 auto; padding:0 24px 80px;}
-    .section{padding:26px 0;}
-    .section h2{margin:0; font-size:18px; font-weight:700;}
-    .callout{border:1px solid var(--line); border-radius:16px; padding:16px; background:#fff;}
-    .mini{color:var(--muted); font-size:14px; line-height:1.7;}
-    .back{display:inline-block; margin-top:18px; color:var(--ink); text-decoration:underline; text-decoration-color:rgba(79,70,229,.35); text-underline-offset:4px;}
-    @media (prefers-reduced-motion: reduce){ .cluster a{transition:none;} }
+    .hero-img{
+      margin-top: 22px;
+      border-radius: var(--r);
+      overflow:hidden;
+      outline: 1px solid rgba(0,0,0,.06);
+      background: linear-gradient(135deg, #e10600, #840300);
+      height: 360px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(255,255,255,.92);
+      font-weight:800;
+      letter-spacing:-.03em;
+      font-size: 28px;
+      text-align:center;
+      padding: 0 18px;
+    }
+
+    .grid{ margin-top: 22px; display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+    .box{ border: 1px solid var(--soft); border-radius: var(--r); padding: 18px; background: rgba(11,18,32,.02); }
+    .box h2{ margin:0 0 10px; font-size: 13px; letter-spacing:.14em; text-transform: uppercase; color: var(--muted); }
+    .box p{ margin:0; color: rgba(11,18,32,.78); line-height:1.75; font-size:16px; }
+    ul{ margin:10px 0 0; padding-left: 18px; color: rgba(11,18,32,.78); line-height:1.7; }
+
+    .links{ margin-top: 18px; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{ border: 1px solid var(--hair); border-radius: 999px; padding: 10px 14px; font-weight:750; background:#fff; }
+    .btn:hover{ background: rgba(11,18,32,.04); }
+
+    footer{ border-top:1px solid var(--soft); padding: 24px 0 56px; color: var(--muted); font-size:14px; margin-top: 28px; }
+
+    @media (max-width: 900px){
+      .grid{ grid-template-columns:1fr; }
+      .hero-img{ height: 300px; }
+    }
   </style>
 </head>
 
 <body>
-  <header class="wrap">
-    <div class="top">
-      <a class="brand" href="../index.html">Subash</a>
+  <header class="top">
+    <div class="wrap bar">
+      <div class="brand"><a href="../../index.html">Subash</a></div>
       <nav class="nav">
-        <a href="../index.html#projects">Work</a>
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../../index.html#work">Work</a>
+        <a href="../../About.html">About</a>
+        <a href="../../index.html#contact">Connect</a>
       </nav>
     </div>
   </header>
 
-  <section class="cluster" id="cluster">
-    <a class="p1" href="../index.html#projects" data-depth="0.9">All</a>
-    <a class="p2" href="./dual-layer-ecommerce.html" data-depth="1.0">Dual Layer E-Commerce Data Platform</a>
-
-    <a class="p3 current" href="./contract-driven-spark.html" data-depth="1.2">
-      Contract Driven Data Platform with Spark
-    </a>
-
-    <a class="p4" href="./nyc-traffic.html" data-depth="1.05">NYC Traffic Volume Analytics Pipeline</a>
-    <a class="p5" href="../index.html#projects" data-depth="0.85">New project in progress</a>
-    <a class="p6" href="../index.html#contact" data-depth="0.8">Let’s talk</a>
-  </section>
-
-  <div class="wrap"><div class="divider"></div></div>
-
-  <main class="content">
-    <div class="section">
-      <div class="kicker">Project</div>
-      <h1 class="h1" style="margin-top:10px;">Contract Driven Data Platform with Spark</h1>
-      <p class="sub" style="margin-top:14px;">
-        I built this to solve a common problem: when upstream schemas drift, dashboards don’t always fail loudly—they fail quietly.
-        This platform pushes validation to the edges so issues show up early and fixes are obvious.
-      </p>
+  <main class="wrap page">
+    <h1>Contract Driven Data Platform with Spark</h1>
+    <div class="sub">
+      This project is about trust. If multiple sources feed the same model, someone needs to decide what “valid” looks like.
+      I used contracts and schema validation so bad data gets caught early, not after it’s already polluted reporting tables.
     </div>
 
-    <div class="section callout">
-      <div style="font-weight:700;">Approach in one paragraph</div>
-      <p class="mini" style="margin-top:8px;">
-        Data lands in a raw layer, gets validated against contracts, then moves into cleaned and modeled layers.
-        Spark handles the heavy processing and incremental logic, while schema and rule checks prevent “silent wrong” tables
-        from reaching downstream users.
-      </p>
+    <div class="hero-img">Contracts + validation before analytics</div>
+
+    <div class="grid">
+      <section class="box">
+        <h2>What I built</h2>
+        <ul>
+          <li>Staged layers with predictable transformations</li>
+          <li>Schema + business rule validation on ingest</li>
+          <li>Incremental logic to avoid full reloads</li>
+          <li>Design focused on maintainability over time</li>
+        </ul>
+      </section>
+
+      <section class="box">
+        <h2>Why it matters</h2>
+        <p>
+          When reporting is wrong, teams stop trusting the data and start rebuilding spreadsheets.
+          My goal here was to make it hard for incorrect data to sneak in, and easy to explain what changed when it does.
+        </p>
+        <div class="links">
+          <a class="btn" href="https://github.com/subash1702" target="_blank" rel="noopener">Repo</a>
+          <a class="btn" href="../../index.html#work">Back to work</a>
+        </div>
+      </section>
     </div>
 
-    <div class="section">
-      <h2>Why it matters</h2>
-      <p class="sub" style="margin-top:10px;">
-        Contract-first thinking makes pipelines easier to maintain and easier for teams to trust. It also forces clarity:
-        what’s required, what’s optional, and what “valid” actually means.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Tech</h2>
-      <p class="sub" style="margin-top:10px;">Spark, SQL, Python (with staged modeling + validation)</p>
-    </div>
-
-    <a class="back" href="../index.html#projects">← Back to projects</a>
+    <footer>© <span id="y"></span> Subash Chakravarthy</footer>
   </main>
 
   <script>
-    (function(){
-      const cluster = document.getElementById('cluster');
-      if (!cluster) return;
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduceMotion) return;
-
-      const items = Array.from(cluster.querySelectorAll('a'));
-      let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
-
-      function onMove(e){
-        const r = cluster.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width;
-        const y = (e.clientY - r.top) / r.height;
-        targetX = (x - 0.5) * 18;
-        targetY = (y - 0.5) * 14;
-      }
-
-      function tick(){
-        currentX += (targetX - currentX) * 0.08;
-        currentY += (targetY - currentY) * 0.08;
-
-        for (const el of items){
-          const depth = parseFloat(el.dataset.depth || '1');
-          el.style.transform = `translate3d(${currentX*depth}px, ${currentY*depth}px, 0)`;
-        }
-        requestAnimationFrame(tick);
-      }
-
-      cluster.addEventListener('mousemove', onMove);
-      cluster.addEventListener('mouseleave', () => { targetX = 0; targetY = 0; });
-      requestAnimationFrame(tick);
-    })();
+    document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
