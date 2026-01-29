@@ -1,1 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Work — Subash</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{
+      --bg:#fbfbfd;
+      --ink:#0b1220;
+      --muted:rgba(11,18,32,.68);
+      --line:rgba(11,18,32,.12);
+      --accent:#4f46e5;
+    }
+    body{background:var(--bg); color:var(--ink);}
+    .wrap{max-width:980px; margin:0 auto;}
+    .kicker{color:var(--muted); font-size:14px; letter-spacing:.08em; text-transform:uppercase;}
+    .h1{font-size:clamp(40px,4vw,56px); line-height:1.05; font-weight:650; letter-spacing:-.02em;}
+    .sub{color:var(--muted); font-size:18px; line-height:1.65;}
+    .divider{height:1px; background:var(--line); width:100%;}
+    .nav a{color:var(--muted);}
+    .nav a:hover{color:var(--ink);}
+    .thumb{
+      border:1px solid var(--line);
+      border-radius:22px;
+      overflow:hidden;
+      background:#fff;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .thumb:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 22px 60px rgba(2,6,23,.10);
+    }
+    .thumbTop{aspect-ratio: 16/10; display:flex; align-items:flex-end; padding:18px;}
+    .tag{
+      font-size:12px;
+      color: rgba(255,255,255,.86);
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 6px 10px;
+      border-radius:999px;
+      backdrop-filter: blur(6px);
+    }
+    .title{font-size:18px; font-weight:600; letter-spacing:-.01em;}
+    .desc{color:var(--muted); font-size:14px; line-height:1.6;}
+  </style>
+</head>
+
+<body class="antialiased">
+  <header class="py-10">
+    <div class="wrap px-6 flex items-center justify-between">
+      <a href="../index.html" class="font-semibold">Subash</a>
+      <nav class="nav flex gap-6 text-sm">
+        <a href="../index.html">Home</a>
+        <a href="index.html" style="color:var(--ink); font-weight:600;">Work</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap px-6 pb-16">
+    <div class="kicker">Selected work</div>
+    <h1 class="h1 mt-3">A few projects that show how I build.</h1>
+    <p class="sub mt-5 max-w-2xl">
+      Each page is written like I would explain it in person: what the problem was, what I designed, and why I made those choices.
+    </p>
+
+    <div class="divider my-10"></div>
+
+    <section class="grid md:grid-cols-2 gap-6">
+      <a class="thumb block" href="dual-layer-ecommerce.html">
+        <div class="thumbTop" style="background: radial-gradient(1200px 600px at 20% 20%, rgba(79,70,229,.55), rgba(11,18,32,.92));">
+          <span class="tag">Streaming + Batch</span>
+        </div>
+        <div class="p-5">
+          <div class="title">Dual Layer E-Commerce Data Platform</div>
+          <div class="desc mt-2">
+            Real-time metrics and alerts + reliable batch reporting, designed to stay correct during late events and retries.
+          </div>
+        </div>
+      </a>
+
+      <a class="thumb block" href="contract-driven-spark.html">
+        <div class="thumbTop" style="background: radial-gradient(1200px 600px at 20% 20%, rgba(14,165,233,.55), rgba(11,18,32,.92));">
+          <span class="tag">Contracts + Spark</span>
+        </div>
+        <div class="p-5">
+          <div class="title">Contract Driven Data Platform with Spark</div>
+          <div class="desc mt-2">
+            Schema-first ingestion, staged layers, and validation so multi-source data stays safe and reusable.
+          </div>
+        </div>
+      </a>
+
+      <a class="thumb block" href="nyc-traffic.html">
+        <div class="thumbTop" style="background: radial-gradient(1200px 600px at 20% 20%, rgba(16,185,129,.55), rgba(11,18,32,.92));">
+          <span class="tag">Analytics Pipeline</span>
+        </div>
+        <div class="p-5">
+          <div class="title">NYC Traffic Volume Analytics Pipeline</div>
+          <div class="desc mt-2">
+            Cleaned and structured noisy public data into analytical tables and feature sets for modeling.
+          </div>
+        </div>
+      </a>
+
+      <a class="thumb block" href="../index.html#contact">
+        <div class="thumbTop" style="background: radial-gradient(1200px 600px at 20% 20%, rgba(244,63,94,.45), rgba(11,18,32,.92));">
+          <span class="tag">In progress</span>
+        </div>
+        <div class="p-5">
+          <div class="title">New pipeline project</div>
+          <div class="desc mt-2">
+            Building a new end-to-end project for the Feb 8 career fair. Ask me what I’m working on.
+          </div>
+        </div>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
 
