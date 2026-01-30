@@ -1,162 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nexora-NX — Subash Chakravarthy</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nexora-NX | Subash Chakravarthy</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root{ --bg:#fff; --text:#0b0b0f; --muted:rgba(11,11,15,.62); --line:rgba(11,11,15,.10); --max:1100px; }
-    *{box-sizing:border-box;} body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--text);}
-    .nav{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:20;}
-    .navInner{max-width:var(--max);margin:0 auto;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;}
-    .brand{font-weight:800;letter-spacing:-.03em;text-decoration:none;color:var(--text);}
-    .navLinks{display:flex;gap:18px;} .navLinks a{text-decoration:none;font-weight:600;color:rgba(11,11,15,.60);}
-    .navLinks a:hover,.navLinks a.active{color:rgba(11,11,15,.92);}
-    .hero{max-width:var(--max);margin:34px auto 0;padding:0 22px;}
-    .heroBlock{height:min(520px,62vh);background:linear-gradient(90deg,#111827 0%, #16a34a 140%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-    .heroTitle{position:absolute;left:22px;right:22px;bottom:22px;color:#fff;font-weight:800;letter-spacing:-.04em;font-size:clamp(28px,4vw,54px);line-height:1.05;text-shadow:0 10px 28px rgba(0,0,0,.25);}
-    .content{max-width:var(--max);margin:26px auto 80px;padding:0 22px;}
-    .metaRow{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:baseline;margin-top:18px;padding-bottom:18px;border-bottom:1px solid var(--line);}
-    .metaLabel{color:var(--muted);font-weight:600;font-size:14px;} .metaValue{font-weight:700;font-size:14px;}
-    h1{margin:18px 0 10px;font-size:clamp(30px,4.2vw,56px);letter-spacing:-.04em;line-height:1.04;}
-    p{margin:0 0 14px;color:rgba(11,11,15,.78);font-size:18px;line-height:1.6;max-width:78ch;}
-    .section{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);}
-    .section h2{margin:0 0 10px;font-size:22px;letter-spacing:-.02em;}
-    ul{margin:10px 0 0 18px;padding:0;color:rgba(11,11,15,.78);font-size:18px;line-height:1.7;max-width:78ch;}
-    .shot{width:100%;aspect-ratio:16/9;background:#f2f2f4;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:rgba(11,11,15,.35);font-weight:700;}
-    .links{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
-    .links a{color:rgba(11,11,15,.92);text-decoration:none;font-weight:700;border-bottom:1px solid rgba(11,11,15,.20);padding-bottom:2px;}
-    .links a:hover{border-bottom-color:rgba(11,11,15,.55);}
-    .footer{max-width:var(--max);margin:60px auto 30px;padding:18px 22px 0;border-top:1px solid var(--line);color:rgba(11,11,15,.55);font-size:14px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
-    .workStripWrap{
-  padding: 22px 22px 0;
-}
+    :root{--bg:#fff;--ink:rgba(11,11,15,.92);--muted:rgba(11,11,15,.58);--line:rgba(11,11,15,.10);--max:1100px;}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit}
 
-.workStrip{
-  max-width: var(--max);
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px 28px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+    .nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .navInner{max-width:var(--max);margin:0 auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-weight:800;letter-spacing:-.03em;text-decoration:none}
+    .navLinks{display:flex;gap:18px;align-items:center;font-weight:600}
+    .navLinks a{text-decoration:none;color:rgba(11,11,15,.70)}
+    .navLinks a:hover{color:rgba(11,11,15,.92)}
+    .navLinks a.active{color:rgba(11,11,15,.92)}
 
-.workItem{
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: rgba(11,11,15,.20);   /* faded like devansh */
-  font-size: clamp(16px, 1.6vw, 26px);
-  line-height: 1.2;
-  transition: color .2s ease, transform .2s ease;
-}
+    .workStripWrap{padding:26px 22px 0}
+    .workStrip{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:center;align-items:center;text-align:center}
+    .workItem{text-decoration:none;font-weight:700;letter-spacing:-.02em;color:rgba(11,11,15,.20);font-size:clamp(16px,1.55vw,26px);line-height:1.15;transition:color .2s ease,transform .2s ease}
+    .workItem:hover{color:rgba(11,11,15,.55);transform:translateY(-1px)}
+    .workItem.active{color:rgba(11,11,15,.92)}
 
-.workItem:hover{
-  color: rgba(11,11,15,.55);
-  transform: translateY(-1px);
-}
+    main{max-width:var(--max);margin:0 auto;padding:34px 22px 80px}
+    .kicker{color:var(--muted);font-weight:600;letter-spacing:.02em;text-transform:uppercase;font-size:12px}
+    h1{margin:10px 0 12px;font-size:clamp(34px,4vw,56px);letter-spacing:-.04em;line-height:1.02}
+    .sub{margin:0 0 22px;color:var(--muted);font-size:18px;line-height:1.6;max-width:72ch}
+    hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+    h2{margin:0 0 10px;font-size:20px;letter-spacing:-.02em}
+    p{margin:0 0 14px;color:var(--muted);line-height:1.7;max-width:82ch}
+    ul{margin:10px 0 0 18px;color:var(--muted);line-height:1.8}
 
-.workItem.active{
-  color: rgba(11,11,15,.92);   /* bold active */
-}
+    .metaRow{display:flex;flex-wrap:wrap;gap:10px 16px;color:var(--muted);font-weight:600;font-size:13px}
+    .metaRow span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(11,11,15,.02)}
 
+    footer{border-top:1px solid var(--line);margin-top:52px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+    .icons{display:flex;gap:12px;align-items:center}
+    .iconBtn{width:42px;height:42px;border-radius:999px;border:1px solid var(--line);display:grid;place-items:center;text-decoration:none;background:rgba(11,11,15,.02)}
+    .iconBtn:hover{background:rgba(11,11,15,.05)}
+    .iconBtn svg{width:18px;height:18px;fill:rgba(11,11,15,.78)}
   </style>
 </head>
-
 <body>
-<header class="nav">
-  <div class="navInner">
-    <a class="brand" href="../index.html">Subash</a>
-    <nav class="navLinks">
-      <a class="active" href="../index.html#selected-work">Work</a>
-      <a href="../About.html">About</a>
-    </nav>
-  </div>
-</header>
-<section class="workStripWrap">
-  <div class="workStrip">
-    <a class="workItem" href="../index.html#selected-work">All</a>
-    <a class="workItem" href="./dual-layer-ecommerce.html" data-work="dual">Dual Layer E-Commerce Data Platform</a>
-    <a class="workItem" href="./contract-driven-spark.html" data-work="spark">Contract Driven Data Platform with Spark</a>
-    <a class="workItem" href="./nyc-traffic.html" data-work="nyc">NYC Traffic Volume Analytics Pipeline</a>
-    <a class="workItem" href="./nexora.html" data-work="nexora">Nexora-NX</a>
-  </div>
-</section>
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="../index.html">Subash</a>
+      <nav class="navLinks">
+        <a href="../index.html">Home</a>
+        <a class="active" href="../index.html#selected-work">Work</a>
+        <a href="../About.html">About</a>
+      </nav>
+    </div>
+  </header>
 
-
-<main>
-  <section class="hero">
-    <div class="heroBlock">
-      <div class="heroTitle">Nexora-NX</div>
+  <section class="workStripWrap">
+    <div class="workStrip">
+      <a class="workItem" href="../index.html#selected-work">All</a>
+      <a class="workItem" href="./dual-layer-ecommerce.html" data-work="dual">Dual Layer E-Commerce Data Platform</a>
+      <a class="workItem" href="./contract-driven-spark.html" data-work="spark">Contract Driven Data Platform with Spark</a>
+      <a class="workItem" href="./nyc-traffic.html" data-work="nyc">NYC Traffic Volume Analytics Pipeline</a>
+      <a class="workItem" href="./nexora.html" data-work="nexora">Nexora-NX</a>
     </div>
   </section>
 
-  <section class="content">
-    <div class="metaRow">
-      <div><span class="metaLabel">Type</span> <span class="metaValue">AI Knowledge Graph Builder</span></div>
-      <div><span class="metaLabel">Stack</span> <span class="metaValue">Python · LLM Extraction · NetworkX · Streamlit · PyVis</span></div>
-      <div><span class="metaLabel">Focus</span> <span class="metaValue">Structured extraction + explainable graph reasoning</span></div>
-    </div>
-
-    <h1>Turning messy text into a navigable intelligence map.</h1>
-    <p>
-      Nexora-NX converts unstructured text/PDFs into entity-relationship graphs. I built it to make information easier to explore:
-      you can see what connects to what, run graph analytics, and ask questions like “How is X related to Y?” with evidence.
+  <main>
+    <div class="kicker">LLM • Knowledge Graphs • NetworkX • Streamlit</div>
+    <h1>Nexora-NX</h1>
+    <p class="sub">
+      Nexora-NX converts unstructured text and PDFs into an explainable knowledge graph. It extracts entity–relationship
+      triplets, builds a graph in-memory, and lets you explore connections with real reasoning paths.
     </p>
 
-    <div class="section">
-      <h2>What it does</h2>
-      <ul>
-        <li>Extracts entities + relationships from text and produces clean triplets.</li>
-        <li>Builds a live NetworkX graph with metadata (evidence + confidence).</li>
-        <li>Runs ranking + path reasoning (PageRank, shortest paths).</li>
-        <li>Returns explainable answers based on the graph path, not vibes.</li>
-      </ul>
+    <div class="metaRow">
+      <span>LLM Extraction</span><span>NetworkX</span><span>Graph Analytics</span><span>Streamlit</span><span>PyVis</span>
     </div>
 
-    <div class="section">
-      <h2>Visuals (placeholders)</h2>
-      <div class="shot">Add Nexora UI Screenshot / Graph Screenshot</div>
-    </div>
+    <hr>
 
-    <div class="section">
-      <h2>Links</h2>
-      <div class="links">
-        <a href="https://github.com/subash1702" target="_blank" rel="noreferrer">GitHub (repo link here)</a>
+    <h2>What it does</h2>
+    <ul>
+      <li>Ingests raw text / PDFs and extracts entities + relationships.</li>
+      <li>Creates triplets and builds a knowledge graph (nodes + edges) with evidence metadata.</li>
+      <li>Supports centrality ranking (PageRank) and path-based reasoning (“How is X connected to Y?”).</li>
+      <li>Returns explainable answers based on the graph path + evidence.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Why it stands out</h2>
+    <p>
+      Most student projects stop at “LLM output”. This is a system: structured extraction → graph model → analytics →
+      explainable responses. It’s the kind of architecture recruiters recognize as real engineering thinking.
+    </p>
+
+    <footer>
+      <div>Contact</div>
+      <div class="icons">
+        <a class="iconBtn" href="mailto:subashchakravarthyofficial@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+        </a>
+        <a class="iconBtn" href="https://github.com/subash1702" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1.1.1-.8.4-1.4.7-1.7-2.7-.3-5.5-1.4-5.5-6.1 0-1.4.5-2.6 1.2-3.5-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.5 1.2a12 12 0 0 1 6.4 0C17.7 4.3 18.8 4.6 18.8 4.6c.6 1.7.2 3 .1 3.3.8.9 1.2 2.1 1.2 3.5 0 4.7-2.8 5.8-5.5 6.1.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+        </a>
+        <a class="iconBtn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 24h5V7H0v17zM7.5 7H12v2.3h.1C12.7 8 14.4 6.7 16.9 6.7 22 6.7 24 10 24 14.3V24h-5v-8.3c0-2-.04-4.6-2.8-4.6-2.8 0-3.2 2.2-3.2 4.5V24h-5V7z"/></svg>
+        </a>
       </div>
-    </div>
+    </footer>
+  </main>
 
-    <div class="footer">
-      <div>© <span id="y"></span> Subash Chakravarthy</div>
-      <div><a href="../index.html#selected-work" style="color:inherit;text-decoration:none;">Back to work</a></div>
-    </div>
-  </section>
-</main>
-
-<script>document.getElementById("y").textContent = new Date().getFullYear();</script>
-<script>
-  (function(){
-    const map = {
-      "dual-layer-ecommerce.html": "dual",
-      "contract-driven-spark.html": "spark",
-      "nyc-traffic.html": "nyc",
-      "nexora.html": "nexora"
-    };
-
-    const file = (location.pathname.split("/").pop() || "").toLowerCase();
-    const key = map[file];
-
-    document.querySelectorAll(".workItem[data-work]").forEach(a => {
-      if (a.getAttribute("data-work") === key) a.classList.add("active");
-    });
-  })();
-</script>
+  <script>
+    (function(){
+      const map={"dual-layer-ecommerce.html":"dual","contract-driven-spark.html":"spark","nyc-traffic.html":"nyc","nexora.html":"nexora"};
+      const file=(location.pathname.split("/").pop()||"").toLowerCase();
+      const key=map[file];
+      document.querySelectorAll(".workItem[data-work]").forEach(a=>{
+        if(a.getAttribute("data-work")===key) a.classList.add("active");
+      });
+    })();
+  </script>
 </body>
 </html>
