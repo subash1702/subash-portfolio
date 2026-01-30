@@ -10,64 +10,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#ffffff;
-      --text:#0b1220;
-      --muted:#4b5565;
-      --hair:#e6e8ee;
-      --soft:#f6f7fb;
-      --max:1100px;
-    }
+    :root{--bg:#fff;--text:#0b1220;--muted:#4b5565;--hair:#e6e8ee;--soft:#f6f7fb;--max:1100px}
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:"Instrument Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-    a{color:var(--text);text-decoration:none}
-    a:hover{text-decoration:underline}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:"Instrument Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:var(--text);text-decoration:none} a:hover{text-decoration:underline}
     .wrap{max-width:var(--max);margin:0 auto;padding:22px 20px 60px}
 
-    .top{
-      display:flex;align-items:center;justify-content:space-between;gap:14px;
-      padding:10px 0 18px;border-bottom:1px solid var(--hair);
-    }
+    .top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 0 18px;border-bottom:1px solid var(--hair)}
     .brand{font-weight:700;letter-spacing:-.2px}
-    .nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-    .pill{padding:10px 12px;border:1px solid var(--hair);border-radius:999px;background:#fff}
-    .pill:hover{background:var(--soft)}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .nav a,.nav button{
+      font:inherit;padding:10px 14px;border-radius:999px;border:1px solid var(--hair);
+      background:#fff;color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:8px
+    }
+    .nav a:hover,.nav button:hover{background:var(--soft);text-decoration:none}
 
     .switcher{
-      margin:22px 0 0;
-      display:flex;gap:18px;flex-wrap:wrap;align-items:center;
+      margin:22px 0 0;display:flex;gap:18px;flex-wrap:wrap;align-items:center;
       padding:10px 0 18px;border-bottom:1px solid var(--hair);
-      color:var(--muted);
-      font-size:15px;
+      color:var(--muted);font-size:15px
     }
-    .switcher a{color:var(--muted)}
-    .switcher a:hover{color:var(--text);text-decoration:none}
+    .switcher a{color:var(--muted)} .switcher a:hover{color:var(--text);text-decoration:none}
     .switcher .active{color:var(--text);font-weight:650}
 
     .hero{padding:26px 0 6px}
     .kicker{color:var(--muted);font-size:13px;letter-spacing:.12em;text-transform:uppercase}
     h1{margin:10px 0 10px;font-size:46px;line-height:1.05;letter-spacing:-1px}
-    .sub{margin:0;color:var(--muted);font-size:18px;line-height:1.65;max-width:85ch}
-
+    .sub{margin:0;color:var(--muted);font-size:18px;line-height:1.65;max-width:95ch}
     .meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .tag{
-      font-size:13px;color:var(--muted);
-      padding:8px 10px;border-radius:999px;border:1px solid var(--hair);background:#fff;
-    }
+    .tag{font-size:13px;color:var(--muted);padding:8px 10px;border-radius:999px;border:1px solid var(--hair);background:#fff}
 
     .section{padding:22px 0;border-top:1px solid var(--hair)}
     .section h2{margin:0 0 8px;font-size:18px;letter-spacing:-.2px}
     .section p{margin:0;color:var(--text);line-height:1.75;max-width:95ch}
     .section p + p{margin-top:10px}
-
     .twoCol{display:grid;grid-template-columns:1fr 1fr;gap:22px}
     @media (max-width:900px){.twoCol{grid-template-columns:1fr}}
-
     .bullets{margin:10px 0 0;padding-left:18px;line-height:1.8}
     .bullets li{margin:6px 0}
 
@@ -82,22 +61,7 @@
       max-width:95ch;
     }
 
-    .linksRow{
-      margin-top:14px;
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      color:var(--muted);
-      font-size:15px;
-    }
-    .linksRow a{color:var(--muted)}
-    .linksRow a:hover{color:var(--text);text-decoration:none}
-
-    .foot{
-      margin-top:38px;padding-top:16px;border-top:1px solid var(--hair);
-      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
-      color:var(--muted);font-size:14px
-    }
+    .foot{margin-top:38px;padding-top:16px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
   </style>
 </head>
 
@@ -106,19 +70,19 @@
     <div class="top">
       <div class="brand">Subash</div>
       <div class="nav">
-        <a class="pill" href="../index.html">Home</a>
-        <a class="pill" href="../index.html#work">Work</a>
-        <a class="pill" href="../About.html">About</a>
-        <a class="pill" href="https://github.com/subash1702" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../About.html">About</a>
+        <button type="button" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">Connect</button>
       </div>
     </div>
 
     <div class="switcher">
       <a href="../index.html#work">All</a>
-      <a href="./dual-layer-ecommerce.html">Dual-Layer E-Commerce Data Platform</a>
-      <a href="./contract-driven-spark.html">Contract Driven Data Platform with Spark</a>
-      <a href="./nyc-traffic.html">NYC Traffic Volume Analytics Pipeline</a>
-      <span class="active">Nexora-NX — AI Knowledge Graph Builder</span>
+      <a href="./dual-layer-ecommerce.html">Dual-Layer E-Commerce</a>
+      <a href="./contract-driven-spark.html">Contract Driven Spark</a>
+      <a href="./nyc-traffic.html">NYC Traffic</a>
+      <span class="active">Nexora-NX</span>
     </div>
 
     <section class="hero">
@@ -126,7 +90,7 @@
       <h1>Nexora-NX — AI Knowledge Graph Builder</h1>
       <p class="sub">
         Nexora-NX converts unstructured text and PDFs into a structured knowledge graph by extracting entity–relationship triplets,
-        building a directed graph model, and enabling explainable “ask-the-graph” queries backed by path evidence.
+        building a NetworkX graph, and enabling explainable “how is X connected to Y?” queries backed by path evidence.
       </p>
 
       <div class="meta">
@@ -137,30 +101,20 @@
         <div class="tag">PDF ingestion</div>
       </div>
 
-      <div class="linksRow">
-        <!-- Replace these when ready -->
-        <a href="https://github.com/subash1702" target="_blank" rel="noreferrer">Repo</a>
-        <span>•</span>
-        <a href="#" onclick="return false;">Demo (optional)</a>
-        <span>•</span>
-        <a href="#" onclick="return false;">Architecture diagram (optional)</a>
+      <div class="callout">
+        In simple terms: it turns messy documents into a navigable intelligence map.
       </div>
     </section>
 
     <section class="section">
       <h2>The problem</h2>
       <p>
-        Most knowledge in real teams lives in documents: PDFs, reports, meeting notes, and scattered text.
-        It’s readable by humans, but hard to analyze as a system. The moment you want to answer questions like
-        “what connects X to Y” or “what entities matter most,” you end up manually scanning pages.
+        Most knowledge in real teams lives in documents — PDFs, reports, notes, and raw text. They’re readable by humans, but not directly
+        usable for structured analysis. The moment you want relationship discovery or “what connects X to Y,” it becomes manual scanning.
       </p>
       <p>
-        I built Nexora-NX to turn unstructured documents into a structured relationship map that you can explore, query,
-        and explain without hand-writing rules for every new domain.
+        Nexora-NX turns unstructured documents into structured entity–relationship networks that can be explored, ranked, and queried.
       </p>
-      <div class="callout">
-        In simple terms: it turns messy text into a navigable intelligence map.
-      </div>
     </section>
 
     <section class="section twoCol">
@@ -168,55 +122,47 @@
         <h2>What the system does</h2>
         <ul class="bullets">
           <li>Ingests raw text or PDFs</li>
-          <li>Extracts entities and relationships using LLM-driven triplet output</li>
-          <li>Validates output into a structured schema (to avoid “LLM mess”)</li>
-          <li>Builds a directed knowledge graph in NetworkX</li>
-          <li>Visualizes the graph and supports interactive exploration</li>
+          <li>Extracts entities and relationships via LLM triplets</li>
+          <li>Validates output into a structured schema (not freeform)</li>
+          <li>Builds a directed graph model with metadata</li>
+          <li>Visualizes the graph interactively in a Streamlit UI</li>
         </ul>
       </div>
 
       <div>
         <h2>What you can do with it</h2>
         <ul class="bullets">
-          <li>See relationship networks (who/what connects to what)</li>
-          <li>Find key entities using PageRank-style centrality</li>
-          <li>Ask: “How is X connected to Y?” via shortest-path reasoning</li>
-          <li>Generate explainable answers using path evidence</li>
+          <li>See relationship networks between entities</li>
+          <li>Rank important nodes using PageRank-style centrality</li>
+          <li>Find shortest paths between entities</li>
+          <li>Generate explainable answers using graph path evidence</li>
         </ul>
       </div>
     </section>
 
     <section class="section">
-      <h2>How I engineered reliability</h2>
+      <h2>Reliability choices I made</h2>
       <p>
-        The hardest part wasn’t drawing a graph. It was getting structured extraction that holds up across inputs.
-        I treated the LLM output like a data source: schema-controlled, validated, and retried when needed.
-      </p>
-      <p>
-        That approach keeps the graph consistent and prevents the UI from becoming a “random output generator.”
-      </p>
-    </section>
-
-    <section class="section">
-      <h2>Why this matters</h2>
-      <p>
-        This project is a system, not a demo: AI extraction feeds a data model (graph), analytics runs on top of it,
-        and the final experience is interactive and explainable. It’s the kind of hybrid setup that’s useful for
-        document intelligence, research workflows, and internal knowledge discovery.
+        The hardest part wasn’t graph visualization — it was getting structured extraction that holds up across different inputs.
+        I treated the LLM output like a data source: schema-first, validated, and retried when needed so the graph stays consistent.
       </p>
     </section>
 
     <section class="section">
       <h2>What I’d improve next</h2>
       <p>
-        I’d add stronger entity resolution (deduping near-duplicates), a lightweight persistent store for graphs
-        (so graphs survive restarts), and evaluation metrics for extraction quality across domains.
+        Add entity resolution (dedupe near-duplicates), persist graphs so they survive restarts, and introduce evaluation metrics
+        to measure extraction quality across domains.
       </p>
     </section>
 
-    <div class="foot">
-      <div>Back to <a href="../index.html#work">selected work</a></div>
-      <div><a href="../About.html">About</a></div>
+    <div class="foot" id="connect">
+      <div>
+        <a href="mailto:YOUR_EMAIL_HERE">Email</a> ·
+        <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noreferrer">LinkedIn</a> ·
+        <a href="https://github.com/subash1702" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+      <div><a href="../index.html#work">Back to work</a></div>
     </div>
   </div>
 </body>
