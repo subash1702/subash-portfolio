@@ -20,6 +20,7 @@
       --radius: 28px;
     }
     *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
       font-family: Manrope, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -33,6 +34,7 @@
 
     .wrap{ max-width:1180px; margin:0 auto; padding:28px 22px 80px; }
 
+    /* Top toggle bar */
     .topbar{
       display:flex; align-items:center; justify-content:space-between; gap:14px;
       position: sticky; top: 0; z-index: 40;
@@ -45,7 +47,9 @@
     .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px; }
     .dot{ width:10px; height:10px; border-radius:99px; background: rgba(255,255,255,.95); box-shadow: 0 0 0 6px rgba(255,255,255,.09); }
 
-    .nav{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .nav{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
     .nav a, .nav button{
       font: inherit;
       color: rgba(255,255,255,.86);
@@ -69,6 +73,7 @@
       font-weight: 800;
     }
 
+    /* Hero */
     .hero{ padding:44px 0 26px; text-align:center; }
     .kicker{ font-size:13px; letter-spacing:.22em; text-transform:uppercase; color: var(--muted2); margin-bottom:14px; }
     h1{
@@ -86,6 +91,7 @@
       line-height: 1.55;
     }
 
+    /* Scrolling roles */
     .roleLine{ display:flex; justify-content:center; margin:18px 0 8px; }
     .marquee{
       width: min(920px, 96vw);
@@ -127,6 +133,7 @@
       to{ transform: translateX(-50%); }
     }
 
+    /* Work */
     .workHeader{
       display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
       margin: 34px 0 14px;
@@ -140,8 +147,12 @@
       gap: 18px;
       margin-top: 14px;
     }
-    @media (max-width: 860px){ .grid{ grid-template-columns: 1fr; } .workHeader{ flex-direction:column; align-items:flex-start; } }
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+      .workHeader{ flex-direction:column; align-items:flex-start; }
+    }
 
+    /* Project tiles */
     .tile{
       height: 340px;
       border-radius: var(--radius);
@@ -225,6 +236,7 @@
     }
     .tile:hover .tileArrow{ transform: translateY(-1px) rotate(-6deg); background: rgba(0,0,0,.35); }
 
+    /* Footer contact */
     footer{
       margin-top: 46px;
       padding-top: 24px;
@@ -267,7 +279,7 @@
       <div class="nav">
         <button type="button" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">Work</button>
         <a href="About.html">About</a>
-        <a href="#contact">Connect</a>
+        <button type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Connect</button>
         <a class="primary" href="#work">View work</a>
       </div>
     </div>
@@ -350,7 +362,7 @@
           </div>
         </a>
 
-        <!-- Nexora (new) -->
+        <!-- Nexora -->
         <a class="tile full bg-nexora" href="work/nexora-nx.html">
           <div class="tileArrow" aria-hidden="true">
             <svg class="icon" viewBox="0 0 24 24" fill="none">
@@ -359,7 +371,7 @@
           </div>
           <div class="tileLabel"><h3>Nexora-NX — AI Knowledge Graph Builder</h3></div>
           <div class="tileMeta">
-            <span class="tag">LLM extraction</span><span class="tag">NetworkX</span><span class="tag">Streamlit</span><span class="tag">Explainable paths</span>
+            <span class="tag">LLM triplets</span><span class="tag">NetworkX</span><span class="tag">Streamlit</span><span class="tag">Explainable paths</span>
           </div>
         </a>
       </div>
