@@ -1,148 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Contract Driven Data Platform with Spark — Subash</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contract-Driven Data Platform with Spark • Subash</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root{--bg:#fff;--text:#0b1220;--muted:#4b5565;--hair:#e6e8ee;--soft:#f6f7fb;--max:1100px}
+    :root{
+      --bg:#ffffff; --text:#0b0b0f; --muted:#6b7280;
+      --line:rgba(17,24,39,.10); --soft:rgba(17,24,39,.04);
+      --radius:22px; --max:960px;
+    }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:"Instrument Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:var(--text);text-decoration:none} a:hover{text-decoration:underline}
-    .wrap{max-width:var(--max);margin:0 auto;padding:22px 20px 60px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .bar{max-width:1100px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:650;letter-spacing:-0.02em;display:flex;align-items:center;gap:10px}
+    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,#111827,#6b7280);box-shadow:0 0 0 3px rgba(17,24,39,.08)}
+    nav{display:flex;gap:16px;flex-wrap:wrap}
+    .navlink{font-size:14px;padding:8px 10px;border-radius:999px;color:rgba(11,11,15,.78)}
+    .navlink:hover{background:var(--soft)}
+    .wrap{max-width:var(--max);margin:0 auto;padding:34px 22px 70px}
 
-    .top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 0 18px;border-bottom:1px solid var(--hair)}
-    .brand{font-weight:700;letter-spacing:-.2px}
-    .nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .nav a,.nav button{
-      font:inherit;padding:10px 14px;border-radius:999px;border:1px solid var(--hair);
-      background:#fff;color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:8px
+    .cover{
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid var(--line);
+      min-height:340px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      background:linear-gradient(135deg,#0f766e,#111827);
+      position:relative;
     }
-    .nav a:hover,.nav button:hover{background:var(--soft);text-decoration:none}
-
-    .switcher{
-      margin:22px 0 0;display:flex;gap:18px;flex-wrap:wrap;align-items:center;
-      padding:10px 0 18px;border-bottom:1px solid var(--hair);
-      color:var(--muted);font-size:15px
+    .cover::after{
+      content:"";
+      position:absolute; inset:0;
+      background:radial-gradient(circle at 28% 28%, rgba(255,255,255,.12), transparent 55%);
     }
-    .switcher a{color:var(--muted)} .switcher a:hover{color:var(--text);text-decoration:none}
-    .switcher .active{color:var(--text);font-weight:650}
+    .coverInner{position:relative;z-index:2;padding:28px}
+    h1{margin:0;font-size:clamp(34px,4.4vw,56px);line-height:1.05;letter-spacing:-0.05em;font-weight:850;color:#fff;text-shadow:0 12px 30px rgba(0,0,0,.25)}
+    .sub{margin:14px auto 0;max-width:760px;color:rgba(255,255,255,.90);font-size:18px;line-height:1.6}
 
-    .hero{padding:26px 0 6px}
-    .kicker{color:var(--muted);font-size:13px;letter-spacing:.12em;text-transform:uppercase}
-    h1{margin:10px 0 10px;font-size:46px;line-height:1.05;letter-spacing:-1px}
-    .sub{margin:0;color:var(--muted);font-size:18px;line-height:1.65;max-width:85ch}
-    .meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .tag{font-size:13px;color:var(--muted);padding:8px 10px;border-radius:999px;border:1px solid var(--hair);background:#fff}
-
-    .section{padding:22px 0;border-top:1px solid var(--hair)}
-    .section h2{margin:0 0 8px;font-size:18px;letter-spacing:-.2px}
-    .section p{margin:0;color:var(--text);line-height:1.75;max-width:95ch}
-    .section p + p{margin-top:10px}
-    .twoCol{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    @media (max-width:900px){.twoCol{grid-template-columns:1fr}}
-    .bullets{margin:10px 0 0;padding-left:18px;line-height:1.8}
-    .bullets li{margin:6px 0}
-
-    .foot{margin-top:38px;padding-top:16px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+    .kicker{margin-top:26px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+    .section{margin-top:10px;border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:rgba(17,24,39,.02)}
+    .section p{margin:0;color:rgba(11,11,15,.78);line-height:1.7}
+    ul{margin:0;padding-left:18px;color:rgba(11,11,15,.78);line-height:1.75}
+    li{margin:6px 0}
+    .btnRow{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:rgba(17,24,39,.02);font-size:14px;font-weight:650}
+    .btn:hover{background:rgba(17,24,39,.05)}
+    .btn.primary{background:#111827;color:#fff;border-color:#111827}
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn svg{width:16px;height:16px}
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="top">
-      <div class="brand">Subash</div>
-      <div class="nav">
-        <a href="../index.html">Home</a>
-        <a href="../index.html#work">Work</a>
-        <a href="../About.html">About</a>
-        <button type="button" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">Connect</button>
+  <header>
+    <div class="bar">
+      <div class="brand"><span class="dot"></span><span>Subash</span></div>
+      <nav>
+        <a class="navlink" href="../index.html">Work</a>
+        <a class="navlink" href="../About.html">About</a>
+        <a class="navlink" href="../index.html#connect">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="cover">
+      <div class="coverInner">
+        <h1>Contract-Driven Data Platform with Spark</h1>
+        <div class="sub">A batch platform built around schemas, validation, and layered modeling so multi-source data is safer to use for analytics.</div>
       </div>
     </div>
 
-    <div class="switcher">
-      <a href="../index.html#work">All</a>
-      <a href="./dual-layer-ecommerce.html">Dual-Layer E-Commerce</a>
-      <span class="active">Contract Driven Spark</span>
-      <a href="./nyc-traffic.html">NYC Traffic</a>
-      <a href="./nexora-nx.html">Nexora-NX</a>
-    </div>
-
-    <section class="hero">
-      <div class="kicker">Work</div>
-      <h1>Contract Driven Data Platform with Spark</h1>
-      <p class="sub">
-        I built a structured batch platform around schema contracts and layered modeling so multi-source data becomes safer to validate
-        and easier to trust downstream.
-      </p>
-
-      <div class="meta">
-        <div class="tag">Spark</div>
-        <div class="tag">Python</div>
-        <div class="tag">SQL</div>
-        <div class="tag">Contracts</div>
-        <div class="tag">Incremental</div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>The problem</h2>
+    <div class="kicker">What this solves</div>
+    <div class="section">
       <p>
-        The most expensive analytics failures aren’t big crashes — they’re quiet ones. A column changes type, a key stops being unique,
-        or a feed drops rows. People keep using the dashboards until decisions stop matching reality.
+        When teams combine data from multiple sources, “small” inconsistencies quickly become broken dashboards and mismatched totals.
+        This project focuses on contract-driven inputs and predictable transformations so downstream users don’t have to second-guess the data.
       </p>
-    </section>
-
-    <section class="section twoCol">
-      <div>
-        <h2>What I built</h2>
-        <p>
-          A layered batch pipeline where incoming datasets are validated against contracts before they land in modeled tables.
-          Ingestion, validation, and transformation are separate steps so issues are easy to trace.
-        </p>
-        <ul class="bullets">
-          <li>Staging layers to keep ingestion predictable</li>
-          <li>Schema validation to catch drift early</li>
-          <li>Incremental processing to avoid full reloads</li>
-        </ul>
-      </div>
-
-      <div>
-        <h2>Why it helps</h2>
-        <p>
-          The goal wasn’t speed. It was predictability. Downstream tables stop changing unexpectedly, and when something breaks,
-          it breaks at the boundary with a clear error.
-        </p>
-        <ul class="bullets">
-          <li>Fewer silent failures</li>
-          <li>More stable analytics outputs</li>
-          <li>Cleaner handoff to BI / modeling</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>What I’d improve next</h2>
-      <p>
-        Formalize contracts into a shared registry and add automated checks (row counts, null surges, distribution drift)
-        as part of CI so changes get reviewed before they ship.
-      </p>
-    </section>
-
-    <div class="foot" id="connect">
-      <div>
-        <a href="mailto:YOUR_EMAIL_HERE">Email</a> ·
-        <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noreferrer">LinkedIn</a> ·
-        <a href="https://github.com/subash1702" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-      <div><a href="../index.html#work">Back to work</a></div>
     </div>
-  </div>
+
+    <div class="kicker">What I implemented</div>
+    <div class="section">
+      <ul>
+        <li>Staged layers with schema validation so incoming data gets checked before it reaches analytical tables.</li>
+        <li>Incremental processing logic to avoid full reloads and keep runtimes stable as data grows.</li>
+        <li>A transformation pattern that makes changes easier to audit and maintain over time.</li>
+      </ul>
+    </div>
+
+    <div class="kicker">Stack</div>
+    <div class="section">
+      <ul>
+        <li>Spark for scalable transformations</li>
+        <li>Schema-driven validation and layered modeling</li>
+      </ul>
+    </div>
+
+    <div class="btnRow">
+      <a class="btn" href="../index.html">← Back to Work</a>
+      <a class="btn primary" href="https://github.com/subash1702" target="_blank" rel="noreferrer">
+        View GitHub
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </main>
 </body>
 </html>
