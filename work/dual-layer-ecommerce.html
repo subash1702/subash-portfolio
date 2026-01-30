@@ -1,9 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dual-Layer E-Commerce Data Platform • Subash</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dual Layer E-Commerce Data Platform — Subash Chakravarthy</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,116 +11,278 @@
 
   <style>
     :root{
-      --bg:#ffffff; --text:#0b0b0f; --muted:#6b7280;
-      --line:rgba(17,24,39,.10); --soft:rgba(17,24,39,.04);
-      --radius:22px; --max:960px;
+      --bg:#ffffff;
+      --text:#0b0b0f;
+      --muted: rgba(11,11,15,.62);
+      --faint: rgba(11,11,15,.18);
+      --line: rgba(11,11,15,.10);
+      --max: 1100px;
     }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:inherit;text-decoration:none}
-    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .bar{max-width:1100px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
-    .brand{font-weight:650;letter-spacing:-0.02em;display:flex;align-items:center;gap:10px}
-    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,#111827,#6b7280);box-shadow:0 0 0 3px rgba(17,24,39,.08)}
-    nav{display:flex;gap:16px;flex-wrap:wrap}
-    .navlink{font-size:14px;padding:8px 10px;border-radius:999px;color:rgba(11,11,15,.78)}
-    .navlink:hover{background:var(--soft)}
-    .wrap{max-width:var(--max);margin:0 auto;padding:34px 22px 70px}
 
-    .cover{
-      border-radius:var(--radius);
-      overflow:hidden;
-      border:1px solid var(--line);
-      min-height:340px;
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    /* Top nav like devansh: minimal, not “app UI” */
+    .nav{
+      position:sticky;
+      top:0;
+      background:rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+      z-index:20;
+    }
+    .navInner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      font-weight:800;
+      letter-spacing:-.03em;
+      text-decoration:none;
+      color:var(--text);
+    }
+    .navLinks{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .navLinks a{
+      text-decoration:none;
+      font-weight:600;
+      color:rgba(11,11,15,.60);
+    }
+    .navLinks a:hover{ color:rgba(11,11,15,.92); }
+    .navLinks a.active{ color:rgba(11,11,15,.92); }
+
+    /* Hero block = big color tile */
+    .hero{
+      max-width:var(--max);
+      margin:34px auto 0;
+      padding:0 22px;
+    }
+    .heroBlock{
+      width:100%;
+      height:min(520px, 62vh);
+      border-radius:0;           /* devansh is very square */
+      background: linear-gradient(90deg, #7c3aed 0%, #ef4444 100%);
       display:flex;
       align-items:center;
       justify-content:center;
-      text-align:center;
-      background:linear-gradient(135deg,#6d28d9,#111827);
       position:relative;
+      overflow:hidden;
     }
-    .cover::after{
-      content:"";
-      position:absolute; inset:0;
-      background:radial-gradient(circle at 25% 25%, rgba(255,255,255,.12), transparent 55%);
+    .heroTitle{
+      position:absolute;
+      left:22px;
+      bottom:22px;
+      right:22px;
+      color:#fff;
+      font-weight:800;
+      letter-spacing:-.04em;
+      font-size: clamp(28px, 4vw, 54px);
+      line-height:1.05;
+      text-shadow: 0 10px 28px rgba(0,0,0,.25);
     }
-    .coverInner{position:relative;z-index:2;padding:28px}
-    h1{margin:0;font-size:clamp(34px,4.4vw,56px);line-height:1.05;letter-spacing:-0.05em;font-weight:850;color:#fff;text-shadow:0 12px 30px rgba(0,0,0,.25)}
-    .sub{margin:14px auto 0;max-width:760px;color:rgba(255,255,255,.90);font-size:18px;line-height:1.6}
 
-    .kicker{margin-top:26px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
-    .section{margin-top:10px;border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:rgba(17,24,39,.02)}
-    .section h2{margin:0 0 10px;font-size:16px}
-    .section p{margin:0;color:rgba(11,11,15,.78);line-height:1.7}
-    ul{margin:0;padding-left:18px;color:rgba(11,11,15,.78);line-height:1.75}
-    li{margin:6px 0}
-    .btnRow{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:rgba(17,24,39,.02);font-size:14px;font-weight:650}
-    .btn:hover{background:rgba(17,24,39,.05)}
-    .btn.primary{background:#111827;color:#fff;border-color:#111827}
-    .btn.primary:hover{filter:brightness(1.05)}
-    .btn svg{width:16px;height:16px}
+    .content{
+      max-width:var(--max);
+      margin:26px auto 80px;
+      padding:0 22px;
+    }
+
+    .metaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px 22px;
+      align-items:baseline;
+      margin-top:18px;
+      padding-bottom:18px;
+      border-bottom:1px solid var(--line);
+    }
+    .metaRow .metaLabel{
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+    }
+    .metaRow .metaValue{
+      font-weight:700;
+      font-size:14px;
+    }
+
+    h1{
+      margin:18px 0 10px;
+      font-size: clamp(30px, 4.2vw, 56px);
+      letter-spacing:-.04em;
+      line-height:1.04;
+    }
+    p{
+      margin:0 0 14px;
+      color:rgba(11,11,15,.78);
+      font-size:18px;
+      line-height:1.6;
+      max-width: 78ch;
+    }
+
+    .section{
+      margin-top:34px;
+      padding-top:22px;
+      border-top:1px solid var(--line);
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:-.02em;
+    }
+
+    ul{
+      margin:10px 0 0 18px;
+      padding:0;
+      color:rgba(11,11,15,.78);
+      font-size:18px;
+      line-height:1.7;
+      max-width:78ch;
+    }
+
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:26px;
+      margin-top:16px;
+    }
+    @media (max-width:900px){
+      .twoCol{ grid-template-columns:1fr; }
+    }
+
+    /* Screenshot blocks like devansh: big, simple */
+    .shot{
+      width:100%;
+      aspect-ratio: 16 / 9;
+      background: #f2f2f4;
+      border:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:rgba(11,11,15,.35);
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+
+    .links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .links a{
+      color:rgba(11,11,15,.92);
+      text-decoration:none;
+      font-weight:700;
+      border-bottom:1px solid rgba(11,11,15,.20);
+      padding-bottom:2px;
+    }
+    .links a:hover{ border-bottom-color:rgba(11,11,15,.55); }
+
+    .footer{
+      max-width:var(--max);
+      margin:60px auto 30px;
+      padding:18px 22px 0;
+      border-top:1px solid var(--line);
+      color:rgba(11,11,15,.55);
+      font-size:14px;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="bar">
-      <div class="brand"><span class="dot"></span><span>Subash</span></div>
-      <nav>
-        <a class="navlink" href="../index.html">Work</a>
-        <a class="navlink" href="../About.html">About</a>
-        <a class="navlink" href="../index.html#connect">Connect</a>
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="../index.html">Subash</a>
+      <nav class="navLinks">
+        <a class="active" href="../index.html#selected-work">Work</a>
+        <a href="../About.html">About</a>
       </nav>
     </div>
   </header>
 
-  <main class="wrap">
-    <div class="cover">
-      <div class="coverInner">
-        <h1>Dual-Layer E-Commerce Data Platform</h1>
-        <div class="sub">A streaming layer for real-time signals and a batch layer for trusted reporting — built to stay correct under retries and late events.</div>
+  <main>
+    <section class="hero">
+      <div class="heroBlock">
+        <div class="heroTitle">Dual Layer E-Commerce Data Platform</div>
       </div>
-    </div>
+    </section>
 
-    <div class="kicker">Real-time event processing layer</div>
-    <div class="section">
-      <ul>
-        <li>Processed high-frequency transaction events with time windows (sliding + tumbling) to compute metrics like sales velocity and inventory triggers.</li>
-        <li>Handled out-of-order and late-arriving events so dashboards don’t lie when data arrives imperfectly.</li>
-        <li>Built alert logic for critical stock fluctuations to reduce reaction time when inventory changes fast.</li>
-      </ul>
-    </div>
+    <section class="content">
+      <div class="metaRow">
+        <div><span class="metaLabel">Role</span> <span class="metaValue">Data Engineering / Analytics Engineering</span></div>
+        <div><span class="metaLabel">Stack</span> <span class="metaValue">Python · SQL · PostgreSQL · Kafka · dbt · Docker</span></div>
+        <div><span class="metaLabel">Focus</span> <span class="metaValue">Streaming + Batch reliability</span></div>
+      </div>
 
-    <div class="kicker">Reliable batch analytical layer</div>
-    <div class="section">
-      <ul>
-        <li>Ingested daily transaction logs into a warehouse-ready structure using PostgreSQL.</li>
-        <li>Used dbt transformations to clean and standardize raw datasets into reporting tables with consistent definitions.</li>
-        <li>Designed idempotent pipeline behavior so retries don’t create duplicates or inconsistent totals.</li>
-        <li>Added data quality checks to validate schema and business rules before data is “decision-ready.”</li>
-      </ul>
-    </div>
+      <h1>Turning noisy events into decision-ready data.</h1>
+      <p>
+        I built this as a two-layer platform: a real-time processing layer for fast, time-windowed metrics,
+        and a batch analytical layer that produces clean, auditable tables for reporting.
+        The goal was simple: keep the dashboards fast, but make the numbers trustworthy.
+      </p>
 
-    <div class="kicker">Stack</div>
-    <div class="section">
-      <ul>
-        <li>Python, SQL, PostgreSQL</li>
-        <li>Kafka, dbt, Docker</li>
-      </ul>
-    </div>
+      <div class="section">
+        <h2>What I built</h2>
+        <ul>
+          <li>A streaming pipeline with tumbling + sliding windows for near real-time business signals (sales velocity, inventory triggers).</li>
+          <li>Logic to handle out-of-order and late events so metrics don’t “jump” when data arrives late.</li>
+          <li>A batch ingestion + dbt transformation layer designed for repeatable, auditable reporting.</li>
+          <li>Idempotent pipeline behavior so retries don’t create duplicates.</li>
+          <li>Data quality checks that validate schema + business rules before anything reaches reporting tables.</li>
+        </ul>
+      </div>
 
-    <div class="btnRow">
-      <a class="btn" href="../index.html">← Back to Work</a>
-      <!-- Add the specific repo link when you want -->
-      <a class="btn primary" href="https://github.com/subash1702" target="_blank" rel="noreferrer">
-        View GitHub
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </a>
-    </div>
+      <div class="section">
+        <h2>How I think about it</h2>
+        <p>
+          I treat pipelines like products: reliability first, then speed. I try to make the “messy middle”
+          predictable—clear contracts, defensive checks, and simple failure modes.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Architecture snapshot (placeholders for your images)</h2>
+        <div class="twoCol">
+          <div class="shot">Add Streaming Architecture Image</div>
+          <div class="shot">Add Batch/dbt Model Image</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Links</h2>
+        <div class="links">
+          <a href="https://github.com/subash1702" target="_blank" rel="noreferrer">GitHub (repo link here)</a>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>© <span id="y"></span> Subash Chakravarthy</div>
+        <div><a href="../index.html#selected-work" style="color:inherit;text-decoration:none;">Back to work</a></div>
+      </div>
+    </section>
   </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
