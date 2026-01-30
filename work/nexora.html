@@ -33,6 +33,40 @@
     .links a{color:rgba(11,11,15,.92);text-decoration:none;font-weight:700;border-bottom:1px solid rgba(11,11,15,.20);padding-bottom:2px;}
     .links a:hover{border-bottom-color:rgba(11,11,15,.55);}
     .footer{max-width:var(--max);margin:60px auto 30px;padding:18px 22px 0;border-top:1px solid var(--line);color:rgba(11,11,15,.55);font-size:14px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+    .workStripWrap{
+  padding: 22px 22px 0;
+}
+
+.workStrip{
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.workItem{
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: rgba(11,11,15,.20);   /* faded like devansh */
+  font-size: clamp(16px, 1.6vw, 26px);
+  line-height: 1.2;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.workItem:hover{
+  color: rgba(11,11,15,.55);
+  transform: translateY(-1px);
+}
+
+.workItem.active{
+  color: rgba(11,11,15,.92);   /* bold active */
+}
+
   </style>
 </head>
 
@@ -46,6 +80,16 @@
     </nav>
   </div>
 </header>
+<section class="workStripWrap">
+  <div class="workStrip">
+    <a class="workItem" href="../index.html#selected-work">All</a>
+    <a class="workItem" href="./dual-layer-ecommerce.html" data-work="dual">Dual Layer E-Commerce Data Platform</a>
+    <a class="workItem" href="./contract-driven-spark.html" data-work="spark">Contract Driven Data Platform with Spark</a>
+    <a class="workItem" href="./nyc-traffic.html" data-work="nyc">NYC Traffic Volume Analytics Pipeline</a>
+    <a class="workItem" href="./nexora.html" data-work="nexora">Nexora-NX</a>
+  </div>
+</section>
+
 
 <main>
   <section class="hero">
@@ -97,5 +141,22 @@
 </main>
 
 <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+<script>
+  (function(){
+    const map = {
+      "dual-layer-ecommerce.html": "dual",
+      "contract-driven-spark.html": "spark",
+      "nyc-traffic.html": "nyc",
+      "nexora.html": "nexora"
+    };
+
+    const file = (location.pathname.split("/").pop() || "").toLowerCase();
+    const key = map[file];
+
+    document.querySelectorAll(".workItem[data-work]").forEach(a => {
+      if (a.getAttribute("data-work") === key) a.classList.add("active");
+    });
+  })();
+</script>
 </body>
 </html>
