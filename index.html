@@ -1,417 +1,461 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Subash Chakravarthy — Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Subash Chakravarthy</title>
 
+  <!-- Clean, “real portfolio” typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #FFFFFF;
-      --fg: #f5f7fb;
-      --muted: rgba(245,247,251,.72);
-      --muted2: rgba(245,247,251,.55);
-      --line: rgba(255,255,255,.12);
-      --shadow: 0 30px 80px rgba(0,0,0,.55);
-      --radius: 28px;
+      --bg:#ffffff;
+      --text:#0b0b0f;
+      --muted:#6b7280;
+      --line:rgba(17,24,39,.10);
+      --soft:rgba(17,24,39,.04);
+      --shadow:0 12px 35px rgba(17,24,39,.10);
+      --radius:22px;
+      --max:1100px;
     }
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: Manrope, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 800px at 20% 0%, rgba(255,255,255,.08), transparent 55%),
-                  radial-gradient(900px 700px at 80% 20%, rgba(255,255,255,.06), transparent 60%),
-                  var(--bg);
-      color: var(--fg);
-      overflow-x:hidden;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-    a{ color:inherit; text-decoration:none; }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 22px 70px}
 
-    .wrap{ max-width:1180px; margin:0 auto; padding:28px 22px 80px; }
+    /* Top bar */
+    header{
+      position:sticky; top:0; z-index:20;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .bar{
+      max-width:var(--max); margin:0 auto;
+      padding:14px 22px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      font-weight:650;
+      letter-spacing:-0.02em;
+      display:flex; align-items:center; gap:10px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background:linear-gradient(135deg,#111827,#6b7280);
+      box-shadow:0 0 0 3px rgba(17,24,39,.08);
+    }
 
-    /* Top toggle bar */
-    .topbar{
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-      position: sticky; top: 0; z-index: 40;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(to bottom, rgba(11,12,16,.72), rgba(11,12,16,.35));
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      padding: 14px 22px;
-      margin: 0 -22px 18px;
+    nav{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+    .navlink{
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:999px;
+      color:rgba(11,11,15,.78);
     }
-    .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px; }
-    .dot{ width:10px; height:10px; border-radius:99px; background: rgba(255,255,255,.95); box-shadow: 0 0 0 6px rgba(255,255,255,.09); }
-
-    .nav{
-      display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;
-    }
-    .nav a, .nav button{
-      font: inherit;
-      color: rgba(255,255,255,.86);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 10px 14px;
-      border-radius: 999px;
-      cursor:pointer;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-      display:inline-flex; align-items:center; gap:8px; white-space:nowrap;
-    }
-    .nav a:hover, .nav button:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.20);
-    }
-    .nav a.primary{
-      background: rgba(255,255,255,.92);
-      color: rgba(10,10,12,1);
-      border-color: rgba(255,255,255,.92);
-      font-weight: 800;
+    .navlink:hover{background:var(--soft)}
+    .navlink.active{
+      background:rgba(17,24,39,.06);
+      color:var(--text);
+      font-weight:600;
     }
 
     /* Hero */
-    .hero{ padding:44px 0 26px; text-align:center; }
-    .kicker{ font-size:13px; letter-spacing:.22em; text-transform:uppercase; color: var(--muted2); margin-bottom:14px; }
+    .hero{
+      padding-top:60px;
+      text-align:center;
+    }
+    .kicker{
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:14px;
+    }
     h1{
-      font-family: Fraunces, serif;
-      font-weight: 700;
-      font-size: clamp(44px, 6vw, 74px);
-      line-height: 1.02;
-      margin: 0 0 14px;
+      margin:0;
+      font-size:clamp(42px,5.3vw,76px);
+      line-height:1.02;
+      letter-spacing:-0.05em;
+      font-weight:800;
     }
     .subtitle{
-      font-size: 20px;
-      color: var(--muted);
-      margin: 0 auto 16px;
-      max-width: 860px;
-      line-height: 1.55;
+      margin:18px auto 0;
+      max-width:760px;
+      font-size:clamp(16px,1.6vw,20px);
+      line-height:1.55;
+      color:rgba(11,11,15,.78);
     }
 
-    /* Scrolling roles */
-    .roleLine{ display:flex; justify-content:center; margin:18px 0 8px; }
-    .marquee{
-      width: min(920px, 96vw);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      border-radius: 999px;
+    /* Role ticker (one sentence only) */
+    .ticker{
+      margin:28px auto 0;
+      max-width:860px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:12px 14px;
       overflow:hidden;
-      position: relative;
-      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      background:rgba(17,24,39,.03);
     }
-    .marquee::before, .marquee::after{
-      content:"";
-      position:absolute; top:0; bottom:0;
-      width: 90px;
-      z-index:2;
-      pointer-events:none;
-    }
-    .marquee::before{ left:0; background: linear-gradient(to right, rgba(11,12,16,1), rgba(11,12,16,0)); }
-    .marquee::after{ right:0; background: linear-gradient(to left, rgba(11,12,16,1), rgba(11,12,16,0)); }
-
-    .track{
+    .tickerRow{
       display:flex;
-      gap: 26px;
-      padding: 12px 22px;
-      width:max-content;
-      animation: scroll 14s linear infinite;
-    }
-    .pill{
-      display:inline-flex; align-items:center; gap: 10px;
-      color: rgba(255,255,255,.92);
-      font-weight: 700;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
       white-space:nowrap;
-      font-size: 15px;
+      font-size:clamp(15px,1.25vw,18px);
+      color:rgba(11,11,15,.85);
+      font-weight:600;
+      letter-spacing:-0.01em;
     }
-    .pill span{ color: rgba(255,255,255,.65); font-weight: 600; }
-
-    @keyframes scroll{
-      from{ transform: translateX(0); }
-      to{ transform: translateX(-50%); }
+    .roleBox{
+      position:relative;
+      display:inline-flex;
+      align-items:baseline;
+      gap:10px;
+      min-width:0;
+    }
+    .roleText{
+      display:inline-block;
+      position:relative;
+      padding:0 2px;
+    }
+    .roleText::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:-6px;
+      height:2px;
+      background:rgba(11,11,15,.18);
+      border-radius:999px;
+      transform:scaleX(.6);
+      transform-origin:center;
+    }
+    .slideIn{
+      animation:slideIn .55s ease both;
+    }
+    @keyframes slideIn{
+      from{opacity:0; transform:translateX(-14px)}
+      to{opacity:1; transform:translateX(0)}
     }
 
-    /* Work */
-    .workHeader{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
-      margin: 34px 0 14px;
+    /* Primary action row */
+    .actions{
+      margin-top:26px;
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
     }
-    .workTitle h2{ margin:0; font-size:22px; letter-spacing:.2px; }
-    .workTitle p{ margin:6px 0 0; color: var(--muted); max-width: 560px; line-height:1.45; font-size:14.5px; }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(17,24,39,.02);
+      font-size:14px;
+      font-weight:650;
+    }
+    .btn:hover{background:rgba(17,24,39,.05)}
+    .btn.primary{
+      background:#111827;
+      color:#fff;
+      border-color:#111827;
+    }
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn svg{width:16px;height:16px}
 
-    .grid{
+    /* Work grid as large “blocks” (Devansh-ish) */
+    .sectionTitle{
+      margin:70px 0 18px;
+      font-size:14px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      text-align:left;
+    }
+
+    .workGrid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 14px;
+      grid-template-columns:1fr;
+      gap:18px;
     }
-    @media (max-width: 860px){
-      .grid{ grid-template-columns: 1fr; }
-      .workHeader{ flex-direction:column; align-items:flex-start; }
+    @media(min-width:860px){
+      .workGrid{grid-template-columns:1fr 1fr}
+      .tile.tall{grid-column:1 / -1}
     }
 
-    /* Project tiles */
     .tile{
-      height: 340px;
-      border-radius: var(--radius);
-      position: relative;
+      position:relative;
+      border-radius:var(--radius);
       overflow:hidden;
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
-      display:block;
+      border:1px solid var(--line);
+      background:#f7f7f8;
+      min-height:260px;
+      box-shadow:0 0 0 rgba(0,0,0,0);
+      transform:translateY(0);
+      transition:transform .18s ease, box-shadow .18s ease;
     }
     .tile:hover{
-      transform: translateY(-4px);
-      box-shadow: 0 36px 90px rgba(0,0,0,.62);
-      filter: saturate(1.05);
-    }
-    .tile.full{ grid-column: 1 / -1; height: 360px; }
-
-    /* Backgrounds */
-    .bg-dual{
-      background:
-        radial-gradient(900px 420px at 35% 35%, rgba(255,255,255,.18), transparent 55%),
-        linear-gradient(115deg, #7c3aed, #2a1458);
-    }
-    .bg-spark{
-      background:
-        radial-gradient(850px 420px at 65% 35%, rgba(255,255,255,.18), transparent 55%),
-        linear-gradient(115deg, #ef4444, #7f1d1d);
-    }
-    .bg-nyc{
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.55)),
-        radial-gradient(800px 420px at 50% 25%, rgba(255,255,255,.16), transparent 60%),
-        linear-gradient(115deg, #0ea5e9, #10b981);
-    }
-    .bg-nexora{
-      background:
-        radial-gradient(900px 420px at 45% 30%, rgba(255,255,255,.18), transparent 60%),
-        linear-gradient(115deg, #111827, #0f172a);
+      transform:translateY(-3px);
+      box-shadow:var(--shadow);
     }
 
-    .tileLabel{
+    .tileInner{
       position:absolute; inset:0;
-      display:flex; align-items:center; justify-content:center;
-      padding:22px; text-align:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:26px;
+      text-align:center;
       z-index:2;
     }
-    .tileLabel h3{
-      margin:0;
-      font-size: clamp(22px, 3vw, 34px);
-      color: rgba(255,255,255,.92);
-      font-weight: 800;
-      text-shadow: 0 10px 30px rgba(0,0,0,.45);
-      line-height: 1.12;
+    .tileTitle{
+      font-size:clamp(20px,2.2vw,30px);
+      font-weight:800;
+      letter-spacing:-0.04em;
+      line-height:1.12;
+      color:#fff;
+      text-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    .tileHint{
+      margin-top:10px;
+      font-size:13px;
+      opacity:.92;
+      color:#fff;
     }
 
-    .tileMeta{
-      position:absolute; left: 18px; bottom: 16px;
-      display:flex; gap: 10px; flex-wrap:wrap; z-index:2;
+    /* Background layers (replace with real images later) */
+    .bg{
+      position:absolute; inset:0; z-index:1;
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.03);
+      filter:saturate(1.05);
     }
-    .tag{
-      font-size: 12px;
-      font-weight: 800;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.28);
-      border: 1px solid rgba(255,255,255,.16);
-      color: rgba(255,255,255,.88);
-      backdrop-filter: blur(10px);
+    .shade{
+      position:absolute; inset:0; z-index:1;
+      background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.45));
+      mix-blend-mode:multiply;
     }
 
-    .tileArrow{
-      position:absolute; right: 16px; top: 16px;
-      width: 42px; height: 42px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.20);
-      background: rgba(0,0,0,.25);
-      display:flex; align-items:center; justify-content:center;
-      z-index:2;
-      transition: transform .2s ease, background .2s ease;
-      backdrop-filter: blur(12px);
-    }
-    .tile:hover .tileArrow{ transform: translateY(-1px) rotate(-6deg); background: rgba(0,0,0,.35); }
+    /* Specific project palettes (consistent across site) */
+    .p-nyc .bg{background-image:linear-gradient(135deg,#1f2937,#0b1220)}
+    .p-nyc .bg::after{content:"";}
+
+    .p-ecom .bg{background-image:linear-gradient(135deg,#6d28d9,#111827)}
+    .p-spark .bg{background-image:linear-gradient(135deg,#0f766e,#111827)}
+    .p-nexora .bg{background-image:linear-gradient(135deg,#111827,#374151)}
 
     /* Footer contact */
     footer{
-      margin-top: 46px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,.10);
-      color: rgba(255,255,255,.72);
+      margin-top:70px;
+      padding-top:22px;
+      border-top:1px solid var(--line);
       text-align:center;
+      color:rgba(11,11,15,.70);
     }
-    .contactRow{ display:flex; justify-content:center; flex-wrap:wrap; gap: 12px; margin: 12px 0 10px; }
+    .contactRow{
+      margin-top:12px;
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
     .iconBtn{
-      display:inline-flex; align-items:center; gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.12);
-      color: rgba(255,255,255,.88);
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-      font-weight: 800; font-size: 13px;
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(17,24,39,.02);
+      font-size:14px;
+      font-weight:600;
     }
-    .iconBtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
-    .icon{ width:18px; height:18px; display:inline-block; }
-    .small{ font-size: 12.5px; color: rgba(255,255,255,.55); margin: 0; }
-
-    @media (prefers-reduced-motion: reduce){
-      .track{ animation:none; }
-      .tile{ transition:none; }
-      .nav a, .nav button{ transition:none; }
-    }
+    .iconBtn:hover{background:rgba(17,24,39,.05)}
+    .iconBtn svg{width:18px;height:18px}
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-
-    <div class="topbar">
+  <header>
+    <div class="bar">
       <div class="brand">
         <span class="dot"></span>
-        <a href="index.html" aria-label="Home">Subash</a>
+        <span>Subash</span>
       </div>
-
-      <div class="nav">
-        <button type="button" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">Work</button>
-        <a href="About.html">About</a>
-        <button type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Connect</button>
-        <a class="primary" href="#work">View work</a>
-      </div>
+      <nav>
+        <a class="navlink active" href="index.html">Work</a>
+        <a class="navlink" href="About.html">About</a>
+        <a class="navlink" href="#connect">Connect</a>
+      </nav>
     </div>
+  </header>
 
+  <main class="wrap">
     <section class="hero">
-      <div class="kicker">Master’s in Analytics • Northeastern University</div>
+      <div class="kicker">MASTER’S IN ANALYTICS • NORTHEASTERN UNIVERSITY</div>
       <h1>Subash Chakravarthy</h1>
 
       <p class="subtitle">
-        I build data systems teams can trust. I like working on the messy middle
-        where raw events turn into clean datasets that hold up when volume grows.
+        I build data systems teams can trust. I like working in the messy middle where raw events turn into clean datasets that hold up when the volume grows.
       </p>
 
-      <div class="roleLine" aria-label="Roles I’m targeting">
-        <div class="marquee">
-          <div class="track">
-            <div class="pill"><span>I am a</span> Data Engineer</div>
-            <div class="pill"><span>I am an</span> AI Engineer</div>
-            <div class="pill"><span>I am a</span> Data Analyst</div>
-            <div class="pill"><span>I am an</span> AI Analyst</div>
-            <div class="pill"><span>I am a</span> Business Analyst</div>
-
-            <div class="pill"><span>I am a</span> Data Engineer</div>
-            <div class="pill"><span>I am an</span> AI Engineer</div>
-            <div class="pill"><span>I am a</span> Data Analyst</div>
-            <div class="pill"><span>I am an</span> AI Analyst</div>
-            <div class="pill"><span>I am a</span> Business Analyst</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="work">
-      <div class="workHeader">
-        <div class="workTitle">
-          <h2>Selected work</h2>
-          <p>
-            Click a project. Each case study explains the problem, the approach, and what I’d improve next.
-          </p>
+      <div class="ticker" aria-label="Roles I’m looking for">
+        <div class="tickerRow">
+          <span id="article">I am a</span>
+          <span class="roleBox">
+            <span id="role" class="roleText">Data Engineer</span>
+          </span>
         </div>
       </div>
 
-      <div class="grid">
-        <!-- Dual -->
-        <a class="tile bg-dual" href="work/dual-layer-ecommerce.html">
-          <div class="tileArrow" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="tileLabel"><h3>Dual Layer E-Commerce Data Platform</h3></div>
-          <div class="tileMeta">
-            <span class="tag">Kafka</span><span class="tag">dbt</span><span class="tag">Postgres</span><span class="tag">Docker</span>
-          </div>
+      <div class="actions">
+        <a class="btn primary" href="#selected-work">
+          View selected work
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </a>
 
-        <!-- Spark -->
-        <a class="tile bg-spark" href="work/contract-driven-spark.html">
-          <div class="tileArrow" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="tileLabel"><h3>Contract Driven Data Platform with Spark</h3></div>
-          <div class="tileMeta">
-            <span class="tag">Spark</span><span class="tag">Contracts</span><span class="tag">Quality</span>
-          </div>
-        </a>
-
-        <!-- NYC -->
-        <a class="tile full bg-nyc" href="work/nyc-traffic.html">
-          <div class="tileArrow" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="tileLabel"><h3>NYC Traffic Volume Analytics Pipeline</h3></div>
-          <div class="tileMeta">
-            <span class="tag">Cleaning</span><span class="tag">Geospatial</span><span class="tag">Model-ready tables</span>
-          </div>
-        </a>
-
-        <!-- Nexora -->
-        <a class="tile full bg-nexora" href="work/nexora-nx.html">
-          <div class="tileArrow" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="tileLabel"><h3>Nexora-NX — AI Knowledge Graph Builder</h3></div>
-          <div class="tileMeta">
-            <span class="tag">LLM triplets</span><span class="tag">NetworkX</span><span class="tag">Streamlit</span><span class="tag">Explainable paths</span>
-          </div>
+        <!-- Keep GitHub in hero, LinkedIn only at bottom (your request) -->
+        <a class="btn" href="https://github.com/subash1702" target="_blank" rel="noreferrer">
+          GitHub
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.9 9.6.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-1.1-1.4-1.1-1.4-.9-.7.1-.7.1-.7 1 .1 1.5 1.1 1.5 1.1.9 1.6 2.4 1.1 3 .8.1-.7.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1 0 0 .8-.2 2-.2s2 .2 2 .2c2-.1 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.5 5 .3.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4-1.3 6.9-5.1 6.9-9.6C22 6.6 17.5 2 12 2Z" fill="currentColor"/>
+          </svg>
         </a>
       </div>
     </section>
 
-    <footer id="contact">
-      <div style="font-weight:900; letter-spacing:.2px; color: rgba(255,255,255,.92); margin-bottom: 6px;">Connect</div>
+    <div id="selected-work" class="sectionTitle">Selected work</div>
+
+    <section class="workGrid" aria-label="Project tiles">
+      <!-- NYC -->
+      <a class="tile p-nyc tall" href="work/nyc-traffic.html">
+        <div class="bg"></div>
+        <div class="shade"></div>
+        <div class="tileInner">
+          <div>
+            <div class="tileTitle">NYC Traffic Volume Analytics Pipeline</div>
+            <div class="tileHint">Cleaning, modeling, and decision-ready outputs</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Dual layer e-commerce -->
+      <a class="tile p-ecom" href="work/dual-layer-ecommerce.html">
+        <div class="bg"></div>
+        <div class="shade"></div>
+        <div class="tileInner">
+          <div>
+            <div class="tileTitle">Dual-Layer E-Commerce Data Platform</div>
+            <div class="tileHint">Streaming + batch, built for reliability</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Contract-driven spark -->
+      <a class="tile p-spark" href="work/contract-driven-spark.html">
+        <div class="bg"></div>
+        <div class="shade"></div>
+        <div class="tileInner">
+          <div>
+            <div class="tileTitle">Contract-Driven Data Platform with Spark</div>
+            <div class="tileHint">Schemas, validation, predictable transforms</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Nexora -->
+      <a class="tile p-nexora tall" href="work/nexora.html">
+        <div class="bg"></div>
+        <div class="shade"></div>
+        <div class="tileInner">
+          <div>
+            <div class="tileTitle">Nexora-NX</div>
+            <div class="tileHint">Text → entities → relationships → knowledge graph</div>
+          </div>
+        </div>
+      </a>
+    </section>
+
+    <footer id="connect">
+      <div style="font-weight:700; letter-spacing:-0.02em; color: var(--text);">Connect</div>
+      <div style="margin-top:6px;">If you’re hiring for data engineering or applied AI work, I’d love to talk.</div>
 
       <div class="contactRow">
-        <a class="iconBtn" href="mailto:YOUR_EMAIL_HERE">
-          <svg class="icon" viewBox="0 0 24 24" fill="none">
-            <path d="M4 6.5H20V17.5H4V6.5Z" stroke="white" stroke-width="2" opacity=".9"/>
-            <path d="M5 7.5L12 13L19 7.5" stroke="white" stroke-width="2" opacity=".9" stroke-linecap="round"/>
+        <a class="iconBtn" href="mailto:your.email@example.com" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2" />
+            <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" />
           </svg>
           Email
         </a>
 
-        <a class="iconBtn" href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener">
-          <svg class="icon" viewBox="0 0 24 24" fill="none">
-            <path d="M6.5 9.5V18" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <path d="M6.5 6.5V6.55" stroke="white" stroke-width="3" stroke-linecap="round"/>
-            <path d="M10.5 18V12.7C10.5 10.7 12.8 10.3 13.8 11.4C14.4 12 14.5 12.8 14.5 13.6V18" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <path d="M14.5 13.2C14.6 11.2 16.1 10.6 17.2 10.9C18.6 11.3 19 12.6 19 14V18" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          LinkedIn
-        </a>
-
-        <a class="iconBtn" href="https://github.com/subash1702" target="_blank" rel="noopener">
-          <svg class="icon" viewBox="0 0 24 24" fill="none">
-            <path d="M9 19.5C5.5 20.5 5.5 17.5 4 17M14 20V17.4C14 16.6 14.1 16.3 13.6 15.7C15.7 15.5 18 14.7 18 10.6C18 9.5 17.6 8.6 16.9 7.9C17.1 7.3 17.2 6.1 16.8 5C16.8 5 15.8 4.7 14 6C12.9 5.7 11.1 5.7 10 6C8.2 4.7 7.2 5 7.2 5C6.8 6.1 6.9 7.3 7.1 7.9C6.4 8.6 6 9.5 6 10.6C6 14.7 8.3 15.5 10.4 15.7C9.9 16.3 9.9 16.9 10 17.4V20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <a class="iconBtn" href="https://github.com/subash1702" target="_blank" rel="noreferrer" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.9 9.6.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-1.1-1.4-1.1-1.4-.9-.7.1-.7.1-.7 1 .1 1.5 1.1 1.5 1.1.9 1.6 2.4 1.1 3 .8.1-.7.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1 0 0 .8-.2 2-.2s2 .2 2 .2c2-.1 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.5 5 .3.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4-1.3 6.9-5.1 6.9-9.6C22 6.6 17.5 2 12 2Z" fill="currentColor"/>
           </svg>
           GitHub
         </a>
+
+        <a class="iconBtn" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6.5 9H4v11h2.5V9ZM5.25 4C4.56 4 4 4.58 4 5.3 4 6 4.56 6.6 5.25 6.6S6.5 6 6.5 5.3C6.5 4.58 5.94 4 5.25 4Z" fill="currentColor"/>
+            <path d="M10 9h2.4v1.5h.03c.33-.6 1.15-1.8 2.8-1.8 3 0 3.6 2 3.6 4.7V20H16.4v-5.4c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V20H10V9Z" fill="currentColor"/>
+          </svg>
+          LinkedIn
+        </a>
       </div>
 
-      <p class="small">Replace YOUR_EMAIL_HERE and YOUR_LINKEDIN_URL.</p>
+      <div style="margin-top:18px; font-size:12px; color:rgba(11,11,15,.55);">
+        Built and hosted on GitHub Pages.
+      </div>
     </footer>
+  </main>
 
-  </div>
+  <script>
+    // One sentence only: “I am a/an <role>”
+    const roles = [
+      { role: "Data Engineer", article: "I am a" },
+      { role: "AI Engineer", article: "I am an" },
+      { role: "Data Analyst", article: "I am a" },
+      { role: "AI Analyst", article: "I am an" },
+      { role: "Business Analyst", article: "I am a" }
+    ];
+
+    const articleEl = document.getElementById("article");
+    const roleEl = document.getElementById("role");
+
+    let i = 0;
+    function tick(){
+      i = (i + 1) % roles.length;
+
+      // slide left -> right feel (simple but clean)
+      roleEl.classList.remove("slideIn");
+      void roleEl.offsetWidth; // reflow to restart animation
+
+      articleEl.textContent = roles[i].article;
+      roleEl.textContent = roles[i].role;
+      roleEl.classList.add("slideIn");
+    }
+
+    // start after a short delay so it looks intentional
+    setTimeout(() => {
+      setInterval(tick, 2200);
+    }, 900);
+  </script>
 </body>
 </html>
-
-
