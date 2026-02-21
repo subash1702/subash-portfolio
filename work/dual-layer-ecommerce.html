@@ -3,136 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dual Layer E-Commerce Data Platform | Subash Chakravarthy</title>
+  <title>About | Subash Chakravarthy</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root{--bg:#fff;--ink:rgba(11,11,15,.92);--muted:rgba(11,11,15,.58);--line:rgba(11,11,15,.10);--max:1100px;}
+    :root{
+      --bg:#ffffff;
+      --ink: rgba(11,11,15,.92);
+      --muted: rgba(11,11,15,.58);
+      --line: rgba(11,11,15,.10);
+      --max: 1100px;
+    }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
     a{color:inherit}
 
-    .nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .navInner{max-width:var(--max);margin:0 auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .nav{
+      position: sticky; top:0; z-index: 20;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .navInner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+    }
     .brand{font-weight:800;letter-spacing:-.03em;text-decoration:none}
     .navLinks{display:flex;gap:18px;align-items:center;font-weight:600}
     .navLinks a{text-decoration:none;color:rgba(11,11,15,.70)}
     .navLinks a:hover{color:rgba(11,11,15,.92)}
     .navLinks a.active{color:rgba(11,11,15,.92)}
 
-    .workStripWrap{padding:26px 22px 0}
-    .workStrip{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:center;align-items:center;text-align:center}
-    .workItem{text-decoration:none;font-weight:700;letter-spacing:-.02em;color:rgba(11,11,15,.20);font-size:clamp(16px,1.55vw,26px);line-height:1.15;transition:color .2s ease,transform .2s ease}
-    .workItem:hover{color:rgba(11,11,15,.55);transform:translateY(-1px)}
-    .workItem.active{color:rgba(11,11,15,.92)}
+    main{max-width:var(--max);margin:0 auto;padding:54px 22px 80px}
+    h1{
+      margin:0 0 18px;
+      font-size: clamp(34px, 4vw, 56px);
+      letter-spacing:-.04em;
+      line-height:1.02;
+    }
+    p{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 80ch;
+    }
 
-    main{max-width:var(--max);margin:0 auto;padding:34px 22px 80px}
-    .kicker{color:var(--muted);font-weight:600;letter-spacing:.02em;text-transform:uppercase;font-size:12px}
-    h1{margin:10px 0 12px;font-size:clamp(34px,4vw,56px);letter-spacing:-.04em;line-height:1.02}
-    .sub{margin:0 0 22px;color:var(--muted);font-size:18px;line-height:1.6;max-width:72ch}
+    .aboutActions{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      margin: 26px 0 40px;
+      flex-wrap:wrap;
+    }
+    .resumeBtn{
+      text-decoration:none;
+      padding: 12px 18px;
+      border: 1px solid rgba(11,11,15,.15);
+      border-radius: 999px;
+      font-weight: 700;
+      background: rgba(11,11,15,.04);
+    }
+    .resumeBtn:hover{ background: rgba(11,11,15,.08); }
+    .resumeLink{
+      text-decoration:none;
+      font-weight: 700;
+      color: rgba(11,11,15,.65);
+      border-bottom: 1px solid rgba(11,11,15,.18);
+      padding-bottom: 2px;
+    }
+    .resumeLink:hover{ color: rgba(11,11,15,.92); border-bottom-color: rgba(11,11,15,.45); }
+
     hr{border:0;border-top:1px solid var(--line);margin:26px 0}
-    h2{margin:0 0 10px;font-size:20px;letter-spacing:-.02em}
-    p{margin:0 0 14px;color:var(--muted);line-height:1.7;max-width:82ch}
-    ul{margin:10px 0 0 18px;color:var(--muted);line-height:1.8}
 
-    .metaRow{display:flex;flex-wrap:wrap;gap:10px 16px;color:var(--muted);font-weight:600;font-size:13px}
-    .metaRow span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(11,11,15,.02)}
-
-    footer{border-top:1px solid var(--line);margin-top:52px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+    footer{
+      border-top:1px solid var(--line);
+      margin-top: 52px;
+      padding-top: 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
     .icons{display:flex;gap:12px;align-items:center}
-    .iconBtn{width:42px;height:42px;border-radius:999px;border:1px solid var(--line);display:grid;place-items:center;text-decoration:none;background:rgba(11,11,15,.02)}
-    .iconBtn:hover{background:rgba(11,11,15,.05)}
-    .iconBtn svg{width:18px;height:18px;fill:rgba(11,11,15,.78)}
+    .iconBtn{
+      width:42px;height:42px;border-radius:999px;
+      border:1px solid var(--line);
+      display:grid;place-items:center;
+      text-decoration:none;
+      background: rgba(11,11,15,.02);
+    }
+    .iconBtn:hover{ background: rgba(11,11,15,.05); }
+    .iconBtn svg{ width:18px;height:18px; fill: rgba(11,11,15,.78); }
   </style>
 </head>
 <body>
+
   <header class="nav">
     <div class="navInner">
-      <a class="brand" href="../index.html">Subash</a>
+      <a class="brand" href="./index.html">Subash</a>
       <nav class="navLinks">
-        <a href="../index.html">Home</a>
-        <a class="active" href="../index.html#selected-work">Work</a>
-        <a href="../About.html">About</a>
+        <a href="./index.html">Work</a>
+        <a class="active" href="./About.html">About</a>
+        <a href="./index.html#contact">Connect</a>
       </nav>
     </div>
   </header>
 
-  <section class="workStripWrap">
-    <div class="workStrip">
-      <a class="workItem" href="../index.html#selected-work">All</a>
-      <a class="workItem" href="./dual-layer-ecommerce.html" data-work="dual">Dual Layer E-Commerce Data Platform</a>
-      <a class="workItem" href="./contract-driven-spark.html" data-work="spark">Contract Driven Data Platform with Spark</a>
-      <a class="workItem" href="./nyc-traffic.html" data-work="nyc">NYC Traffic Volume Analytics Pipeline</a>
-      <a class="workItem" href="./nexora.html" data-work="nexora">Nexora-NX</a>
-    </div>
-  </section>
-
   <main>
-    <div class="kicker">Streaming • Batch • Kafka • dbt • Docker</div>
-    <h1>Dual Layer E-Commerce Data Platform</h1>
-    <p class="sub">
-      A two-layer platform that handles <b>real-time event processing</b> for fast signals and a <b>reliable batch layer</b>
-      for analytics and reporting — designed like something you could actually run in production.
+    <h1>About</h1>
+
+    <p>
+      I’m a graduate student in analytics with a background in engineering, and I’m focused on building reliable data and AI systems.
+      What I enjoy most is taking messy, real-world inputs and shaping them into something structured, trustworthy, and usable.
     </p>
 
-    <div class="metaRow">
-      <span>Python</span><span>Kafka</span><span>PostgreSQL</span><span>dbt</span><span>Docker</span><span>SQL</span>
+    <p>
+      I tend to start from first principles: what does the data actually represent, what decision is it meant to support,
+      and what would make the output dependable over time. I like work that sits between engineering and analysis —
+      pipelines, analytical layers, and tools that help teams move faster without losing confidence in the numbers.
+    </p>
+
+    <!-- Resume goes HERE (right after your intro text) -->
+    <div class="aboutActions">
+      <a href="./assets/Subash_Chakravarthy_Resume.pdf" class="resumeBtn" download>Download resume</a>
+      <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="resumeLink" target="_blank" rel="noreferrer">View LinkedIn</a>
     </div>
 
     <hr>
 
-    <h2>Real-time event processing layer</h2>
     <p>
-      I built a time-windowed pipeline to process high-frequency transaction events with practical stream engineering
-      patterns: handling out-of-order events, late arrivals, and windowed aggregations for decision signals.
+      If you’re looking at my work, you’ll notice a consistent pattern: I care about contracts, validation, repeatability,
+      and systems that can be explained clearly. I’d rather build something simple that is trustworthy than something flashy
+      that breaks the moment the data changes.
     </p>
-    <ul>
-      <li>Sliding + tumbling windows for metrics like sales velocity and inventory triggers.</li>
-      <li>Logic to handle late and out-of-order events so metrics don’t “jump” or become misleading.</li>
-      <li>Operational alerts for stock fluctuations to shorten response time.</li>
-    </ul>
-
-    <hr>
-
-    <h2>Batch analytics layer</h2>
-    <p>
-      The batch layer produces “decision-ready” tables for BI and reporting. It’s built to be predictable and safe to re-run.
-    </p>
-    <ul>
-      <li>Idempotent ingestion to prevent duplication during retries.</li>
-      <li>dbt-based transformations for clean, testable, versioned SQL models.</li>
-      <li>Data quality checks for schema + business logic validation.</li>
-    </ul>
 
     <footer>
       <div>Contact</div>
       <div class="icons">
-        <a class="iconBtn" href="mailto:subashchakravarthyofficial@gmail.com" aria-label="Email">
+        <a class="iconBtn" href="mailto:chakravarthy.sub@northeastern.edu" aria-label="Email">
           <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
         </a>
         <a class="iconBtn" href="https://github.com/subash1702" target="_blank" rel="noreferrer" aria-label="GitHub">
           <svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1.1.1-.8.4-1.4.7-1.7-2.7-.3-5.5-1.4-5.5-6.1 0-1.4.5-2.6 1.2-3.5-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.5 1.2a12 12 0 0 1 6.4 0C17.7 4.3 18.8 4.6 18.8 4.6c.6 1.7.2 3 .1 3.3.8.9 1.2 2.1 1.2 3.5 0 4.7-2.8 5.8-5.5 6.1.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
         </a>
-        <a class="iconBtn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+        <a class="iconBtn" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 24h5V7H0v17zM7.5 7H12v2.3h.1C12.7 8 14.4 6.7 16.9 6.7 22 6.7 24 10 24 14.3V24h-5v-8.3c0-2-.04-4.6-2.8-4.6-2.8 0-3.2 2.2-3.2 4.5V24h-5V7z"/></svg>
         </a>
       </div>
     </footer>
   </main>
-
-  <script>
-    (function(){
-      const map={"dual-layer-ecommerce.html":"dual","contract-driven-spark.html":"spark","nyc-traffic.html":"nyc","nexora.html":"nexora"};
-      const file=(location.pathname.split("/").pop()||"").toLowerCase();
-      const key=map[file];
-      document.querySelectorAll(".workItem[data-work]").forEach(a=>{
-        if(a.getAttribute("data-work")===key) a.classList.add("active");
-      });
-    })();
-  </script>
 </body>
 </html>
-
