@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About | Subash Chakravarthy</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About • Subash Chakravarthy</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,157 +12,157 @@
   <style>
     :root{
       --bg:#ffffff;
-      --ink: rgba(11,11,15,.92);
-      --muted: rgba(11,11,15,.58);
-      --line: rgba(11,11,15,.10);
-      --max: 1100px;
+      --text:#0b0b0f;
+      --muted:#6b7280;
+      --line:rgba(17,24,39,.10);
+      --soft:rgba(17,24,39,.04);
+      --shadow:0 12px 35px rgba(17,24,39,.10);
+      --radius:22px;
+      --max:900px;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:inherit}
-
-    .nav{
-      position: sticky; top:0; z-index: 20;
-      background: rgba(255,255,255,.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
     }
-    .navInner{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 16px 22px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+    a{color:inherit;text-decoration:none}
+    header{
+      position:sticky; top:0; z-index:20;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .bar{
+      max-width:1100px; margin:0 auto;
+      padding:14px 22px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{font-weight:650; letter-spacing:-0.02em; display:flex; align-items:center; gap:10px;}
+    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,#111827,#6b7280);box-shadow:0 0 0 3px rgba(17,24,39,.08);}
+    nav{display:flex; gap:16px; flex-wrap:wrap;}
+    .navlink{font-size:14px;padding:8px 10px;border-radius:999px;color:rgba(11,11,15,.78);}
+    .navlink:hover{background:var(--soft)}
+    .navlink.active{background:rgba(17,24,39,.06);color:var(--text);font-weight:600;}
+    .wrap{max-width:var(--max); margin:0 auto; padding:40px 22px 70px;}
+
+    h1{
+      margin:12px 0 0;
+      font-size:clamp(34px,4.2vw,52px);
+      line-height:1.05;
+      letter-spacing:-0.05em;
+      font-weight:800;
+    }
+    .lead{
+      margin:16px 0 0;
+      font-size:18px;
+      line-height:1.65;
+      color:rgba(11,11,15,.78);
+    }
+
+    .grid{
+      margin-top:28px;
+      display:grid;
+      grid-template-columns:1fr;
       gap:16px;
     }
-    .brand{font-weight:800;letter-spacing:-.03em;text-decoration:none}
-    .navLinks{display:flex;gap:18px;align-items:center;font-weight:600}
-    .navLinks a{text-decoration:none;color:rgba(11,11,15,.70)}
-    .navLinks a:hover{color:rgba(11,11,15,.92)}
-    .navLinks a.active{color:rgba(11,11,15,.92)}
-
-    main{max-width:var(--max);margin:0 auto;padding:54px 22px 80px}
-    h1{
-      margin:0 0 18px;
-      font-size: clamp(34px, 4vw, 56px);
-      letter-spacing:-.04em;
-      line-height:1.02;
-    }
-    p{
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 80ch;
-    }
-
-    .aboutActions{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      margin: 26px 0 40px;
-      flex-wrap:wrap;
-    }
-    .resumeBtn{
-      text-decoration:none;
-      padding: 12px 18px;
-      border: 1px solid rgba(11,11,15,.15);
-      border-radius: 999px;
-      font-weight: 700;
-      background: rgba(11,11,15,.04);
-    }
-    .resumeBtn:hover{ background: rgba(11,11,15,.08); }
-    .resumeLink{
-      text-decoration:none;
-      font-weight: 700;
-      color: rgba(11,11,15,.65);
-      border-bottom: 1px solid rgba(11,11,15,.18);
-      padding-bottom: 2px;
-    }
-    .resumeLink:hover{ color: rgba(11,11,15,.92); border-bottom-color: rgba(11,11,15,.45); }
-
-    hr{border:0;border-top:1px solid var(--line);margin:26px 0}
-
-    footer{
-      border-top:1px solid var(--line);
-      margin-top: 52px;
-      padding-top: 18px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .icons{display:flex;gap:12px;align-items:center}
-    .iconBtn{
-      width:42px;height:42px;border-radius:999px;
+    .box{
       border:1px solid var(--line);
-      display:grid;place-items:center;
-      text-decoration:none;
-      background: rgba(11,11,15,.02);
+      border-radius:var(--radius);
+      padding:18px 18px;
+      background:rgba(17,24,39,.02);
     }
-    .iconBtn:hover{ background: rgba(11,11,15,.05); }
-    .iconBtn svg{ width:18px;height:18px; fill: rgba(11,11,15,.78); }
+    .boxTitle{
+      font-size:13px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:10px;
+    }
+    ul{margin:0; padding-left:18px; color:rgba(11,11,15,.82); line-height:1.7;}
+    li{margin:6px 0}
+
+    .btnRow{margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(17,24,39,.02);
+      font-size:14px;
+      font-weight:650;
+    }
+    .btn:hover{background:rgba(17,24,39,.05)}
+    .btn.primary{background:#111827;color:#fff;border-color:#111827;}
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn svg{width:16px;height:16px}
   </style>
 </head>
-<body>
 
-  <header class="nav">
-    <div class="navInner">
-      <a class="brand" href="./index.html">Subash</a>
-      <nav class="navLinks">
-        <a href="./index.html">Work</a>
-        <a class="active" href="./About.html">About</a>
-        <a href="./index.html#contact">Connect</a>
+<body>
+  <header>
+    <div class="bar">
+      <div class="brand"><span class="dot"></span><span>Subash</span></div>
+      <nav>
+        <a class="navlink" href="index.html">Work</a>
+        <a class="navlink active" href="About.html">About</a>
+        <a class="navlink" href="index.html#connect">Connect</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <h1>About</h1>
+  <main class="wrap">
+    <div style="font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);">
+      About
+    </div>
+    <h1>Hi, I’m Subash.</h1>
 
-    <p>
-      I’m a graduate student in analytics with a background in engineering, and I’m focused on building reliable data and AI systems.
-      What I enjoy most is taking messy, real-world inputs and shaping them into something structured, trustworthy, and usable.
+    <p class="lead">
+      I’m a Master’s in Analytics student at Northeastern who enjoys building the kind of data foundations people stop worrying about.
+      I’m usually happiest when I’m taking a noisy source, defining what “correct” means, and turning it into something teams can ship decisions on.
     </p>
 
-    <p>
-      I tend to start from first principles: what does the data actually represent, what decision is it meant to support,
-      and what would make the output dependable over time. I like work that sits between engineering and analysis —
-      pipelines, analytical layers, and tools that help teams move faster without losing confidence in the numbers.
-    </p>
+    <div class="grid">
+      <div class="box">
+        <div class="boxTitle">How I work</div>
+        <ul>
+          <li>I start from the decision: who’s using the data and what changes if it’s wrong.</li>
+          <li>I like predictable pipelines: clear contracts, idempotency, and checks that fail loudly.</li>
+          <li>I keep things maintainable: small modules, readable SQL, and documentation that someone else can run.</li>
+        </ul>
+      </div>
 
-    <!-- Resume goes HERE (right after your intro text) -->
-    <div class="aboutActions">
-      <a href="./assets/Subash_Chakravarthy_Resume.pdf" class="resumeBtn" download>Download resume</a>
-      <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="resumeLink" target="_blank" rel="noreferrer">View LinkedIn</a>
+      <div class="box">
+        <div class="boxTitle">What I’m building toward</div>
+        <ul>
+          <li>Data engineering roles where reliability and scale matter.</li>
+          <li>Applied AI work that’s explainable, not magic — especially LLM + retrieval + structured systems.</li>
+          <li>Analytics engineering setups where downstream teams can move fast without breaking trust.</li>
+        </ul>
+      </div>
     </div>
 
-    <hr>
+    <div class="btnRow">
+      <!-- Put your actual resume PDF in repo root and name it exactly like below (or change href). -->
+      <a class="btn primary" href="Subash_Chakravarthy_Resume.pdf" download>
+        Download resume
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="m8 11 4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M4 20h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
 
-    <p>
-      If you’re looking at my work, you’ll notice a consistent pattern: I care about contracts, validation, repeatability,
-      and systems that can be explained clearly. I’d rather build something simple that is trustworthy than something flashy
-      that breaks the moment the data changes.
-    </p>
-
-    <footer>
-      <div>Contact</div>
-      <div class="icons">
-        <a class="iconBtn" href="mailto:chakravarthy.sub@northeastern.edu" aria-label="Email">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
-        </a>
-        <a class="iconBtn" href="https://github.com/subash1702" target="_blank" rel="noreferrer" aria-label="GitHub">
-          <svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1.1.1-.8.4-1.4.7-1.7-2.7-.3-5.5-1.4-5.5-6.1 0-1.4.5-2.6 1.2-3.5-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.5 1.2a12 12 0 0 1 6.4 0C17.7 4.3 18.8 4.6 18.8 4.6c.6 1.7.2 3 .1 3.3.8.9 1.2 2.1 1.2 3.5 0 4.7-2.8 5.8-5.5 6.1.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
-        </a>
-        <a class="iconBtn" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 24h5V7H0v17zM7.5 7H12v2.3h.1C12.7 8 14.4 6.7 16.9 6.7 22 6.7 24 10 24 14.3V24h-5v-8.3c0-2-.04-4.6-2.8-4.6-2.8 0-3.2 2.2-3.2 4.5V24h-5V7z"/></svg>
-        </a>
-      </div>
-    </footer>
+      <a class="btn" href="index.html#connect">
+        Contact
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
   </main>
 </body>
 </html>
