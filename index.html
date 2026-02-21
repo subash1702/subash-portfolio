@@ -1,11 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Subash Chakravarthy</title>
 
-  <!-- Clean, “real portfolio” typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,451 +12,390 @@
   <style>
     :root{
       --bg:#ffffff;
-      --text:#0b0b0f;
-      --muted:#6b7280;
-      --line:rgba(17,24,39,.10);
-      --soft:rgba(17,24,39,.04);
-      --shadow:0 12px 35px rgba(17,24,39,.10);
-      --radius:22px;
-      --max:1100px;
+      --ink: rgba(11,11,15,.92);
+      --muted: rgba(11,11,15,.58);
+      --faint: rgba(11,11,15,.22);
+      --line: rgba(11,11,15,.10);
+      --max: 1120px;
     }
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    a{ color:inherit; }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    /* Top nav */
+    .nav{
+      position: sticky;
+      top:0;
+      z-index: 20;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
     }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max);margin:0 auto;padding:28px 22px 70px}
-
-    /* Top bar */
-    header{
-      position:sticky; top:0; z-index:20;
-      background:rgba(255,255,255,.92);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--line);
-    }
-    .bar{
-      max-width:var(--max); margin:0 auto;
-      padding:14px 22px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
+    .navInner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
     }
     .brand{
-      font-weight:650;
-      letter-spacing:-0.02em;
-      display:flex; align-items:center; gap:10px;
+      font-weight:800;
+      letter-spacing:-.03em;
+      text-decoration:none;
     }
-    .dot{
-      width:10px;height:10px;border-radius:999px;
-      background:linear-gradient(135deg,#111827,#6b7280);
-      box-shadow:0 0 0 3px rgba(17,24,39,.08);
-    }
-
-    nav{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
-    .navlink{
-      font-size:14px;
-      padding:8px 10px;
-      border-radius:999px;
-      color:rgba(11,11,15,.78);
-    }
-    .navlink:hover{background:var(--soft)}
-    .navlink.active{
-      background:rgba(17,24,39,.06);
-      color:var(--text);
+    .navLinks{
+      display:flex;
+      gap:18px;
+      align-items:center;
       font-weight:600;
     }
+    .navLinks a{
+      text-decoration:none;
+      color: rgba(11,11,15,.70);
+    }
+    .navLinks a:hover{ color: rgba(11,11,15,.92); }
+    .navLinks a.active{ color: rgba(11,11,15,.92); }
 
     /* Hero */
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 22px;
+    }
     .hero{
-      padding-top:60px;
+      padding: 70px 0 26px;
       text-align:center;
     }
-    .kicker{
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:14px;
+    .heroTitle{
+      margin: 0;
+      font-size: clamp(38px, 6vw, 78px);
+      letter-spacing: -.05em;
+      line-height: 1.0;
+      font-weight: 800;
     }
-    h1{
-      margin:0;
-      font-size:clamp(42px,5.3vw,76px);
-      line-height:1.02;
-      letter-spacing:-0.05em;
-      font-weight:800;
-    }
-    .subtitle{
-      margin:18px auto 0;
-      max-width:760px;
-      font-size:clamp(16px,1.6vw,20px);
-      line-height:1.55;
-      color:rgba(11,11,15,.78);
+    .heroSub{
+      margin: 16px auto 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 78ch;
     }
 
-    /* Role ticker (one sentence only) */
-    .ticker{
-      margin:28px auto 0;
-      max-width:860px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:12px 14px;
-      overflow:hidden;
-      background:rgba(17,24,39,.03);
-    }
-    .tickerRow{
+    /* I am a/an + scrolling role (left -> right) */
+    .roleRow{
+      margin: 26px auto 0;
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      white-space:nowrap;
-      font-size:clamp(15px,1.25vw,18px);
-      color:rgba(11,11,15,.85);
-      font-weight:600;
-      letter-spacing:-0.01em;
-    }
-    .roleBox{
-      position:relative;
-      display:inline-flex;
-      align-items:baseline;
-      gap:10px;
-      min-width:0;
-    }
-    .roleText{
-      display:inline-block;
-      position:relative;
-      padding:0 2px;
-    }
-    .roleText::after{
-      content:"";
-      position:absolute; left:0; right:0; bottom:-6px;
-      height:2px;
-      background:rgba(11,11,15,.18);
-      border-radius:999px;
-      transform:scaleX(.6);
-      transform-origin:center;
-    }
-    .slideIn{
-      animation:slideIn .55s ease both;
-    }
-    @keyframes slideIn{
-      from{opacity:0; transform:translateX(-14px)}
-      to{opacity:1; transform:translateX(0)}
-    }
-
-    /* Primary action row */
-    .actions{
-      margin-top:26px;
-      display:flex;
-      justify-content:center;
-      gap:14px;
+      gap:12px;
       flex-wrap:wrap;
     }
-    .btn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:12px 16px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(17,24,39,.02);
-      font-size:14px;
-      font-weight:650;
+    .iam{
+      font-size: clamp(18px, 2.3vw, 30px);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: rgba(11,11,15,.72);
     }
-    .btn:hover{background:rgba(17,24,39,.05)}
-    .btn.primary{
-      background:#111827;
-      color:#fff;
-      border-color:#111827;
+    .roleTicker{
+      position: relative;
+      height: 42px;
+      overflow: hidden;
+      width: min(720px, 92vw);
+      border-bottom: 1px solid rgba(11,11,15,.10);
     }
-    .btn.primary:hover{filter:brightness(1.05)}
-    .btn svg{width:16px;height:16px}
-
-    /* Work grid as large “blocks” (Devansh-ish) */
-    .sectionTitle{
-      margin:70px 0 18px;
-      font-size:14px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--muted);
-      text-align:left;
+    .roleTrack{
+      position:absolute;
+      white-space: nowrap;
+      will-change: transform;
+      animation: slideRight 18s linear infinite;
+      font-size: clamp(18px, 2.3vw, 30px);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: rgba(11,11,15,.92);
     }
-
-    .workGrid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:18px;
+    .roleTrack span{
+      display:inline-block;
+      margin-right: 42px;
     }
-    @media(min-width:860px){
-      .workGrid{grid-template-columns:1fr 1fr}
-      .tile.tall{grid-column:1 / -1}
+    @keyframes slideRight{
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
-    .tile{
-      position:relative;
-      border-radius:var(--radius);
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:#f7f7f8;
-      min-height:260px;
-      box-shadow:0 0 0 rgba(0,0,0,0);
-      transform:translateY(0);
-      transition:transform .18s ease, box-shadow .18s ease;
+    /* Floating work menu strip (optional, matches your screenshot) */
+    .floatingWork{
+      margin: 42px auto 0;
+      padding: 0 0 10px;
     }
-    .tile:hover{
-      transform:translateY(-3px);
-      box-shadow:var(--shadow);
-    }
-
-    .tileInner{
-      position:absolute; inset:0;
+    .floatingWorkInner{
       display:flex;
-      align-items:center;
+      flex-wrap:wrap;
       justify-content:center;
-      padding:26px;
+      align-items:center;
+      gap: 16px 28px;
       text-align:center;
-      z-index:2;
     }
-    .tileTitle{
-      font-size:clamp(20px,2.2vw,30px);
-      font-weight:800;
-      letter-spacing:-0.04em;
-      line-height:1.12;
-      color:#fff;
-      text-shadow:0 10px 30px rgba(0,0,0,.25);
+    .workItem{
+      font-weight: 800;
+      letter-spacing: -.02em;
+      font-size: clamp(16px, 1.9vw, 28px);
+      line-height: 1.15;
+      text-decoration:none;
+      color: rgba(11,11,15,.18);
+      transition: color .18s ease, transform .18s ease;
     }
-    .tileHint{
-      margin-top:10px;
-      font-size:13px;
-      opacity:.92;
-      color:#fff;
+    .workItem:hover{
+      color: rgba(11,11,15,.55);
+      transform: translateY(-1px);
     }
-
-    /* Background layers (replace with real images later) */
-    .bg{
-      position:absolute; inset:0; z-index:1;
-      background-size:cover;
-      background-position:center;
-      transform:scale(1.03);
-      filter:saturate(1.05);
-    }
-    .shade{
-      position:absolute; inset:0; z-index:1;
-      background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.45));
-      mix-blend-mode:multiply;
+    .workItem.active{
+      color: rgba(11,11,15,.92);
     }
 
-    /* Specific project palettes (consistent across site) */
-    .p-nyc .bg{background-image:linear-gradient(135deg,#1f2937,#0b1220)}
-    .p-nyc .bg::after{content:"";}
+    /* Selected work */
+    .sectionTitle{
+      margin: 34px 0 10px;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(11,11,15,.50);
+      text-align:center;
+    }
+    .grid{
+      margin: 18px auto 0;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+    .tile{
+      grid-column: span 6;
+      min-height: 260px;
+      border: 1px solid var(--line);
+      background: #f3f3f5;
+      text-decoration:none;
+      display:flex;
+      align-items:flex-end;
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .18s ease;
+    }
+    .tile:hover{ transform: translateY(-2px); }
 
-    .p-ecom .bg{background-image:linear-gradient(135deg,#6d28d9,#111827)}
-    .p-spark .bg{background-image:linear-gradient(135deg,#0f766e,#111827)}
-    .p-nexora .bg{background-image:linear-gradient(135deg,#111827,#374151)}
+    .tile::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      opacity: .92;
+      background: linear-gradient(90deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.10) 60%, rgba(0,0,0,.22) 100%);
+      pointer-events:none;
+    }
+    .tileInner{
+      position:relative;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .tileName{
+      margin:0;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      font-size: clamp(20px, 2.2vw, 32px);
+      line-height:1.1;
+      color: rgba(11,11,15,.92);
+      text-shadow: 0 12px 30px rgba(0,0,0,.08);
+    }
+    .tileMeta{
+      margin:0;
+      color: rgba(11,11,15,.62);
+      font-weight: 600;
+      line-height:1.4;
+      max-width: 70ch;
+    }
+    .tileCta{
+      margin-top: 6px;
+      font-weight: 700;
+      color: rgba(11,11,15,.78);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .tileCta svg{ width:16px; height:16px; fill: rgba(11,11,15,.78); }
+
+    /* Tile color blocks */
+    .t1{ background: linear-gradient(90deg, #ef4444 0%, #7c3aed 110%); border-color: rgba(0,0,0,.06); }
+    .t2{ background: linear-gradient(90deg, #111827 0%, #60a5fa 135%); border-color: rgba(0,0,0,.06); }
+    .t3{ background: linear-gradient(90deg, #111827 0%, #0ea5e9 135%); border-color: rgba(0,0,0,.06); }
+    .t4{ background: linear-gradient(90deg, #111827 0%, #16a34a 135%); border-color: rgba(0,0,0,.06); }
+
+    @media (max-width: 900px){
+      .tile{ grid-column: span 12; }
+      .hero{ padding-top: 52px; }
+      .roleTicker{ height: 38px; }
+    }
 
     /* Footer contact */
     footer{
-      margin-top:70px;
-      padding-top:22px;
-      border-top:1px solid var(--line);
-      text-align:center;
-      color:rgba(11,11,15,.70);
-    }
-    .contactRow{
-      margin-top:12px;
+      margin: 70px 0 34px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
       display:flex;
-      justify-content:center;
-      gap:14px;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
       flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 14px;
     }
+    .icons{ display:flex; gap:12px; align-items:center; }
     .iconBtn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:10px 12px;
-      border-radius:999px;
+      width:42px;height:42px;border-radius:999px;
       border:1px solid var(--line);
-      background:rgba(17,24,39,.02);
-      font-size:14px;
-      font-weight:600;
+      display:grid;place-items:center;
+      text-decoration:none;
+      background: rgba(11,11,15,.02);
     }
-    .iconBtn:hover{background:rgba(17,24,39,.05)}
-    .iconBtn svg{width:18px;height:18px}
+    .iconBtn:hover{ background: rgba(11,11,15,.05); }
+    .iconBtn svg{ width:18px;height:18px; fill: rgba(11,11,15,.78); }
   </style>
 </head>
-
 <body>
-  <header>
-    <div class="bar">
-      <div class="brand">
-        <span class="dot"></span>
-        <span>Subash Chakravarthy</span>
-      </div>
-      <nav>
-        <a class="navlink active" href="index.html">Work</a>
-        <a class="navlink" href="About.html">About</a>
-        <a class="navlink" href="#connect">Connect</a>
+
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="./index.html">Subash</a>
+      <nav class="navLinks">
+        <a class="active" href="./index.html">Work</a>
+        <a href="./About.html">About</a>
+        <a href="#contact">Connect</a>
       </nav>
     </div>
   </header>
 
-  <main class="wrap">
+  <div class="wrap">
     <section class="hero">
-      <div class="kicker">MASTER’S IN ANALYTICS • NORTHEASTERN UNIVERSITY</div>
-      <h1>Subash Chakravarthy</h1>
-
-      <p class="subtitle">
-        I build data systems teams can trust. I like working in the messy middle where raw events turn into clean datasets that hold up when the volume grows.
+      <h1 class="heroTitle">Subash Chakravarthy</h1>
+      <p class="heroSub">
+        I build reliable data and AI systems — pipelines, analytical layers, and tools that turn messy inputs into
+        decision-ready outputs. I care about correctness, clarity, and systems that don’t fall apart when things change.
       </p>
 
-      <div class="ticker" aria-label="Roles I’m looking for">
-        <div class="tickerRow">
-          <span id="article">I am a</span>
-          <span class="roleBox">
-            <span id="role" class="roleText">Data Engineer</span>
-          </span>
+      <div class="roleRow" aria-label="Roles I am looking for">
+        <div class="iam">I am a</div>
+        <div class="roleTicker">
+          <div class="roleTrack" id="roleTrack">
+            <span>Data Engineer</span>
+            <span>AI Engineer</span>
+            <span>Data Analyst</span>
+            <span>AI Analyst</span>
+            <span>Business Analyst</span>
+            <span>Data Engineer</span>
+            <span>AI Engineer</span>
+            <span>Data Analyst</span>
+            <span>AI Analyst</span>
+            <span>Business Analyst</span>
+          </div>
         </div>
       </div>
 
-      <div class="actions">
-        <a class="btn primary" href="#selected-work">
-          View selected work
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+      <section class="floatingWork" aria-label="Work navigation">
+        <div class="floatingWorkInner" id="workMenu"></div>
+      </section>
+
+      <div class="sectionTitle" id="selected-work">Selected work</div>
+
+      <section class="grid" aria-label="Project tiles">
+        <a class="tile t1" href="./work/dual-layer-ecommerce.html">
+          <div class="tileInner">
+            <h2 class="tileName">Dual Layer E-Commerce Data Platform</h2>
+            <p class="tileMeta">Streaming + batch architecture. Fast signals, stable reporting, clean transformations.</p>
+            <div class="tileCta">
+              View project
+              <svg viewBox="0 0 24 24"><path d="M14 5h5v5h-2V8.41l-7.29 7.3-1.42-1.42 7.3-7.29H14V5z"/><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
+            </div>
+          </div>
         </a>
 
-        <!-- Keep GitHub in hero, LinkedIn only at bottom (your request) -->
-        <a class="btn" href="https://github.com/subash1702" target="_blank" rel="noreferrer">
-          GitHub
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.9 9.6.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-1.1-1.4-1.1-1.4-.9-.7.1-.7.1-.7 1 .1 1.5 1.1 1.5 1.1.9 1.6 2.4 1.1 3 .8.1-.7.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1 0 0 .8-.2 2-.2s2 .2 2 .2c2-.1 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.5 5 .3.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4-1.3 6.9-5.1 6.9-9.6C22 6.6 17.5 2 12 2Z" fill="currentColor"/>
-          </svg>
+        <a class="tile t2" href="./work/contract-driven-spark.html">
+          <div class="tileInner">
+            <h2 class="tileName">Contract Driven Data Platform with Spark</h2>
+            <p class="tileMeta">Schema-first thinking. Layered modeling, validation, predictable batch transforms.</p>
+            <div class="tileCta">
+              View project
+              <svg viewBox="0 0 24 24"><path d="M14 5h5v5h-2V8.41l-7.29 7.3-1.42-1.42 7.3-7.29H14V5z"/><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
+            </div>
+          </div>
         </a>
-      </div>
+
+        <a class="tile t3" href="./work/nyc-traffic.html">
+          <div class="tileInner">
+            <h2 class="tileName">NYC Traffic Volume Analytics Pipeline</h2>
+            <p class="tileMeta">Turning noisy city datasets into stable analytical tables and defensible insights.</p>
+            <div class="tileCta">
+              View project
+              <svg viewBox="0 0 24 24"><path d="M14 5h5v5h-2V8.41l-7.29 7.3-1.42-1.42 7.3-7.29H14V5z"/><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <a class="tile t4" href="./work/nexora.html">
+          <div class="tileInner">
+            <h2 class="tileName">Nexora-NX</h2>
+            <p class="tileMeta">LLM + graphs. Structured extraction, explainable relationship reasoning, visual exploration.</p>
+            <div class="tileCta">
+              View project
+              <svg viewBox="0 0 24 24"><path d="M14 5h5v5h-2V8.41l-7.29 7.3-1.42-1.42 7.3-7.29H14V5z"/><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
+            </div>
+          </div>
+        </a>
+      </section>
+
+      <footer id="contact">
+        <div>Contact</div>
+        <div class="icons">
+          <a class="iconBtn" href="mailto:chakravarthy.sub@northeastern.edu" aria-label="Email">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+          </a>
+          <a class="iconBtn" href="https://github.com/subash1702" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1.1.1-.8.4-1.4.7-1.7-2.7-.3-5.5-1.4-5.5-6.1 0-1.4.5-2.6 1.2-3.5-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.5 1.2a12 12 0 0 1 6.4 0C17.7 4.3 18.8 4.6 18.8 4.6c.6 1.7.2 3 .1 3.3.8.9 1.2 2.1 1.2 3.5 0 4.7-2.8 5.8-5.5 6.1.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+          </a>
+          <a class="iconBtn" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 24h5V7H0v17zM7.5 7H12v2.3h.1C12.7 8 14.4 6.7 16.9 6.7 22 6.7 24 10 24 14.3V24h-5v-8.3c0-2-.04-4.6-2.8-4.6-2.8 0-3.2 2.2-3.2 4.5V24h-5V7z"/></svg>
+          </a>
+        </div>
+      </footer>
     </section>
-
-    <div id="selected-work" class="sectionTitle">Selected work</div>
-
-    <section class="workGrid" aria-label="Project tiles">
-      <!-- NYC -->
-      <a class="tile p-nyc tall" href="work/nyc-traffic.html">
-        <div class="bg"></div>
-        <div class="shade"></div>
-        <div class="tileInner">
-          <div>
-            <div class="tileTitle">NYC Traffic Volume Analytics Pipeline</div>
-            <div class="tileHint">Cleaning, modeling, and decision-ready outputs</div>
-          </div>
-        </div>
-      </a>
-
-      <!-- Dual layer e-commerce -->
-      <a class="tile p-ecom" href="work/dual-layer-ecommerce.html">
-        <div class="bg"></div>
-        <div class="shade"></div>
-        <div class="tileInner">
-          <div>
-            <div class="tileTitle">Dual-Layer E-Commerce Data Platform</div>
-            <div class="tileHint">Streaming + batch, built for reliability</div>
-          </div>
-        </div>
-      </a>
-
-      <!-- Contract-driven spark -->
-      <a class="tile p-spark" href="work/contract-driven-spark.html">
-        <div class="bg"></div>
-        <div class="shade"></div>
-        <div class="tileInner">
-          <div>
-            <div class="tileTitle">Contract-Driven Data Platform with Spark</div>
-            <div class="tileHint">Schemas, validation, predictable transforms</div>
-          </div>
-        </div>
-      </a>
-
-      <!-- Nexora -->
-      <a class="tile p-nexora tall" href="work/nexora.html">
-        <div class="bg"></div>
-        <div class="shade"></div>
-        <div class="tileInner">
-          <div>
-            <div class="tileTitle">Nexora-NX</div>
-            <div class="tileHint">Text → entities → relationships → knowledge graph</div>
-          </div>
-        </div>
-      </a>
-    </section>
-
-    <footer id="connect">
-      <div style="font-weight:700; letter-spacing:-0.02em; color: var(--text);">Connect</div>
-      <div style="margin-top:6px;">If you’re hiring for data engineering or applied AI work, I’d love to talk.</div>
-
-      <div class="contactRow">
-        <a class="iconBtn" href="mailto:subash170202@gmail.com" title="Email">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2" />
-            <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" />
-          </svg>
-          Email
-        </a>
-
-        <a class="iconBtn" href="https://github.com/subash1702" target="_blank" rel="noreferrer" title="GitHub">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.9 9.6.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-1.1-1.4-1.1-1.4-.9-.7.1-.7.1-.7 1 .1 1.5 1.1 1.5 1.1.9 1.6 2.4 1.1 3 .8.1-.7.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1 0 0 .8-.2 2-.2s2 .2 2 .2c2-.1 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.5 5 .3.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4-1.3 6.9-5.1 6.9-9.6C22 6.6 17.5 2 12 2Z" fill="currentColor"/>
-          </svg>
-          GitHub
-        </a>
-
-        <a class="iconBtn" href="https://www.linkedin.com/in/subash-chakravarthy-4944a0212/" target="_blank" rel="noreferrer" title="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6.5 9H4v11h2.5V9ZM5.25 4C4.56 4 4 4.58 4 5.3 4 6 4.56 6.6 5.25 6.6S6.5 6 6.5 5.3C6.5 4.58 5.94 4 5.25 4Z" fill="currentColor"/>
-            <path d="M10 9h2.4v1.5h.03c.33-.6 1.15-1.8 2.8-1.8 3 0 3.6 2 3.6 4.7V20H16.4v-5.4c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V20H10V9Z" fill="currentColor"/>
-          </svg>
-          LinkedIn
-        </a>
-      </div>
-
-      <div style="margin-top:18px; font-size:12px; color:rgba(11,11,15,.55);">
-        Built and hosted on GitHub Pages.
-      </div>
-    </footer>
-  </main>
+  </div>
 
   <script>
-    // One sentence only: “I am a/an <role>”
-    const roles = [
-      { role: "Data Engineer", article: "I am a" },
-      { role: "AI Engineer", article: "I am an" },
-      { role: "Data Analyst", article: "I am a" },
-      { role: "AI Analyst", article: "I am an" },
-      { role: "Business Analyst", article: "I am a" }
+    // Floating work menu strip
+    const workItems = [
+      { label: "All", href: "#selected-work" },
+      { label: "Dual Layer E-Commerce Data Platform", href: "work/dual-layer-ecommerce.html" },
+      { label: "Contract Driven Data Platform with Spark", href: "work/contract-driven-spark.html" },
+      { label: "NYC Traffic Volume Analytics Pipeline", href: "work/nyc-traffic.html" },
+      { label: "Nexora-NX", href: "work/nexora.html" }
     ];
 
-    const articleEl = document.getElementById("article");
-    const roleEl = document.getElementById("role");
+    const menu = document.getElementById("workMenu");
 
-    let i = 0;
-    function tick(){
-      i = (i + 1) % roles.length;
-
-      // slide left -> right feel (simple but clean)
-      roleEl.classList.remove("slideIn");
-      void roleEl.offsetWidth; // reflow to restart animation
-
-      articleEl.textContent = roles[i].article;
-      roleEl.textContent = roles[i].role;
-      roleEl.classList.add("slideIn");
+    function setActive(el){
+      document.querySelectorAll(".workItem").forEach(x => x.classList.remove("active"));
+      el.classList.add("active");
     }
 
-    // start after a short delay so it looks intentional
-    setTimeout(() => {
-      setInterval(tick, 2200);
-    }, 900);
+    workItems.forEach((item, idx) => {
+      const a = document.createElement("a");
+      a.className = "workItem" + (idx === 0 ? " active" : "");
+      a.href = item.href;
+      a.textContent = item.label;
+      a.addEventListener("mouseenter", () => setActive(a));
+      a.addEventListener("focus", () => setActive(a));
+      menu.appendChild(a);
+    });
   </script>
 </body>
 </html>
-
-
