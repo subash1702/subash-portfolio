@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Subash Chakravarthy</title>
 
-  <!-- Clean, “real portfolio” typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,7 +17,7 @@
       --line:rgba(17,24,39,.10);
       --soft:rgba(17,24,39,.04);
       --shadow:0 12px 35px rgba(17,24,39,.10);
-      --radius:22px;
+      --radius:0px;
       --max:1100px;
     }
 
@@ -100,7 +99,7 @@
       color:rgba(11,11,15,.78);
     }
 
-    /* Role ticker (one sentence only) */
+    /* Role ticker */
     .ticker{
       margin:28px auto 0;
       max-width:860px;
@@ -176,7 +175,7 @@
     .btn.primary:hover{filter:brightness(1.05)}
     .btn svg{width:16px;height:16px}
 
-    /* Work grid as large “blocks” (Devansh-ish) */
+    /* Section title */
     .sectionTitle{
       margin:70px 0 18px;
       font-size:14px;
@@ -186,29 +185,34 @@
       text-align:left;
     }
 
-    .workGrid{
+    /* ── COLLAGE GRID 1-2-1 ── */
+    .collage{
       display:grid;
-      grid-template-columns:1fr;
-      gap:18px;
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:300px 300px 300px;
+      gap:0;
+      width:100%;
     }
-    @media(min-width:860px){
-      .workGrid{grid-template-columns:1fr 1fr}
-      .tile.tall{grid-column:1 / -1}
-    }
+
+    /* Row 1: NYC full width */
+    .tile-nyc   { grid-column:1 / -1; grid-row:1; }
+    /* Row 2: two side by side */
+    .tile-ecom  { grid-column:1;      grid-row:2; }
+    .tile-spark { grid-column:2;      grid-row:2; }
+    /* Row 3: Nexora full width */
+    .tile-nexora{ grid-column:1 / -1; grid-row:3; }
 
     .tile{
       position:relative;
-      border-radius:var(--radius);
       overflow:hidden;
       border:1px solid var(--line);
       background:#f7f7f8;
-      min-height:260px;
       box-shadow:0 0 0 rgba(0,0,0,0);
-      transform:translateY(0);
       transition:transform .18s ease, box-shadow .18s ease;
     }
     .tile:hover{
-      transform:translateY(-3px);
+      transform:scale(1.012);
+      z-index:2;
       box-shadow:var(--shadow);
     }
 
@@ -217,12 +221,12 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:26px;
       text-align:center;
+      padding:26px;
       z-index:2;
     }
     .tileTitle{
-      font-size:clamp(20px,2.2vw,30px);
+      font-size:clamp(16px,1.8vw,24px);
       font-weight:800;
       letter-spacing:-0.04em;
       line-height:1.12;
@@ -230,13 +234,12 @@
       text-shadow:0 10px 30px rgba(0,0,0,.25);
     }
     .tileHint{
-      margin-top:10px;
-      font-size:13px;
-      opacity:.92;
+      margin-top:6px;
+      font-size:12px;
+      opacity:.85;
       color:#fff;
     }
 
-    /* Background layers (replace with real images later) */
     .bg{
       position:absolute; inset:0; z-index:1;
       background-size:cover;
@@ -246,17 +249,14 @@
     }
     .shade{
       position:absolute; inset:0; z-index:1;
-      background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.45));
+      background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.55));
       mix-blend-mode:multiply;
     }
 
-    /* Specific project palettes (consistent across site) */
-    .p-nyc .bg{background-image:linear-gradient(135deg,#1f2937,#0b1220)}
-    .p-nyc .bg::after{content:"";}
-
-    .p-ecom .bg{background-image:linear-gradient(135deg,#6d28d9,#111827)}
-    .p-spark .bg{background-image:linear-gradient(135deg,#0f766e,#111827)}
-    .p-nexora .bg{background-image:linear-gradient(135deg,#111827,#374151)}
+    .p-nyc .bg   {background-image:url('https://picsum.photos/seed/nyc/1200/600');background-position:center;background-size:cover}
+    .p-ecom .bg  {background-image:url('https://picsum.photos/seed/ecom/1200/600');background-position:center;background-size:cover}
+    .p-spark .bg {background-image:url('https://picsum.photos/seed/spark/1200/600');background-position:center;background-size:cover}
+    .p-nexora .bg{background-image:url('https://picsum.photos/seed/nexora/1200/600');background-position:center;background-size:cover}
 
     /* Footer contact */
     footer{
@@ -284,6 +284,20 @@
     }
     .iconBtn:hover{background:rgba(17,24,39,.05)}
     .iconBtn svg{width:18px;height:18px}
+
+    @media(max-width:700px){
+      .collage{
+        grid-template-columns:1fr;
+        grid-template-rows:repeat(4,220px);
+      }
+      .tile-nyc,.tile-ecom,.tile-spark,.tile-nexora{
+        grid-column:1 !important;
+      }
+      .tile-nyc   {grid-row:1}
+      .tile-ecom  {grid-row:2}
+      .tile-spark {grid-row:3}
+      .tile-nexora{grid-row:4}
+    }
   </style>
 </head>
 
@@ -304,14 +318,14 @@
 
   <main class="wrap">
     <section class="hero">
-      <div class="kicker">MASTER’S IN ANALYTICS • NORTHEASTERN UNIVERSITY</div>
+      <div class="kicker">MASTER'S IN ANALYTICS • NORTHEASTERN UNIVERSITY</div>
       <h1>Subash Chakravarthy</h1>
 
       <p class="subtitle">
         I build data systems teams can trust. I like working in the messy middle where raw events turn into clean datasets that hold up when the volume grows.
       </p>
 
-      <div class="ticker" aria-label="Roles I’m looking for">
+      <div class="ticker" aria-label="Roles I'm looking for">
         <div class="tickerRow">
           <span id="article">I am a</span>
           <span class="roleBox">
@@ -328,8 +342,6 @@
             <path d="M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </a>
-
-        <!-- Keep GitHub in hero, LinkedIn only at bottom (your request) -->
         <a class="btn" href="https://github.com/subash1702" target="_blank" rel="noreferrer">
           GitHub
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -341,45 +353,42 @@
 
     <div id="selected-work" class="sectionTitle">Selected work</div>
 
-    <section class="workGrid" aria-label="Project tiles">
-      <!-- NYC -->
-      <a class="tile p-nyc tall" href="work/nyc-traffic.html">
+    <section class="collage" aria-label="Project tiles">
+
+      <a class="tile tile-nyc p-nyc" href="work/nyc-traffic.html">
         <div class="bg"></div>
         <div class="shade"></div>
         <div class="tileInner">
           <div>
-            <div class="tileTitle">NYC Traffic Volume Analytics Pipeline</div>
+            <div class="tileTitle">NYC Traffic Volume<br>Analytics Pipeline</div>
             <div class="tileHint">Cleaning, modeling, and decision-ready outputs</div>
           </div>
         </div>
       </a>
 
-      <!-- Dual layer e-commerce -->
-      <a class="tile p-ecom" href="work/dual-layer-ecommerce.html">
+      <a class="tile tile-ecom p-ecom" href="work/dual-layer-ecommerce.html">
         <div class="bg"></div>
         <div class="shade"></div>
         <div class="tileInner">
           <div>
-            <div class="tileTitle">Dual-Layer E-Commerce Data Platform</div>
+            <div class="tileTitle">Dual-Layer E-Commerce<br>Data Platform</div>
             <div class="tileHint">Streaming + batch, built for reliability</div>
           </div>
         </div>
       </a>
 
-      <!-- Contract-driven spark -->
-      <a class="tile p-spark" href="work/contract-driven-spark.html">
+      <a class="tile tile-spark p-spark" href="work/contract-driven-spark.html">
         <div class="bg"></div>
         <div class="shade"></div>
         <div class="tileInner">
           <div>
-            <div class="tileTitle">Contract-Driven Data Platform with Spark</div>
+            <div class="tileTitle">Contract-Driven Data<br>Platform with Spark</div>
             <div class="tileHint">Schemas, validation, predictable transforms</div>
           </div>
         </div>
       </a>
 
-      <!-- Nexora -->
-      <a class="tile p-nexora tall" href="work/nexora.html">
+      <a class="tile tile-nexora p-nexora" href="work/nexora.html">
         <div class="bg"></div>
         <div class="shade"></div>
         <div class="tileInner">
@@ -389,11 +398,12 @@
           </div>
         </div>
       </a>
+
     </section>
 
     <footer id="connect">
       <div style="font-weight:700; letter-spacing:-0.02em; color: var(--text);">Connect</div>
-      <div style="margin-top:6px;">If you’re hiring for data engineering or applied AI work, I’d love to talk.</div>
+      <div style="margin-top:6px;">If you're hiring for data engineering or applied AI work, I'd love to talk.</div>
 
       <div class="contactRow">
         <a class="iconBtn" href="mailto:subash170202@gmail.com" title="Email">
@@ -403,14 +413,12 @@
           </svg>
           Email
         </a>
-
         <a class="iconBtn" href="https://github.com/subash1702" target="_blank" rel="noreferrer" title="GitHub">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.9 9.6.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-1.1-1.4-1.1-1.4-.9-.7.1-.7.1-.7 1 .1 1.5 1.1 1.5 1.1.9 1.6 2.4 1.1 3 .8.1-.7.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1 0 0 .8-.2 2-.2s2 .2 2 .2c2-.1 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.5 5 .3.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4-1.3 6.9-5.1 6.9-9.6C22 6.6 17.5 2 12 2Z" fill="currentColor"/>
           </svg>
           GitHub
         </a>
-
         <a class="iconBtn" href="https://www.linkedin.com/in/subash-chakravarthy-4944a0212/" target="_blank" rel="noreferrer" title="LinkedIn">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M6.5 9H4v11h2.5V9ZM5.25 4C4.56 4 4 4.58 4 5.3 4 6 4.56 6.6 5.25 6.6S6.5 6 6.5 5.3C6.5 4.58 5.94 4 5.25 4Z" fill="currentColor"/>
@@ -427,7 +435,6 @@
   </main>
 
   <script>
-    // One sentence only: “I am a/an <role>”
     const roles = [
       { role: "Data Engineer", article: "I am a" },
       { role: "AI Engineer", article: "I am an" },
@@ -435,28 +442,18 @@
       { role: "AI Analyst", article: "I am an" },
       { role: "Business Analyst", article: "I am a" }
     ];
-
     const articleEl = document.getElementById("article");
     const roleEl = document.getElementById("role");
-
     let i = 0;
     function tick(){
       i = (i + 1) % roles.length;
-
-      // slide left -> right feel (simple but clean)
       roleEl.classList.remove("slideIn");
-      void roleEl.offsetWidth; // reflow to restart animation
-
+      void roleEl.offsetWidth;
       articleEl.textContent = roles[i].article;
       roleEl.textContent = roles[i].role;
       roleEl.classList.add("slideIn");
     }
-
-    // start after a short delay so it looks intentional
-    setTimeout(() => {
-      setInterval(tick, 2200);
-    }, 900);
+    setTimeout(() => { setInterval(tick, 2200); }, 900);
   </script>
 </body>
 </html>
-
