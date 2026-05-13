@@ -41,8 +41,20 @@
     .metaRow{display:flex;flex-wrap:wrap;gap:10px 16px;color:var(--muted);font-weight:600;font-size:13px}
     .metaRow span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(11,11,15,.02)}
 
-    .twoCol{display:grid;grid-template-columns:1fr 1fr;gap:20px 26px}
-    @media (max-width:880px){.twoCol{grid-template-columns:1fr}}
+    pre{margin:14px 0;padding:16px 18px;background:rgba(11,11,15,.025);border:1px solid var(--line);border-radius:12px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:13px;line-height:1.65;color:var(--ink)}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.92em;background:rgba(11,11,15,.04);padding:1px 6px;border-radius:5px}
+    pre code{background:none;padding:0;border-radius:0;font-size:inherit}
+
+    .arch{margin:16px 0 6px}
+    .archImg{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line)}
+    .archCap{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
+
+    .resTable{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+    .resTable th,.resTable td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left}
+    .resTable th{font-weight:700;color:var(--ink);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+    .resTable td{color:var(--muted)}
+    .resTable td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:600;color:var(--ink)}
+    .resTable tr.best td{color:var(--ink);background:rgba(11,11,15,.025)}
 
     footer{border-top:1px solid var(--line);margin-top:52px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
     .icons{display:flex;gap:12px;align-items:center}
@@ -74,44 +86,153 @@
   </section>
 
   <main>
-    <div class="kicker">Analytics Engineering • Data Cleaning • Modeling</div>
+    <div class="kicker">Time Series • EDA • Classification • Python</div>
     <h1>NYC Traffic Volume Analytics Pipeline</h1>
     <p class="sub">
-      A pipeline for processing and structuring noisy NYC traffic + event data into analysis-ready tables.
-      The focus was on cleaning, aligning mismatched sources, and producing reliable metrics that hold up.
+      An analytics pipeline on 1.7M+ NYC Automated Traffic Volume Counts joined to the city’s Permitted Event
+      Information feed. Exploratory analysis surfaces the patterns hiding in the raw counts; a regressor and three
+      classifiers expose where the easy signal ends and what richer features would actually be needed to forecast
+      urban congestion.
     </p>
 
     <div class="metaRow">
-      <span>Python</span><span>SQL</span><span>ETL</span><span>Data Modeling</span><span>Visualization</span>
+      <span>Python</span><span>pandas</span><span>scikit-learn</span><span>XGBoost</span><span>seaborn</span>
     </div>
 
     <hr>
 
-    <div class="twoCol">
-      <div>
-        <h2>What made the dataset hard</h2>
-        <p>
-          The raw files were messy: inconsistent timestamps, missing values, and different granularities across sources.
-          Most of the work was building a clean, stable foundation before any analysis.
-        </p>
-      </div>
-      <div>
-        <h2>What I delivered</h2>
-        <ul>
-          <li>Cleaned and standardized timestamp + location fields.</li>
-          <li>Built analytical tables aligned to consistent time windows.</li>
-          <li>Created repeatable transforms so results stay stable across reruns.</li>
-        </ul>
-      </div>
+    <h2>What it does</h2>
+    <ul>
+      <li>Ingests two NYC Open Data feeds — 1.7M traffic counter readings and the permitted-events log — and parses heterogeneous timestamp columns into a single event-time index.</li>
+      <li>Cleans, normalizes, samples, and left-joins both feeds on <code>(borough, date)</code>, attaching an <code>is_event_time</code> flag to every traffic row.</li>
+      <li>Runs a five-plot EDA pass: hourly profile, day-of-week, event vs non-event distribution, borough totals, and an hour&times;day heatmap.</li>
+      <li>Trains a Gradient Boosting Regressor on traffic volume and three classifiers (Logistic Regression, Random Forest, XGBoost) on weekday vs weekend, then compares them on ROC-AUC and per-class precision and recall.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Architecture</h2>
+    <p>
+      Four stages, each independently runnable. The cleaning and merge stage is the load-bearing one — most of the
+      analytical value of the pipeline comes from building a single trustworthy timestamp out of five separate
+      integer columns and reconciling borough strings across two datasets that don’t agree on capitalization or
+      whitespace. After that, EDA and modelling are straightforward consumers of one well-shaped dataframe.
+    </p>
+
+    <div class="arch">
+      <img class="archImg" src="../assests/NYC-traffic_architecture.png" alt="Architecture flowchart: Traffic Volume Counts and Permitted Event Information sources, each cleaned and sampled in parallel, merged into one dataframe by borough and day, then fanned out into a 5-plot EDA, a GradientBoostingRegressor for traffic volume, and three weekday-vs-weekend classifiers (Logistic Regression, Random Forest, XGBoost).">
+      <div class="archCap">Two feeds in parallel → cleaned, sampled, merged → fanned out to EDA, regression, and classification.</div>
     </div>
+
+    <hr>
+
+    <h2>What I built</h2>
+
+    <p>
+      <strong>Ingestion and cleaning.</strong> The traffic feed splits date and time across five integer columns
+      (<code>Yr / M / D / HH / MM</code>); the events feed carries one string column (<code>Start Date/Time</code>)
+      in a different format. The first job of the pipeline is to make both speak the same language — a single
+      <code>pd.Timestamp</code> on each row, plus derived <code>hour_of_day</code>, <code>day_of_week</code>, and
+      <code>is_weekend</code>. Borough strings get trimmed and title-cased so <code>"  MANHATTAN "</code> and
+      <code>"manhattan"</code> stop being two different keys.
+    </p>
+
+    <p>
+      <strong>Sampling and merge.</strong> 25,000 traffic rows and 2,500 event rows are sampled with
+      <code>random_state=42</code> for iteration speed — the full 1.7M rows are tractable but slow to iterate
+      against. A left join on <code>(event_day, borough)</code> attaches the events to the traffic, and a derived
+      <code>is_event_time</code> flag carries forward into every downstream consumer.
+    </p>
+
+    <p>
+      <strong>EDA.</strong> Five plots, written as one function so the whole exploration runs from one call. The
+      hourly profile shows a clean bimodal curve (morning ~8 AM, evening ~4–5 PM, trough 1–4 AM). The day-of-week
+      bar chart puts Thursday and Friday at the top. The borough totals show Manhattan, Brooklyn, and Queens
+      dominating; Staten Island is roughly one-fifth of Queens. The hour&times;day heatmap is the most useful — it
+      shows the bimodal pattern collapsing on weekends into a flatter, lower curve.
+    </p>
+
+    <p>
+      <strong>Regressor.</strong> A scikit-learn <code>GradientBoostingRegressor</code> on
+      <code>[is_event_time, hour_of_day, day_of_week]</code> predicting <code>Vol</code>. Train/test split 80/20,
+      deterministic seed. The output goes into a scatter of actual vs predicted plus printed R² and MSE.
+    </p>
+
+    <p>
+      <strong>Classifiers.</strong> Three weekday-vs-weekend models on <code>[Vol, hour_of_day, Boro_code]</code>:
+      <code>LogisticRegression</code> (on scaled features), <code>RandomForestClassifier</code>, and
+      <code>XGBClassifier</code>. Each one is reported with a classification report, a confusion matrix, and a
+      shared ROC plot so all three curves sit on the same axes for comparison.
+    </p>
+
+    <hr>
+
+    <h2>What the models actually showed</h2>
+
+    <p>
+      The most useful thing the models did was tell me where the feature set ran out of signal.
+    </p>
+
+    <p>
+      <strong>Volume prediction.</strong> The Gradient Boosting Regressor on
+      <code>[is_event_time, hour_of_day, day_of_week]</code> hit R² = 0.07 with MSE ≈ 30,472. That’s not a model
+      failure — it’s the model correctly reporting that event <em>presence</em> alone isn’t enough. To actually
+      forecast volume around events you’d need event type, expected attendance, venue proximity, and the specific
+      street segment, none of which the current join carries.
+    </p>
+
+    <p>
+      <strong>Weekday vs weekend.</strong> Three classifiers, same features (<code>Vol</code>, hour, borough),
+      same train/test split:
+    </p>
+
+    <table class="resTable">
+      <thead>
+        <tr><th>Model</th><th style="text-align:right">ROC-AUC</th><th>Read</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Logistic Regression</td>
+          <td class="num">0.51</td>
+          <td>Effectively random — the signal isn’t linear in these features</td>
+        </tr>
+        <tr class="best">
+          <td>Random Forest</td>
+          <td class="num">0.76</td>
+          <td>Best balanced; picks up the hour&times;weekend interaction</td>
+        </tr>
+        <tr>
+          <td>XGBoost</td>
+          <td class="num">0.71</td>
+          <td>High overall accuracy, but weekend recall drops to 0.24</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Random Forest is the recommended model on this feature set. The gap between Logistic Regression and the tree
+      models is the actual takeaway — there’s real signal there, but only in the interaction between hour and
+      day-type, which a linear decision boundary can’t see.
+    </p>
+
+    <hr>
+
+    <h2>Why it stands out</h2>
+    <p>
+      Most student traffic projects stop at one chart and one accuracy number. This one runs the full loop —
+      messy CSV → reconciled dataframe → five-plot EDA → four models → honest report on what the features can and
+      can’t support. The most important result is negative: a 1.7M-row dataset isn’t enough on its own, and the
+      writeup says exactly which features would unlock the rest.
+    </p>
 
     <hr>
 
     <h2>How I think about this kind of work</h2>
     <ul>
-      <li>Start by defining what a stakeholder decision needs.</li>
-      <li>Make the dataset predictable before trying to make it “smart”.</li>
-      <li>Prefer simple, well-tested transforms over fragile complexity.</li>
+      <li>The merge is the model. Most of the analytical value lives in making two messy feeds speak the same language; everything downstream is a consumer.</li>
+      <li>Negative results are still results. A model that hits R² = 0.07 has told you something specific — that the features you gave it aren’t the features you need.</li>
+      <li>Always run a linear baseline alongside the tree models. The gap between Logistic Regression and Random Forest is what tells you whether the signal is linear or interactional.</li>
+      <li>EDA earns its weight before modelling does. A clear hour&times;day heatmap is worth more than a marginal AUC bump.</li>
     </ul>
 
     <footer>
