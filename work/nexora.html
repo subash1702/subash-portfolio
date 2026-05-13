@@ -41,6 +41,14 @@
     .metaRow{display:flex;flex-wrap:wrap;gap:10px 16px;color:var(--muted);font-weight:600;font-size:13px}
     .metaRow span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(11,11,15,.02)}
 
+    pre{margin:14px 0;padding:16px 18px;background:rgba(11,11,15,.025);border:1px solid var(--line);border-radius:12px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:13px;line-height:1.65;color:var(--ink)}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.92em;background:rgba(11,11,15,.04);padding:1px 6px;border-radius:5px}
+    pre code{background:none;padding:0;border-radius:0;font-size:inherit}
+
+    .arch{margin:16px 0 6px;border:1px solid var(--line);border-radius:14px;padding:18px;background:rgba(11,11,15,.015);overflow-x:auto}
+    .arch svg{width:100%;height:auto;display:block;min-width:760px}
+    .archCap{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
+
     footer{border-top:1px solid var(--line);margin-top:52px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
     .icons{display:flex;gap:12px;align-items:center}
     .iconBtn{width:42px;height:42px;border-radius:999px;border:1px solid var(--line);display:grid;place-items:center;text-decoration:none;background:rgba(11,11,15,.02)}
@@ -71,34 +79,184 @@
   </section>
 
   <main>
-    <div class="kicker">LLM • Knowledge Graphs • NetworkX • Streamlit</div>
+    <div class="kicker">LLM • Knowledge Graphs • Neo4j • Streamlit</div>
     <h1>Nexora-NX</h1>
     <p class="sub">
-      Nexora-NX converts unstructured text and PDFs into an explainable knowledge graph. It extracts entity–relationship
-      triplets, builds a graph in-memory, and lets you explore connections with real reasoning paths.
+      Nexora-NX converts unstructured documents — PDFs, plain text, HTML — into an explainable knowledge graph.
+      An LLM extracts entity–relationship triplets with evidence and confidence, the graph is persisted in Neo4j
+      against a typed schema, and a Streamlit UI lets you query it with Cypher, rank entities by PageRank, and trace
+      real reasoning paths between concepts.
     </p>
 
     <div class="metaRow">
-      <span>LLM Extraction</span><span>NetworkX</span><span>Graph Analytics</span><span>Streamlit</span><span>PyVis</span>
+      <span>LLM Extraction</span><span>Neo4j</span><span>Cypher</span><span>Streamlit</span><span>PyVis</span>
     </div>
 
     <hr>
 
     <h2>What it does</h2>
     <ul>
-      <li>Ingests raw text / PDFs and extracts entities + relationships.</li>
-      <li>Creates triplets and builds a knowledge graph (nodes + edges) with evidence metadata.</li>
-      <li>Supports centrality ranking (PageRank) and path-based reasoning (“How is X connected to Y?”).</li>
-      <li>Returns explainable answers based on the graph path + evidence.</li>
+      <li>Ingests PDF, TXT, and HTML; extracts entities and relations as constrained JSON triplets carrying evidence spans and confidence scores.</li>
+      <li>Persists the graph in Neo4j against a typed schema (<code>Entity</code>, <code>Document</code>, <code>MENTIONED_IN</code>, <code>RELATED_TO</code>) with evidence stored on the edge itself.</li>
+      <li>Surfaces central concepts across all ingested documents with Neo4j GDS PageRank, and renders interactive subgraph previews in PyVis.</li>
+      <li>Answers “how is X connected to Y?” by finding the shortest path in Cypher and asking the LLM to summarize it — grounded in the evidence on each edge, not in what the model happens to remember.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Architecture</h2>
+    <p>
+      Four stages, each replaceable in isolation. Documents come in through Streamlit, get normalized to plain text
+      by a loader-and-cleaner pass, and are handed to the extractor. The extractor calls an LLM with a system prompt
+      that pins the output to strict JSON — anything that doesn’t parse cleanly is dropped rather than coerced. The
+      writer commits the validated triplets to Neo4j against a typed schema with unique constraints, so the same
+      entity across five documents becomes one node, not five. From there the graph is the source of truth and the
+      UI is just one of many things you could put on top of it.
+    </p>
+
+    <div class="arch">
+      <svg viewBox="0 0 1000 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nexora-NX architecture: Ingest, Extract, Persist, Query.">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="rgba(11,11,15,.45)"/>
+          </marker>
+        </defs>
+
+        <!-- Stage 1: Ingest -->
+        <rect x="20" y="30" width="210" height="120" rx="14" fill="#fff" stroke="rgba(11,11,15,.15)" stroke-width="1.5"/>
+        <text x="35" y="58" font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="rgba(11,11,15,.55)">01 · INGEST</text>
+        <text x="35" y="86" font-family="Inter,sans-serif" font-size="17" font-weight="700" fill="rgba(11,11,15,.92)">Documents</text>
+        <text x="35" y="110" font-family="Inter,sans-serif" font-size="12" fill="rgba(11,11,15,.55)">PDF · TXT · HTML</text>
+        <text x="35" y="128" font-family="Inter,sans-serif" font-size="12" fill="rgba(11,11,15,.55)">loader + cleaner</text>
+
+        <line x1="240" y1="90" x2="263" y2="90" stroke="rgba(11,11,15,.45)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- Stage 2: Extract -->
+        <rect x="270" y="30" width="210" height="120" rx="14" fill="#fff" stroke="rgba(11,11,15,.15)" stroke-width="1.5"/>
+        <text x="285" y="58" font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="rgba(11,11,15,.55)">02 · EXTRACT</text>
+        <text x="285" y="86" font-family="Inter,sans-serif" font-size="17" font-weight="700" fill="rgba(11,11,15,.92)">LLM → JSON</text>
+        <text x="285" y="110" font-family="Inter,sans-serif" font-size="12" fill="rgba(11,11,15,.55)">strict triplet schema</text>
+        <text x="285" y="128" font-family="Inter,sans-serif" font-size="12" fill="rgba(11,11,15,.55)">evidence + confidence</text>
+
+        <line x1="490" y1="90" x2="513" y2="90" stroke="rgba(11,11,15,.45)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- Stage 3: Persist -->
+        <rect x="520" y="30" width="210" height="120" rx="14" fill="#fff" stroke="rgba(11,11,15,.15)" stroke-width="1.5"/>
+        <text x="535" y="58" font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="rgba(11,11,15,.55)">03 · PERSIST</text>
+        <text x="535" y="86" font-family="Inter,sans-serif" font-size="17" font-weight="700" fill="rgba(11,11,15,.92)">Neo4j</text>
+        <text x="535" y="110" font-family="Inter,sans-serif" font-size="12" fill="rgba(11,11,15,.55)">typed schema · MERGE</text>
+        <text x="535" y="128" font-family="Inter,sans-serif" font-size="12" fill="rgba(11,11,15,.55)">unique constraints</text>
+
+        <line x1="740" y1="90" x2="763" y2="90" stroke="rgba(11,11,15,.45)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- Stage 4: Query -->
+        <rect x="770" y="30" width="210" height="120" rx="14" fill="rgba(11,11,15,.04)" stroke="rgba(11,11,15,.25)" stroke-width="1.5"/>
+        <text x="785" y="58" font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="rgba(11,11,15,.55)">04 · QUERY</text>
+        <text x="785" y="86" font-family="Inter,sans-serif" font-size="17" font-weight="700" fill="rgba(11,11,15,.92)">Streamlit UI</text>
+        <text x="785" y="110" font-family="Inter,sans-serif" font-size="12" fill="rgba(11,11,15,.55)">PyVis · Cypher</text>
+        <text x="785" y="128" font-family="Inter,sans-serif" font-size="12" fill="rgba(11,11,15,.55)">PageRank · Ask the Graph</text>
+      </svg>
+      <div class="archCap">Document → triplets → graph → answers. The graph is the contract between stages.</div>
+    </div>
+
+    <hr>
+
+    <h2>Graph model</h2>
+    <p>
+      Two node labels, two relationship types, evidence carried on the edge that asserts the claim. A unique
+      constraint on <code>Entity.name</code> turns repeated mentions across documents into a single node with a
+      frequency counter and many <code>MENTIONED_IN</code> edges, instead of duplicate islands.
+    </p>
+
+<pre><code>// Node labels
+(:Entity   { name, type, freq })
+(:Document { id, title, source })
+
+// Relationships
+(:Entity)-[:MENTIONED_IN]-&gt;(:Document)
+(:Entity)-[:RELATED_TO { relation, confidence, evidence, doc_id }]-&gt;(:Entity)
+
+// Constraints + indexes (schema.cypher)
+CREATE CONSTRAINT entity_name_unique   IF NOT EXISTS FOR (e:Entity)   REQUIRE e.name IS UNIQUE;
+CREATE CONSTRAINT document_id_unique   IF NOT EXISTS FOR (d:Document) REQUIRE d.id   IS UNIQUE;
+CREATE INDEX      entity_type_idx      IF NOT EXISTS FOR (e:Entity)   ON (e.type);</code></pre>
+
+    <p>
+      Every <code>RELATED_TO</code> edge carries the evidence span and confidence on the edge itself — the answer
+      to “why does the graph think these are related?” is literally a property on the relationship, pointing to
+      the source document. No separate provenance table to drift out of sync.
+    </p>
+
+    <hr>
+
+    <h2>What I built</h2>
+
+    <p>
+      <strong>Ingestion.</strong> <code>pdf_loader.py</code> handles PDF text extraction, <code>text_cleaning.py</code>
+      strips boilerplate (headers, footers, page numbers, garbled encodings). TXT and HTML are routed through the
+      same cleaner so the extractor sees one consistent format. Each document gets a stable <code>doc_id</code>
+      that follows it into the graph.
+    </p>
+
+    <p>
+      <strong>Extraction.</strong> <code>llm_triplets.py</code> prompts the LLM with a constrained JSON schema and
+      rejects anything that doesn’t parse. Triplets without an evidence span are dropped. Confidence is required
+      on every relation. This is the line where hallucination gets filtered — nothing reaches the graph that
+      doesn’t cite a span in the source text.
+    </p>
+
+<pre><code>{
+  "triplets": [
+    {
+      "head": "Transformer",
+      "relation": "USES",
+      "tail": "Self-Attention",
+      "evidence": "The Transformer uses self-attention…",
+      "confidence": 0.86
+    }
+  ],
+  "entities": [
+    { "name": "Transformer",    "type": "METHOD" },
+    { "name": "Self-Attention", "type": "METHOD" }
+  ]
+}</code></pre>
+
+    <p>
+      <strong>Persistence.</strong> <code>writer.py</code> commits each batch with <code>MERGE</code> on
+      <code>(:Entity {name})</code> and <code>(:Document {id})</code>, then <code>MERGE</code>s the
+      <code>RELATED_TO</code> edge with its evidence and confidence properties. The unique constraint on
+      <code>Entity.name</code> guarantees idempotency — re-ingesting the same document doesn’t duplicate nodes,
+      and the same entity mentioned in twenty papers stays one node with twenty <code>MENTIONED_IN</code> edges.
+    </p>
+
+    <p>
+      <strong>UI.</strong> <code>streamlit_app.py</code> exposes four surfaces over the graph:
+    </p>
+    <ul>
+      <li><strong>Upload &amp; Extract</strong> — drop a document, stream triplets back as they parse, commit on click.</li>
+      <li><strong>Graph Preview (PyVis)</strong> — interactive subgraph around any selected entity, color-coded by type, configurable neighbourhood depth.</li>
+      <li><strong>Graph Insights (GDS PageRank)</strong> — runs PageRank in the Neo4j GDS library to surface the most central concepts across everything ingested. Useful for finding what a corpus of twenty papers actually keeps returning to.</li>
+      <li><strong>Ask the Graph</strong> — pick two entities, find the shortest path in Cypher, then ask the LLM to summarize that path using only the evidence stored on each edge. The model narrates; the graph reasons.</li>
     </ul>
 
     <hr>
 
     <h2>Why it stands out</h2>
     <p>
-      Most student projects stop at “LLM output”. This is a system: structured extraction → graph model → analytics →
-      explainable responses. It’s the kind of architecture recruiters recognize as real engineering thinking.
+      Most LLM-on-documents projects stop at “the model said so”. This is a system: constrained JSON extraction →
+      typed Neo4j schema → GDS analytics → answers grounded in graph path + evidence. It’s the kind of architecture
+      recruiters recognize as real engineering thinking.
     </p>
+
+    <hr>
+
+    <h2>How I think about this kind of work</h2>
+    <ul>
+      <li>Structured output beats clever prompting. A strict JSON schema with rejection on failure is cheaper than cleaning up free-form LLM text downstream.</li>
+      <li>A graph database earns its place the moment you have a second document. Before that it’s overhead — after that it’s the only thing keeping entities from fragmenting.</li>
+      <li>Evidence belongs on the edge that makes the claim, not in a separate provenance table. If they’re stored apart, they will drift apart.</li>
+      <li>Explainability isn’t a feature you bolt on; it’s a consequence of choosing a data model where the answer <em>is</em> the path.</li>
+    </ul>
 
     <footer>
       <div>Contact</div>
