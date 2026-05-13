@@ -4,17 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dual Layer E-Commerce Data Platform | Subash Chakravarthy</title>
-
+ 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+ 
   <style>
-    :root{--bg:#fff;--ink:rgba(11,11,15,.92);--muted:rgba(11,11,15,.58);--line:rgba(11,11,15,.10);--max:1100px;}
+    :root{--bg:#fff;--ink:rgba(11,11,15,.92);--muted:rgba(11,11,15,.58);--line:rgba(11,11,15,.10);--max:1100px;--code-bg:rgba(11,11,15,.04);}
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
     a{color:inherit}
-
+ 
     .nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .navInner{max-width:var(--max);margin:0 auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{font-weight:800;letter-spacing:-.03em;text-decoration:none}
@@ -22,13 +23,13 @@
     .navLinks a{text-decoration:none;color:rgba(11,11,15,.70)}
     .navLinks a:hover{color:rgba(11,11,15,.92)}
     .navLinks a.active{color:rgba(11,11,15,.92)}
-
+ 
     .workStripWrap{padding:26px 22px 0}
     .workStrip{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:center;align-items:center;text-align:center}
     .workItem{text-decoration:none;font-weight:700;letter-spacing:-.02em;color:rgba(11,11,15,.20);font-size:clamp(16px,1.55vw,26px);line-height:1.15;transition:color .2s ease,transform .2s ease}
     .workItem:hover{color:rgba(11,11,15,.55);transform:translateY(-1px)}
     .workItem.active{color:rgba(11,11,15,.92)}
-
+ 
     main{max-width:var(--max);margin:0 auto;padding:34px 22px 80px}
     .kicker{color:var(--muted);font-weight:600;letter-spacing:.02em;text-transform:uppercase;font-size:12px}
     h1{margin:10px 0 12px;font-size:clamp(34px,4vw,56px);letter-spacing:-.04em;line-height:1.02}
@@ -36,11 +37,22 @@
     hr{border:0;border-top:1px solid var(--line);margin:26px 0}
     h2{margin:0 0 10px;font-size:20px;letter-spacing:-.02em}
     p{margin:0 0 14px;color:var(--muted);line-height:1.7;max-width:82ch}
-    ul{margin:10px 0 0 18px;color:var(--muted);line-height:1.8}
-
+    ul{margin:10px 0 0 18px;color:var(--muted);line-height:1.8;max-width:82ch}
+    strong{color:var(--ink);font-weight:600}
+ 
     .metaRow{display:flex;flex-wrap:wrap;gap:10px 16px;color:var(--muted);font-weight:600;font-size:13px}
     .metaRow span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(11,11,15,.02)}
-
+ 
+    .repoLink{margin:14px 0 22px;font-size:14px;color:var(--muted)}
+    .repoLink a{color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(11,11,15,.25);padding-bottom:1px;font-weight:500}
+    .repoLink a:hover{border-bottom-color:var(--ink)}
+ 
+    .archImg{display:block;max-width:100%;height:auto;margin:16px 0 6px}
+ 
+    pre, code{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+    pre{background:var(--code-bg);border-radius:6px;padding:14px 16px;overflow-x:auto;font-size:12.5px;line-height:1.55;color:var(--ink);margin:14px 0;max-width:82ch}
+    code:not(pre code){background:rgba(11,11,15,.04);padding:1px 6px;border-radius:3px;font-size:.9em;color:var(--ink)}
+ 
     footer{border-top:1px solid var(--line);margin-top:52px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
     .icons{display:flex;gap:12px;align-items:center}
     .iconBtn{width:42px;height:42px;border-radius:999px;border:1px solid var(--line);display:grid;place-items:center;text-decoration:none;background:rgba(11,11,15,.02)}
@@ -59,7 +71,7 @@
       </nav>
     </div>
   </header>
-
+ 
   <section class="workStripWrap">
     <div class="workStrip">
       <a class="workItem" href="../index.html#selected-work">All</a>
@@ -69,44 +81,125 @@
       <a class="workItem" href="./nexora.html" data-work="nexora">Nexora-NX</a>
     </div>
   </section>
-
+ 
   <main>
     <div class="kicker">Streaming • Batch • Kafka • dbt • Docker</div>
     <h1>Dual Layer E-Commerce Data Platform</h1>
     <p class="sub">
-      A two-layer platform that handles <b>real-time event processing</b> for fast signals and a <b>reliable batch layer</b>
-      for analytics and reporting — designed like something you could actually run in production.
+      A platform that does two things at once from the same Kafka event stream: produces fast signals
+      the business can react to in seconds, and produces trustworthy analytics tables the business
+      can plan against the next day. Both layers read the same source of truth, and both have to agree.
     </p>
-
+ 
+    <p class="repoLink"><a href="https://github.com/subash1702/dual-layer-ecommerce" target="_blank" rel="noreferrer">View on GitHub →</a></p>
+ 
     <div class="metaRow">
       <span>Python</span><span>Kafka</span><span>PostgreSQL</span><span>dbt</span><span>Docker</span><span>SQL</span>
     </div>
-
+ 
     <hr>
-
-    <h2>Real-time event processing layer</h2>
+ 
+    <h2>What made this hard</h2>
     <p>
-      I built a time-windowed pipeline to process high-frequency transaction events with practical stream engineering
-      patterns: handling out-of-order events, late arrivals, and windowed aggregations for decision signals.
+      Real-time and reporting are not the same problem. "Is this item moving unusually fast right now?"
+      needs an answer in seconds and tolerates approximation. "What was our revenue by category last
+      week?" can wait ten minutes but has to be exactly right. A system tuned for fast cuts corners
+      on correctness. A system tuned for correct waits for all the data before it commits. Pick one
+      and the business loses the other half.
     </p>
-    <ul>
-      <li>Sliding + tumbling windows for metrics like sales velocity and inventory triggers.</li>
-      <li>Logic to handle late and out-of-order events so metrics don’t “jump” or become misleading.</li>
-      <li>Operational alerts for stock fluctuations to shorten response time.</li>
-    </ul>
-
+ 
     <hr>
-
-    <h2>Batch analytics layer</h2>
+ 
+    <h2>How most people would approach this</h2>
     <p>
-      The batch layer produces “decision-ready” tables for BI and reporting. It’s built to be predictable and safe to re-run.
+      Pick a side. Either build a streaming pipeline with Kafka and Flink and accept that historical
+      reporting will be approximate, or build a batch pipeline with Airflow and dbt and accept that
+      alerts arrive an hour late. Treat the other half as out of scope, or as a separate project
+      that someone else owns.
     </p>
+ 
+    <h2>How I approached it</h2>
+    <p>
+      I built both, against the same Kafka topic, as two independent consumer groups. The streaming
+      layer maintains windowed metrics in event-time and fires alerts as they happen. The batch sink
+      lands raw events idempotently in Postgres, and dbt transforms them into tested analytics marts.
+      Neither layer can drift from the other, because both replay the same shared stream — and I
+      prove it with a query that pulls the same item from both sides and shows the counts match.
+    </p>
+ 
+    <img class="archImg" src="../assests/dual-layer-architecture.png" alt="Architecture diagram: Retailrocket CSV feeds Kafka, which fans out to a streaming consumer writing to a realtime schema, and a batch sink writing to a raw schema that dbt transforms into staging and marts." />
+ 
+    <p>
+      The trade-off is that I do twice the work on the same data. The benefit is that the business
+      gets the answer to "what's happening now" and "what happened last week" from one system instead
+      of two, and I never have to apologize for the streaming numbers disagreeing with the daily
+      report.
+    </p>
+ 
+    <hr>
+ 
+    <h2>What I built</h2>
+    <p>
+      The replayer reads the Retailrocket CSV in event-time order and publishes to Kafka, paced so
+      wall-time scales linearly with event-time at a configurable speed multiplier. Two kinds of
+      chaos are injected on purpose so downstream consumers actually exercise their error-handling
+      paths: 7% of events are parked on a min-heap and released 1-30 event-seconds later, and 1%
+      are sent twice with identical <code>event_id</code>. The chaos is reproducible across runs
+      via a fixed random seed.
+    </p>
+    <p>
+      The streaming consumer reads Kafka with <code>group_id=stream-consumer</code>, computes
+      tumbling 1-minute and sliding 5-minute windows in event-time, and flushes to Postgres via
+      additive UPSERTs:
+      <code>INSERT … ON CONFLICT DO UPDATE SET value = value + EXCLUDED.value</code>. Arrival order
+      doesn't change the final value of any window — a late event arriving after a window has been
+      flushed simply adds 1 to what Postgres already has. Alerts fire when per-item velocity or
+      transaction counts cross thresholds.
+    </p>
+    <p>
+      The batch sink reads the same Kafka topic with a different <code>group_id=batch-sink</code>
+      and writes events into <code>raw.events</code> with <code>ON CONFLICT (event_id) DO NOTHING</code>.
+      Duplicates are rejected at the database via the PRIMARY KEY — idempotency by construction.
+      Re-runs and crashes never produce duplicate rows.
+    </p>
+    <p>
+      The dbt project has four models and twenty-two data-quality tests, including three custom
+      singular tests for business rules. Staging models materialize as views (always fresh); marts
+      materialize as tables for query speed. The result is a set of decision-ready analytics tables:
+      daily funnel conversion rates, per-item-per-day stats, and a lifetime item performance ranking.
+    </p>
+ 
+    <hr>
+ 
+    <h2>End-to-end consistency proof</h2>
+    <p>
+      The streaming layer flagged item <code>255725</code> for transaction bursts — four
+      <code>low_stock_pressure</code> alerts during the run. The batch layer's per-item-per-day mart
+      shows the same item had exactly four transactions, on June 18 (1) and June 19 (3). Two
+      independent code paths, two independent consumer groups, perfectly consistent counts.
+    </p>
+ 
+<pre>SELECT 'streaming' AS source, kind, COUNT(*) AS hits
+  FROM realtime.alerts WHERE item_id = 255725 GROUP BY 1, 2
+UNION ALL
+SELECT 'batch', event_date::text, transactions
+  FROM marts.daily_item_metrics WHERE item_id = 255725 AND transactions > 0;
+ 
+  source   |        kind        | hits
+-----------+--------------------+------
+ batch     | 2015-06-18         |    1
+ batch     | 2015-06-19         |    3
+ streaming | low_stock_pressure |    4</pre>
+ 
+    <hr>
+ 
+    <h2>How I think about this kind of work</h2>
     <ul>
-      <li>Idempotent ingestion to prevent duplication during retries.</li>
-      <li>dbt-based transformations for clean, testable, versioned SQL models.</li>
-      <li>Data quality checks for schema + business logic validation.</li>
+      <li>If both speed and correctness are real requirements, building both is cheaper than apologizing for whichever one you skipped.</li>
+      <li>Idempotency belongs at the schema layer, not in application code. <code>PRIMARY KEY</code> and <code>ON CONFLICT DO NOTHING</code> survive restarts; in-memory dedup sets do not.</li>
+      <li>The most defensible architecture is the one whose claims you can prove with a single SQL query.</li>
     </ul>
-
+ 
     <footer>
       <div>Contact</div>
       <div class="icons">
@@ -122,7 +215,7 @@
       </div>
     </footer>
   </main>
-
+ 
   <script>
     (function(){
       const map={"dual-layer-ecommerce.html":"dual","contract-driven-spark.html":"spark","nyc-traffic.html":"nyc","nexora.html":"nexora"};
