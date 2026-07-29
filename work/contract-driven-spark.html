@@ -22,17 +22,16 @@
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
     a{color:inherit}
 
-    /* Top nav */
     .nav{
-      position: sticky; top:0; z-index: 10;
-      background: rgba(255,255,255,.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
+      position:sticky;top:0;z-index:10;
+      background:rgba(255,255,255,.85);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
     }
     .navInner{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 16px 22px;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px 22px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -44,24 +43,27 @@
       text-decoration:none;
     }
     .navLinks{
-      display:flex; gap:18px; align-items:center;
+      display:flex;
+      gap:18px;
+      align-items:center;
       font-weight:600;
     }
     .navLinks a{
       text-decoration:none;
-      color: rgba(11,11,15,.70);
+      color:rgba(11,11,15,.70);
     }
-    .navLinks a:hover{color: rgba(11,11,15,.92)}
-    .navLinks a.active{color: rgba(11,11,15,.92)}
+    .navLinks a:hover,
+    .navLinks a.active{
+      color:rgba(11,11,15,.92);
+    }
 
-    /* Work selector strip */
-    .workStripWrap{padding: 26px 22px 0;}
+    .workStripWrap{padding:26px 22px 0}
     .workStrip{
-      max-width: var(--max);
-      margin: 0 auto;
+      max-width:var(--max);
+      margin:0 auto;
       display:flex;
       flex-wrap:wrap;
-      gap: 16px 28px;
+      gap:16px 28px;
       justify-content:center;
       align-items:center;
       text-align:center;
@@ -70,97 +72,111 @@
       text-decoration:none;
       font-weight:700;
       letter-spacing:-.02em;
-      color: rgba(11,11,15,.20);
-      font-size: clamp(16px, 1.55vw, 26px);
+      color:rgba(11,11,15,.20);
+      font-size:clamp(16px,1.55vw,26px);
       line-height:1.15;
-      transition: color .2s ease, transform .2s ease;
+      transition:color .2s ease,transform .2s ease;
     }
-    .workItem:hover{color: rgba(11,11,15,.55); transform: translateY(-1px)}
-    .workItem.active{color: rgba(11,11,15,.92)}
+    .workItem:hover{
+      color:rgba(11,11,15,.55);
+      transform:translateY(-1px);
+    }
+    .workItem.active{
+      color:rgba(11,11,15,.92);
+    }
 
-    /* Page */
     main{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 34px 22px 80px;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:34px 22px 80px;
     }
     .kicker{
-      color: var(--muted);
+      color:var(--muted);
       font-weight:600;
       letter-spacing:.02em;
-      text-transform: uppercase;
-      font-size: 12px;
+      text-transform:uppercase;
+      font-size:12px;
     }
     h1{
-      margin: 10px 0 12px;
-      font-size: clamp(34px, 4vw, 56px);
+      margin:10px 0 12px;
+      font-size:clamp(34px,4vw,56px);
       letter-spacing:-.04em;
       line-height:1.02;
     }
     .sub{
-      margin: 0 0 22px;
-      color: var(--muted);
-      font-size: 18px;
+      margin:0 0 22px;
+      color:var(--muted);
+      font-size:18px;
       line-height:1.6;
-      max-width: 70ch;
+      max-width:70ch;
     }
     hr{
       border:0;
       border-top:1px solid var(--line);
-      margin: 26px 0;
+      margin:26px 0;
     }
     h2{
-      margin: 0 0 10px;
-      font-size: 20px;
+      margin:0 0 10px;
+      font-size:20px;
       letter-spacing:-.02em;
     }
     p{
-      margin: 0 0 14px;
-      color: var(--muted);
+      margin:0 0 14px;
+      color:var(--muted);
       line-height:1.7;
-      max-width: 80ch;
+      max-width:80ch;
     }
     ul{
-      margin: 10px 0 0 18px;
-      color: var(--muted);
+      margin:10px 0 0 18px;
+      color:var(--muted);
       line-height:1.8;
     }
     .metaRow{
-      display:flex; flex-wrap:wrap; gap:10px 16px;
-      color: var(--muted);
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 16px;
+      color:var(--muted);
       font-weight:600;
-      font-size: 13px;
+      font-size:13px;
     }
     .metaRow span{
-      padding: 8px 10px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(11,11,15,.02);
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(11,11,15,.02);
     }
 
-    /* Footer contact */
     footer{
-      border-top: 1px solid var(--line);
-      margin-top: 52px;
-      padding-top: 18px;
+      border-top:1px solid var(--line);
+      margin-top:52px;
+      padding-top:18px;
       display:flex;
       justify-content:space-between;
       align-items:center;
-      gap: 12px;
+      gap:12px;
       flex-wrap:wrap;
-      color: var(--muted);
-      font-size: 14px;
+      color:var(--muted);
+      font-size:14px;
     }
-    .icons{display:flex; gap:12px; align-items:center}
+    .icons{display:flex;gap:12px;align-items:center}
     .iconBtn{
-      width:42px;height:42px;border-radius:999px;
+      width:42px;
+      height:42px;
+      border-radius:999px;
       border:1px solid var(--line);
-      display:grid;place-items:center;
+      display:grid;
+      place-items:center;
       text-decoration:none;
-      background: rgba(11,11,15,.02);
+      background:rgba(11,11,15,.02);
     }
-    .iconBtn:hover{background: rgba(11,11,15,.05)}
-    .iconBtn svg{width:18px;height:18px;fill: rgba(11,11,15,.78)}
+    .iconBtn:hover{background:rgba(11,11,15,.05)}
+    .iconBtn svg{width:18px;height:18px;fill:rgba(11,11,15,.78)}
+
+    @media(max-width:700px){
+      .navInner{align-items:flex-start}
+      .navLinks{gap:12px;font-size:14px}
+      .workStrip{gap:12px 18px}
+    }
   </style>
 </head>
 <body>
@@ -179,7 +195,9 @@
   <section class="workStripWrap">
     <div class="workStrip">
       <a class="workItem" href="../index.html#selected-work">All</a>
+      <a class="workItem" href="./aws-retail-data-platform.html" data-work="aws">AWS Retail Data Platform</a>
       <a class="workItem" href="./dual-layer-ecommerce.html" data-work="dual">Dual Layer E-Commerce Data Platform</a>
+      <a class="workItem" href="./enterprise-rag.html" data-work="rag">Enterprise RAG Knowledge Assistant</a>
       <a class="workItem" href="./contract-driven-spark.html" data-work="spark">Contract Driven Data Platform with Spark</a>
       <a class="workItem" href="./nyc-traffic.html" data-work="nyc">NYC Traffic Volume Analytics Pipeline</a>
       <a class="workItem" href="./nexora.html" data-work="nexora">Nexora-NX</a>
@@ -218,9 +236,9 @@
 
     <h2>What I’d highlight to a recruiter</h2>
     <ul>
-      <li>Strong “systems thinking”: reliability, validation, and maintainability over one-off scripts.</li>
-      <li>Data modeling discipline (clear layers + contracts).</li>
-      <li>Practical approach to scaling: incremental logic and stable outputs.</li>
+      <li>Strong systems thinking: reliability, validation, and maintainability over one-off scripts.</li>
+      <li>Data modeling discipline through clear layers and enforceable contracts.</li>
+      <li>A practical scaling approach using incremental logic and stable outputs.</li>
     </ul>
 
     <footer>
@@ -242,15 +260,20 @@
   <script>
     (function(){
       const map = {
+        "aws-retail-data-platform.html":"aws",
         "dual-layer-ecommerce.html":"dual",
+        "enterprise-rag.html":"rag",
         "contract-driven-spark.html":"spark",
         "nyc-traffic.html":"nyc",
         "nexora.html":"nexora"
       };
       const file = (location.pathname.split("/").pop() || "").toLowerCase();
       const key = map[file];
+
       document.querySelectorAll(".workItem[data-work]").forEach(a=>{
-        if(a.getAttribute("data-work") === key) a.classList.add("active");
+        if(a.getAttribute("data-work") === key){
+          a.classList.add("active");
+        }
       });
     })();
   </script>
