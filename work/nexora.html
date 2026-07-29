@@ -71,7 +71,9 @@
   <section class="workStripWrap">
     <div class="workStrip">
       <a class="workItem" href="../index.html#selected-work">All</a>
+      <a class="workItem" href="./aws-retail-data-platform.html" data-work="aws">AWS Retail Data Platform</a>
       <a class="workItem" href="./dual-layer-ecommerce.html" data-work="dual">Dual Layer E-Commerce Data Platform</a>
+      <a class="workItem" href="./enterprise-rag.html" data-work="rag">Enterprise RAG Knowledge Assistant</a>
       <a class="workItem" href="./contract-driven-spark.html" data-work="spark">Contract Driven Data Platform with Spark</a>
       <a class="workItem" href="./nyc-traffic.html" data-work="nyc">NYC Traffic Volume Analytics Pipeline</a>
       <a class="workItem" href="./nexora.html" data-work="nexora">Nexora-NX</a>
@@ -276,7 +278,14 @@ CREATE INDEX      entity_type_idx      IF NOT EXISTS FOR (e:Entity)   ON (e.type
 
   <script>
     (function(){
-      const map={"dual-layer-ecommerce.html":"dual","contract-driven-spark.html":"spark","nyc-traffic.html":"nyc","nexora.html":"nexora"};
+      const map={
+        "aws-retail-data-platform.html":"aws",
+        "dual-layer-ecommerce.html":"dual",
+        "enterprise-rag.html":"rag",
+        "contract-driven-spark.html":"spark",
+        "nyc-traffic.html":"nyc",
+        "nexora.html":"nexora"
+      };
       const file=(location.pathname.split("/").pop()||"").toLowerCase();
       const key=map[file];
       document.querySelectorAll(".workItem[data-work]").forEach(a=>{
