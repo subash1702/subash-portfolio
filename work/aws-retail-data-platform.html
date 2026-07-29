@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="AWS Retail Data Platform case study by Subash Chakravarthy.">
+  <title>AWS Retail Data Platform | Subash Chakravarthy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fff;--ink:rgba(11,11,15,.92);--muted:rgba(11,11,15,.58);--line:rgba(11,11,15,.10);--max:1100px;}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit}
+    .nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .navInner{max-width:var(--max);margin:0 auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-weight:800;letter-spacing:-.03em;text-decoration:none}
+    .navLinks{display:flex;gap:18px;align-items:center;font-weight:600}
+    .navLinks a{text-decoration:none;color:rgba(11,11,15,.70)}
+    .navLinks a:hover,.navLinks a.active{color:rgba(11,11,15,.92)}
+    .workStripWrap{padding:26px 22px 0}
+    .workStrip{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:center;align-items:center;text-align:center}
+    .workItem{text-decoration:none;font-weight:700;letter-spacing:-.02em;color:rgba(11,11,15,.20);font-size:clamp(16px,1.55vw,26px);line-height:1.15;transition:color .2s ease,transform .2s ease}
+    .workItem:hover{color:rgba(11,11,15,.55);transform:translateY(-1px)}
+    .workItem.active{color:rgba(11,11,15,.92)}
+    main{max-width:var(--max);margin:0 auto;padding:34px 22px 80px}
+    .kicker{color:var(--muted);font-weight:600;letter-spacing:.02em;text-transform:uppercase;font-size:12px}
+    h1{margin:10px 0 12px;font-size:clamp(34px,4vw,56px);letter-spacing:-.04em;line-height:1.02}
+    .sub{margin:0 0 22px;color:var(--muted);font-size:18px;line-height:1.6;max-width:72ch}
+    hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+    h2{margin:0 0 10px;font-size:20px;letter-spacing:-.02em}
+    p{margin:0 0 14px;color:var(--muted);line-height:1.7;max-width:82ch}
+    ul{margin:10px 0 0 18px;color:var(--muted);line-height:1.8}
+    .metaRow{display:flex;flex-wrap:wrap;gap:10px 16px;color:var(--muted);font-weight:600;font-size:13px}
+    .metaRow span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(11,11,15,.02)}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.92em;background:rgba(11,11,15,.04);padding:1px 6px;border-radius:5px}
+    .arch{margin:16px 0 6px}
+    .archImg{width:100%;height:auto;display:block;border:1px solid var(--line)}
+    .archCap{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
+    .resTable{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+    .resTable th,.resTable td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left}
+    .resTable th{font-weight:700;color:var(--ink);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+    .resTable td{color:var(--muted)}
+    .resTable td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:600;color:var(--ink)}
+    .resTable tr.best td{color:var(--ink);background:rgba(11,11,15,.025)}
+    .projectLink{display:inline-flex;margin-top:8px;padding:10px 0;border-bottom:1px solid var(--ink);font-weight:700;text-decoration:none}
+    footer{border-top:1px solid var(--line);margin-top:52px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+    .icons{display:flex;gap:12px;align-items:center}
+    .iconBtn{width:42px;height:42px;border-radius:999px;border:1px solid var(--line);display:grid;place-items:center;text-decoration:none;background:rgba(11,11,15,.02)}
+    .iconBtn:hover{background:rgba(11,11,15,.05)}
+    .iconBtn svg{width:18px;height:18px;fill:rgba(11,11,15,.78)}
+    @media(max-width:700px){
+      .navInner{align-items:flex-start}
+      .navLinks{gap:12px;font-size:14px}
+      .workStrip{gap:12px 18px}
+    }
+</style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="navInner">
+      <a class="brand" href="../index.html">Subash</a>
+      <nav class="navLinks">
+        <a href="../index.html">Home</a>
+        <a class="active" href="../index.html#selected-work">Work</a>
+        <a href="../About.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <section class="workStripWrap">
+    <div class="workStrip">
+      <a class="workItem" href="../index.html#selected-work">All</a>
+      <a class="workItem" href="./aws-retail-data-platform.html" data-work="aws">AWS Retail Data Platform</a>
+      <a class="workItem" href="./dual-layer-ecommerce.html" data-work="dual">Dual Layer E-Commerce Data Platform</a>
+      <a class="workItem" href="./enterprise-rag.html" data-work="rag">Enterprise RAG Knowledge Assistant</a>
+      <a class="workItem" href="./contract-driven-spark.html" data-work="spark">Contract Driven Data Platform with Spark</a>
+      <a class="workItem" href="./nexora.html" data-work="nexora">Nexora-NX</a>
+      <a class="workItem" href="./nyc-traffic.html" data-work="nyc">NYC Traffic Volume Analytics Pipeline</a>
+    </div>
+  </section>
+
+
+  <main>
+    <div class="kicker">AWS • PySpark • Airflow • dbt • Terraform</div>
+    <h1>AWS Retail Data Platform</h1>
+    <p class="sub">
+      A production-style cloud data platform for retail operations, built to move raw data through ingestion,
+      distributed processing, warehouse modeling, automated quality checks, orchestration, and reproducible infrastructure.
+    </p>
+
+    <div class="metaRow">
+      <span>AWS</span><span>Python</span><span>PySpark</span><span>Airflow</span><span>dbt</span>
+      <span>Redshift</span><span>Glue</span><span>Lambda</span><span>S3</span><span>Terraform</span>
+    </div>
+
+    <a class="projectLink" href="https://github.com/subash1702/aws-retail-data-platform" target="_blank" rel="noreferrer">
+      View GitHub repository
+    </a>
+
+    <hr>
+    <h2>What it does</h2>
+    <ul>
+      <li>Ingests retail transaction, customer, product, inventory, and reference data into an Amazon S3 raw layer.</li>
+      <li>Uses PySpark to enforce schemas, clean malformed fields, standardize records, remove duplicates, and derive analytical attributes.</li>
+      <li>Builds staging, fact, dimension, and reporting models with dbt for downstream analytics.</li>
+      <li>Coordinates ingestion, transformation, testing, and publication through Apache Airflow workflows.</li>
+      <li>Defines AWS infrastructure with Terraform so the environment can be recreated consistently.</li>
+      <li>Blocks invalid datasets from reaching downstream consumers through automated validation and quality gates.</li>
+    </ul>
+
+    <hr>
+    <h2>Architecture</h2>
+    <p>
+      The platform separates durable storage, distributed compute, analytical modeling, orchestration, quality control,
+      and infrastructure provisioning. Raw inputs remain recoverable in S3 while downstream layers become progressively
+      cleaner and more business-ready.
+    </p>
+    <div class="arch">
+      <img class="archImg" src="../assests/aws-retail-architecture.png" alt="AWS Retail Data Platform architecture diagram">
+      <div class="archCap">Retail sources → Amazon S3 → PySpark and AWS Glue → dbt models → Amazon Redshift, orchestrated by Airflow and provisioned with Terraform.</div>
+    </div>
+
+    <hr>
+    <h2>What I built</h2>
+    <p><strong>Ingestion.</strong> Source-oriented jobs preserve incoming files before transformation, supporting replay, recovery, debugging, and future changes to processing logic.</p>
+    <p><strong>Distributed transformation.</strong> PySpark jobs apply explicit schemas, standardize types, remove duplicates, derive business fields, and write partitioned processed outputs.</p>
+    <p><strong>Warehouse modeling.</strong> dbt organizes transformed data into staging models, dimensions, facts, tests, and reporting-ready tables.</p>
+    <p><strong>Orchestration.</strong> Airflow DAGs coordinate ingestion, processing, warehouse loading, dbt execution, testing, retries, and completion checks.</p>
+    <p><strong>Infrastructure.</strong> Terraform defines the required AWS resources so cloud setup can be reviewed and reproduced through code.</p>
+
+    <hr>
+    <h2>Reliability and data quality</h2>
+    <table class="resTable">
+      <thead><tr><th>Control</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Schema enforcement</td><td>Rejects malformed records and protects expected data types.</td></tr>
+        <tr><td>Idempotent processing</td><td>Allows workflows to rerun without creating duplicate outputs.</td></tr>
+        <tr><td>dbt tests</td><td>Protects uniqueness, null rules, accepted values, and referential integrity.</td></tr>
+        <tr><td>Airflow retries</td><td>Recovers failed stages without restarting unrelated work.</td></tr>
+        <tr><td>Terraform state</td><td>Keeps infrastructure changes explicit, reviewable, and repeatable.</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h2>Why it stands out</h2>
+    <p>
+      Many portfolio projects stop after loading a CSV into a warehouse. This project models the full operating path:
+      ingestion, durable storage, distributed processing, analytical modeling, automated testing, workflow recovery,
+      and infrastructure as code.
+    </p>
+    <p>
+      The value is not the number of services used. The value is that each component has a clear responsibility and
+      the platform can be understood, tested, recovered, and reproduced by another engineer.
+    </p>
+
+    <hr>
+    <h2>How I think about this kind of work</h2>
+    <ul>
+      <li>Raw data should remain recoverable so transformation logic can evolve without losing the original record.</li>
+      <li>Transformations should be deterministic, testable, and safe to rerun.</li>
+      <li>Data quality belongs inside the workflow and should block publication when expectations fail.</li>
+      <li>Infrastructure should be defined in code rather than depend on manual setup.</li>
+      <li>Cloud architecture should be driven by operational requirements, not by adding services for their own sake.</li>
+    </ul>
+
+
+    <footer>
+      <div>Contact</div>
+      <div class="icons">
+        <a class="iconBtn" href="mailto:subash170202@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+        </a>
+        <a class="iconBtn" href="https://github.com/subash1702" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1.1.1-.8.4-1.4.7-1.7-2.7-.3-5.5-1.4-5.5-6.1 0-1.4.5-2.6 1.2-3.5-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.5 1.2a12 12 0 0 1 6.4 0C17.7 4.3 18.8 4.6 18.8 4.6c.6 1.7.2 3 .1 3.3.8.9 1.2 2.1 1.2 3.5 0 4.7-2.8 5.8-5.5 6.1.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+        </a>
+        <a class="iconBtn" href="https://www.linkedin.com/in/subash-chakravarthy-sugumaran/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 24h5V7H0v17zM7.5 7H12v2.3h.1C12.7 8 14.4 6.7 16.9 6.7 22 6.7 24 10 24 14.3V24h-5v-8.3c0-2-.04-4.6-2.8-4.6-2.8 0-3.2 2.2-3.2 4.5V24h-5V7z"/></svg>
+        </a>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    (function(){
+      const map={
+        "aws-retail-data-platform.html":"aws",
+        "dual-layer-ecommerce.html":"dual",
+        "enterprise-rag.html":"rag",
+        "contract-driven-spark.html":"spark",
+        "nexora.html":"nexora",
+        "nyc-traffic.html":"nyc"
+      };
+      const file=(location.pathname.split("/").pop()||"").toLowerCase();
+      const key=map[file];
+      document.querySelectorAll(".workItem[data-work]").forEach(a=>{
+        if(a.getAttribute("data-work")===key) a.classList.add("active");
+      });
+    })();
+  </script>
+
+</body>
+</html>
