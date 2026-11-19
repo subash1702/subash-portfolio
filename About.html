@@ -6,7 +6,7 @@
 
   <meta
     name="description"
-    content="About Subash Chakravarthy, a data engineer and recent Northeastern University graduate focused on cloud data platforms, streaming systems, analytics engineering, and applied AI."
+    content="About Subash Chakravarthy, a data engineer and Northeastern University M.S. in Analytics graduate focused on Spark and Databricks pipelines, real-time streaming, CDC, data quality, and cloud data platforms."
   />
 
   <title>About • Subash Chakravarthy</title>
@@ -217,6 +217,17 @@
       line-height:1.65;
     }
 
+    .experienceBullets{
+      margin-top:8px;
+      font-size:14px;
+      line-height:1.65;
+      color:rgba(11,11,15,.76);
+    }
+
+    .experienceBullets li{
+      margin:4px 0;
+    }
+
     .skillGroups{
       display:grid;
       gap:10px;
@@ -312,9 +323,11 @@
     <h1>Hi, I’m Subash.</h1>
 
     <p class="lead">
-      I’m a Data Engineer and recent Master’s in Analytics graduate from Northeastern University.
-      I build reliable batch, streaming, cloud, analytics, and AI data systems, with a focus on turning
-      messy operational data into trustworthy products that teams can use without second-guessing the pipeline.
+      I’m a Data Engineer and recent M.S. in Analytics graduate from Northeastern University.
+      I build reliable batch and real-time data platforms, from Spark pipelines on Databricks and
+      CDC with Delta Lake to Kafka and Flink streaming, with data quality and observability built in
+      from the start. My focus is turning messy operational data into trustworthy products that teams
+      can use without second-guessing the pipeline.
     </p>
 
     <div class="grid">
@@ -336,15 +349,25 @@
             <div class="experienceTop">
               <div>
                 <div class="experienceRole">Data Engineer</div>
-                <div class="experienceCompany">Ace Tech IT Services</div>
+                <div class="experienceCompany">Radiustek Projects India Pvt. Ltd., Chennai, India</div>
               </div>
-              <div class="experienceDate">Jan 2024 – Jun 2024</div>
+              <div class="experienceDate">Jan 2023 – Aug 2024</div>
             </div>
 
             <p class="experienceText">
-              Built and optimized data pipelines using Python, Scala, PySpark, Snowflake, dbt, Kafka,
-              and Airflow, with an emphasis on performance, reliability, data quality, and reusable analytical datasets.
+              Built and ran production batch and streaming pipelines using PySpark on Databricks, Delta Lake,
+              Kafka, Flink, PostgreSQL, and Snowflake, owning everything from ingestion and modeling to
+              validation and monitoring.
             </p>
+
+            <ul class="experienceBullets">
+              <li>Designed PySpark pipelines on Databricks processing 20GB+ of data daily with incremental loads and schema evolution, sustaining 99%+ data completeness.</li>
+              <li>Modeled star schemas in PostgreSQL and Snowflake with index and join optimization, cutting analytics query time from 45 minutes to under 3 minutes.</li>
+              <li>Built Kafka and Flink streaming pipelines with sub-second latency, enabling near-real-time reporting for business teams.</li>
+              <li>Implemented CDC pipelines on Delta Lake that applied only changed records, reducing batch processing time by 25%.</li>
+              <li>Built a Great Expectations validation framework with custom checks and automated alerting, reducing bad data reaching analytics by 20–30%.</li>
+              <li>Set up CloudWatch and DataDog monitoring for pipeline health, latency, and throughput, reducing mean time to resolution from 2 hours to 15 minutes.</li>
+            </ul>
           </div>
 
           <div class="experienceItem">
@@ -365,27 +388,68 @@
       </section>
 
       <section class="box">
+        <div class="boxTitle">Education</div>
+
+        <div class="experienceList">
+          <div class="experienceItem">
+            <div class="experienceTop">
+              <div>
+                <div class="experienceRole">M.S. in Analytics</div>
+                <div class="experienceCompany">Northeastern University, Boston, MA · GPA 3.6/4.0</div>
+              </div>
+              <div class="experienceDate">May 2026</div>
+            </div>
+          </div>
+
+          <div class="experienceItem">
+            <div class="experienceTop">
+              <div>
+                <div class="experienceRole">B.Tech. in Electronics &amp; Communication Engineering</div>
+                <div class="experienceCompany">Vellore Institute of Technology, Vellore, India</div>
+              </div>
+              <div class="experienceDate">May 2023</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="box">
+        <div class="boxTitle">Certifications</div>
+
+        <ul>
+          <li>Databricks Certified Associate Data Engineer</li>
+          <li>AWS Certified Solutions Architect – Associate</li>
+          <li>Apache Spark Fundamentals</li>
+        </ul>
+      </section>
+
+      <section class="box">
         <div class="boxTitle">Technical focus</div>
 
         <div class="skillGroups">
           <div class="skillLine">
             <strong>Data engineering:</strong>
-            Python, SQL, Scala, PySpark, Apache Spark, Kafka, Airflow, dbt, CDC, ETL/ELT
+            Python, SQL, PySpark, Apache Spark, Databricks, Delta Lake, Airflow, dbt, CDC, ETL/ELT, incremental loads, schema evolution, medallion architecture
+          </div>
+
+          <div class="skillLine">
+            <strong>Real-time streaming:</strong>
+            Apache Kafka, Apache Flink, AWS Kinesis, consumer groups, stateful processing, windowing, stream joins, exactly-once semantics
           </div>
 
           <div class="skillLine">
             <strong>Cloud and warehousing:</strong>
-            AWS, Azure, Google Cloud, Snowflake, Redshift, BigQuery, Databricks, PostgreSQL
+            AWS (Glue, S3, Redshift, Kinesis), Azure (Synapse, Data Lake), Google Cloud (BigQuery), Snowflake, PostgreSQL, dimensional modeling, star schema
           </div>
 
           <div class="skillLine">
             <strong>Reliability and delivery:</strong>
-            Terraform, Docker, GitHub Actions, Great Expectations, dbt tests, data contracts, lineage, observability
+            Great Expectations, dbt tests, CloudWatch, DataDog, SLA monitoring, Terraform, Docker, GitHub Actions, CI/CD, data contracts, lineage, MLflow
           </div>
 
           <div class="skillLine">
             <strong>Applied AI:</strong>
-            FastAPI, LangGraph, LangChain, hybrid retrieval, Neo4j, MongoDB, Redis, Streamlit, LLM evaluation
+            FastAPI, LangGraph, LangChain, hybrid retrieval, FAISS and vector databases, Neo4j, MongoDB, Redis, Streamlit, LLM evaluation
           </div>
         </div>
       </section>
